@@ -1,4 +1,8 @@
 Hola Esto es un fichero
 Que mola mucho
 A que si?
+<<<<<<< Updated upstream
 Me has escuchado?
+=======
+Pues sí, la verdad es que sí
+>>>>>>> Stashed changes
