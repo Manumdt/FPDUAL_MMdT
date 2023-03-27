@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" style="image/ico" href="images/favicon.ico">
+</head>
+<body>
+    <header>
+        <h1>Proyecto HTML5</h1>
+        <nav>
+            <!-- Menú -->
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="multimedia.html">Multimedia</a></li>
+                <li><a href="dieta.html">Dieta</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Contacto</h2>
+        <form>
+            <div>
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre">
+            </div>
+
+            <div>
+                <label for="apellidos">Apellidos</label>
+                <input type="text" name="apellidos" id="apellidos">
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+            </div>
+
+            <div>
+                <label for="edad">Edad</label>
+                <input type="number" name="edad" id="edad">
+            </div>
+
+            <div>
+                <label for="genero">Género</label>
+                <select id="genero">
+                    <option value="H">Hombre</option>
+                    <option value="M">Mujer</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="motivo">Motivo de contacto</label>
+                <textarea name="motivo" id="motivo" cols="30" rows="10"></textarea>
+            </div>
+            
+            <input type="submit" value="Enviar">
+        </form>
+        <hr>
+    </main>
+    
+    <footer>
+        Proyecto de HTML con ejercicios de Víctor Robles &copy; 2023
+    </footer>
+</body>
+</html>
