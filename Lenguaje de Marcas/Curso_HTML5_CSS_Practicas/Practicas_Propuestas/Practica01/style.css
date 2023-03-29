@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+body{
+    background-color: #c7d9ef;
+}
+
+header{
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.titulo{
+    text-align: right;
+}
+
+.titulo span{
+    font-family:'Comic Sans MS', "Comic Sans", cursive;
+    color: red;
+}
+
+h2{
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+h2::first-letter{
+    font-size: larger;
+}
