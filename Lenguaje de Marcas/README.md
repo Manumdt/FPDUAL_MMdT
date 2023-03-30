@@ -1,0 +1,2 @@
+DIARIO DE LENGUAJE DE MARCAS
+sdfsdfsdfsdfsdfsd
