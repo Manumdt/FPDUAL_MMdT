@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #e9f1fb;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 95%;
+    margin: 0 auto;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    font-family: 'Changa One', cursive;
+    letter-spacing: 2px;
+    padding-bottom: 20px;
+}
+
+p{
+    padding-bottom: 10px;
+    font-size: 70%;
+}
+
+hr{
+    width: 65%;
+    height: 7px;
+    margin: 20px auto;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: #7b98b7;
+}
+
+h2{
+    font-family: 'Changa One', cursive;
+    color: #7b98b7;
+    font-size: 250%;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px black;
+    padding-bottom: 20px;
+}
+
+article{
+    text-align: justify;
+}
+
+.container{
+    display: flex;
+}
+
+.centroy{
+    align-items: center;
+}
+
+.imagen{
+    width: 10%;
+    padding-right: 20px;
+}
+
+img{
+    border: 3.5px solid #7b98b7;
+    padding: 3.5px;
+}
+
+.york{
+    width: 100%;
+}
+
+.dogo{
+    width: 80%;
+}
+
+.parrafo-articulo{
+    width: 90%;
+    padding: 0 5px;
+}
+
+.negrita-cursiva{
+    font-weight: 900;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.blanco-rojo{
+    background-color: white;
+    color: red;
+    font-weight: bold;
+}
+
+.azul{
+    color: blue;
+}
