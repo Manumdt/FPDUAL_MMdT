@@ -6,11 +6,12 @@
 
 body{
     background-color: #c7d9ef;
+    overflow: hidden;
 }
 
 header{
     padding: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .titulo{
@@ -24,9 +25,38 @@ header{
 
 h2{
     text-transform: uppercase;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    padding: 5px;
 }
 
 h2::first-letter{
-    font-size: larger;
+    font-size: 35px;
+}
+
+p{
+    font-family: sans-serif, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    padding: 10px;
+    text-indent: 35px;
+    line-height: 25px;
+    text-align: justify;
+}
+
+.parrafos{
+    margin-bottom: 20px;
+}
+
+.naranja{
+    color: orangered;
+}
+
+.negrita{
+    font-weight: bold;
+}
+
+.blanco-verde{
+    background-color: white;
+    color: green;
+    font-weight: bold;
+    font-style: italic;
 }
