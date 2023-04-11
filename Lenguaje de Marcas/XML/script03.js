@@ -1,12 +1,12 @@
 let pokemons=[];
 const poke_container=document.getElementById('poke_container');
 const url="https://pokeapi.co/api/v2/pokemon";
-const pokemon_number=151;
+const pokemons_number=151;
 const search=document.getElementById("search");
 const form= document.getElementById("form");
 
 const fetchPokemons= async() => {
-    for(i = 1; i <= pokemon_number; i++){
+    for(i = 1; i <= pokemons_number; i++){
         await getAllPokemon(i);
     }
     pokemons.forEach((pokemon)=>createPokemonCard(pokemon));
@@ -34,7 +34,7 @@ const getAllPokemon=async (id) =>{
     pokemons=[...pokemons,pokemon];
 };
 
-fetchPokemons();
+// fetchPokemons();
 
 function createPokemonCard(pokemon){
     const pokemonEl=document.createElement("div");
@@ -52,7 +52,7 @@ function createPokemonCard(pokemon){
         return `<li class="base">${base}</li>`
     }).join("");
     const pokeInnerHTML= `<div class="img-container">
-    <img src="https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" alt="${name}/>"
+    <img src="https://www.google.com/search?q=pokemon+interrogacion&rlz=1C1GCEU_esES1050ES1050&sxsrf=APwXEdckxlUL9R1IuPtandxQojdgtAevWQ:1681126266104&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiOmaavm5_-AhUeUqQEHQvKBDwQ_AUoAXoECAIQAw&biw=1600&bih=757&dpr=1#imgrc=Dz2cD8_ROYxkbM" alt="${name}/>"
     </div>
     <div class="info">
     <span class="number">#${pokemon.id.toString().padStart(3,"0")}</span>
