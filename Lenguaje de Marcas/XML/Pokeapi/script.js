@@ -1,53 +1,48 @@
-var request= new XMLHttpRequest();
+const pokemonContainer= document.querySelector('.pokemon-container');
 
-function processRequest(){
-  if(request.readyState==4){
-    switch(request.status){
-      case 200:
-        
-        processRequest(request);
-        break;
-        
-        case 400:
-          
-          console.error(`Error ${request.status}: No se ha podido procesar la petición`);
-          break;
-          
-        }
-      }
-    }
-    
-    function processRequest(){
-    console.log(`Respuesta: ${request.responseText}`);
+function fetchPokemon(id){
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+    .then((res)=> res.json())
+    .then((data)=> {
+        crearPokemon(data);
+    });
 }
 
-request.onreadystatechange= (() => processRequest(request));
+function fetchAllPokemons(number){
+    for(let i=1; i<=number; i++){
+        fetchPokemon(i);
+    }
+}
 
-request.open("Get" , "https://pokeapi.co/api/v2/pokemon/" , true);
-request.send();
+function crearPokemon(pokemon){
+    const carta= document.createElement('div');
+    carta.classList.add('pokemon');
 
-const index=1;
+    const spriteContainer=document.createElement('div');
+    spriteContainer.classList.add('sprite');
 
-$(document).ready(function() {
-    $.get("https://pokeapi.co/api/v2/pokemon/", function(data) {
-      data.results.forEach(function(pokemon, index) {
-        // Make another request to get the full Pokemon object
-        $.get(pokemon.url, function(pokemonData) {
-          const types = pokemonData.types.map(function(type) {
-            return type.type.name;
-           }).join(", ");
+    const imagen=document.createElement('img');
+    imagen.src= pokemon.sprites.front_default;
 
-          const pokemonNumber = index + 1;
+    spriteContainer.appendChild(imagen);
+    
+    const number= document.createElement('p');
+    number.textContent= `#${pokemon.id.toString().padStart(3, 0)}`;
 
-          const listItem = `
-            <li class="${types}">
-              <span class="upper">${pokemonNumber}. ${pokemon.name}</span>
-              <span>${types}</span>
-              <img src="${pokemonData.sprites.front_default}" alt="${pokemon.name}">
-            </li>
-          `;
-          $("#lista").append(listItem);
-        });
-      });
-    });
-  });
+    const name= document.createElement('p');
+    name.classList.add('name');
+    name.textContent=pokemon.name;
+
+    const type= document.createElement('p');
+    type.classList.add('type');
+    type.textContent=pokemon.types.name;
+
+    carta.appendChild(spriteContainer);
+    carta.appendChild(number);
+    carta.appendChild(name);
+    carta.appendChild(type);
+
+    pokemonContainer.appendChild(carta);
+}
+
+fetchAllPokemons(12);
