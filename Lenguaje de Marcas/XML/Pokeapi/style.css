@@ -10,6 +10,13 @@
     font-weight: normal;
 }
 
+@font-face{
+    font-family: 'Pokemon Hollow';
+    src: url('fonts/Pokemon\ Hollow.ttf') format(truetype);
+    font-style: normal;
+    font-weight: normal;
+}
+
 body{
     background-color: #262626;
 }
@@ -25,24 +32,32 @@ h1{
     margin-bottom: -30px;
 }
 
+section{
+    word-wrap: break-word;
+}
+
 .pokemon-container{
     display: flex;
     flex-wrap: wrap;
     margin: 20px;
     width: 90%;
     margin: 0 auto;
+    word-wrap: break-word;
 }
 
 .pokemon{
     width: 15%;
-    height: 200px;
+    min-width: 12%;
+    height: 230px;
     margin: 5px;
     border: 2px solid white;
     text-align: center;
     padding-top: 20px;
+    padding-bottom: 10px;
     border-radius: 40px;
     color: white;
     transition: 300ms;
+    
 }
 
 .pokemon:hover{
@@ -58,4 +73,49 @@ h1{
 
 .name{
     text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 110%;
 }
+
+.sprite img{
+    width: 70%; 
+}
+
+.tipos{
+    text-transform: uppercase;
+}
+
+.paginacion{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    width: 20%;
+    height: 50px;
+    margin: 10px;
+    padding-bottom: 80px;
+    font-size: 150%;
+    border: 2px solid white;
+    border-radius: 40px;
+    color: #262626;
+    -webkit-text-stroke: 1px white;
+    background-color: #262626;
+    font-family: 'Pokemon';
+    letter-spacing: 2px;
+    transition: 200ms;
+}
+
+button:hover{
+    cursor: pointer;
+    color: #ffcc03;
+    -webkit-text-stroke: 2px #006cbc;
+    border: 2px solid red;
+    background-color: black;
+}
+
+.grass{
+
+}
+
