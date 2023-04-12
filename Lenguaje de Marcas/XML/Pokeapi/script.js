@@ -33,14 +33,20 @@ function crearPokemon(pokemon){
     name.classList.add('name');
     name.textContent=pokemon.name;
 
-    const type= document.createElement('p');
-    type.classList.add('type');
-    type.textContent=pokemon.types.name;
+    const tipos= document.createElement('p');
+    if(pokemon.types.length==1){
+        tipos.textContent= pokemon.types[0].type.name;
+        tipos.classList.add('tipos', pokemon.types[0].type.name);
+    }else if(pokemon.types.length==2){
+        tipos.textContent= pokemon.types[0].type.name + " " + pokemon.types[1].type.name;
+        tipos.classList.add('tipos', pokemon.types[0].type.name, pokemon.types[1].type.name);
+    }
+
 
     carta.appendChild(spriteContainer);
     carta.appendChild(number);
     carta.appendChild(name);
-    carta.appendChild(type);
+    carta.appendChild(tipos);
 
     pokemonContainer.appendChild(carta);
 }
