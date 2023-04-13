@@ -59,18 +59,19 @@ function crearPokemon(pokemon){
     const tipo1= document.createElement('p');
     const tipo2= document.createElement('p');
     if(pokemon.types.length==1){
-        tipo1.textContent= pokemon.types[0].type.name;
-        tipo1.classList.add(pokemon.types[0].type.name);
+        tipo1.textContent=  pokemon.types[0].type.name;
+        tipo1.classList.add('tipo1',pokemon.types[0].type.name);
     }else if(pokemon.types.length==2){
         tipo1.textContent= pokemon.types[0].type.name;
-        tipo1.classList.add(pokemon.types[0].type.name);
+        tipo1.classList.add('tipo1',pokemon.types[0].type.name);
         tipo2.textContent= pokemon.types[1].type.name;
-        tipo2.classList.add(pokemon.types[1].type.name);
+        tipo2.classList.add('tipo2',pokemon.types[1].type.name);
     }
 
     carta.appendChild(spriteContainer);
     carta.appendChild(number);
     carta.appendChild(name);
+    
     tipos.appendChild(tipo1);
     tipos.appendChild(tipo2);
     carta.appendChild(tipos);

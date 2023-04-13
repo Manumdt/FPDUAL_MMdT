@@ -17,6 +17,13 @@
     font-weight: normal;
 }
 
+@font-face{
+    font-family: 'Minecraft';
+    src: url('fonts/Minecraft.ttf') format(truetype);
+    font-style: normal;
+    font-weight: normal;
+}
+
 body{
     background-color: #262626;
 }
@@ -48,16 +55,17 @@ section{
 .pokemon{
     width: 15%;
     min-width: 12%;
-    height: 230px;
+    height: 250px;
     margin: 5px;
     border: 2px solid white;
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
     border-radius: 40px;
     color: white;
     transition: 300ms;
-    
+    font-family: 'Minecraft';
+    letter-spacing: 2px;
 }
 
 .pokemon:hover{
@@ -68,13 +76,14 @@ section{
 
 .pokemon:hover .sprite{
     transition: 0.1s ease;
-    transform: scale(1.5);
+    transform: scale(1.3);
 }
 
 .name{
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 110%;
+    margin-top: 2px;
 }
 
 .sprite img{
@@ -115,7 +124,113 @@ button:hover{
     background-color: black;
 }
 
-.grass{
-
+.tipos{
+    width: 50%;
+    margin: 0 auto;
+    font-weight: 400;
 }
 
+.tipo1{
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 2px;
+    padding-top: 5px;
+    margin: 5px 0;
+}
+
+.tipo2{
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 2px;
+    padding-top: 5px;
+}
+
+.bug{
+    background-color: #3c9950;
+	color: black;
+}
+
+.dark{
+	background-color: #595978;
+	color: black;
+}
+
+.dragon{
+	background-color: #62cad9;
+	color: black;
+}
+
+.electric{
+	background-color: #fbfa72;
+	color: black;
+}
+
+.fairy{
+	background-color: #ea1368;
+	color: black;
+}
+
+.fighting{
+	background-color: #f06239;
+	color: black;
+}
+
+.fire{
+	background-color: #fd4b5a;
+	color: black;
+}
+
+.flying{
+	background-color: #94b2c7;
+	color: black;
+}
+
+.ghost{
+	background-color: #906791;
+	color: black;
+}
+
+.grass{
+	background-color: #27cb50;
+	color: black;
+}
+
+.ground{
+	background-color: #6e491f;
+	color: black;
+}
+
+.ice{
+	background-color: #d8f0fa;
+	color: black;
+}
+
+.normal{
+	background-color: #ca98a6;
+	color: black;
+}
+
+.poison{
+	background-color: #9b69da;
+	color: black;
+}
+
+.psychic{
+	background-color: #f71d92;
+	color: black;
+}
+
+.rock{
+	background-color: #8b3e22;
+	color: black;
+}
+
+.steel{
+	background-color: #43bd94;
+	color: black;
+}
+
+.water{
+	background-color: #85a8fb;
+	color: black;
+}
