@@ -1,6 +1,7 @@
 const pokemonContainer= document.querySelector('.pokemon-container');
 const anterior= document.querySelector('#anterior');
 const siguiente= document.querySelector('#siguiente');
+const oculto= document.querySelector('.oculto');
 
 let offset=1;
 let limit= 11;
@@ -39,17 +40,19 @@ function crearPokemon(pokemon){
     const carta= document.createElement('div');
     carta.classList.add('pokemon');
 
+    carta.addEventListener('click', ()=>{
+        oculto.style.display="block";
+    });
+
     const spriteContainer=document.createElement('div');
     spriteContainer.classList.add('sprite');
 
     const imagen=document.createElement('img');
     imagen.src= pokemon.sprites.front_default;
-
-    spriteContainer.appendChild(imagen);
     
     const number= document.createElement('p');
     number.textContent= `#${pokemon.id.toString().padStart(3, 0)}`;
-
+    
     const name= document.createElement('p');
     name.classList.add('name');
     name.textContent=pokemon.name;
@@ -68,10 +71,11 @@ function crearPokemon(pokemon){
         tipo2.classList.add('tipo2',pokemon.types[1].type.name);
     }
 
+    spriteContainer.appendChild(imagen);
     carta.appendChild(spriteContainer);
     carta.appendChild(number);
     carta.appendChild(name);
-    
+
     tipos.appendChild(tipo1);
     tipos.appendChild(tipo2);
     carta.appendChild(tipos);
