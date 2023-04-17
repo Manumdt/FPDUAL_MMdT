@@ -42,6 +42,7 @@ function crearPokemon(pokemon){
 
     carta.addEventListener('click', ()=>{
         oculto.style.display="block";
+        crearOculto(pokemon.id);
     });
 
     const spriteContainer=document.createElement('div');
@@ -81,6 +82,28 @@ function crearPokemon(pokemon){
     carta.appendChild(tipos);
 
     pokemonContainer.appendChild(carta);
+}
+
+function  crearOculto(id, pokemon){
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/${crearPokemon(id)}/`)
+    .then((res)=> res.json())
+    .then((data)=> {
+        crearOculto(data);
+    });
+
+    const sprite_number=document.createElement('div');
+    sprite_number.classList.add('sprite_number');
+
+    const sprite=document.createElement('img');
+    sprite.classList.add('img_oculto');
+    sprite.src= pokemon.sprites.front_default;
+
+    const number=document.createElement('p');
+    number.classList.add('number_oculto');
+    number.textContent= `#${pokemon.id.toString().padStart(3, 0)}`;
+
+
 }
 
 function removePokemons(parent){
