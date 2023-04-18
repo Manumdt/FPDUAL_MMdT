@@ -40,10 +40,21 @@ function crearPokemon(pokemon){
     const carta= document.createElement('div');
     carta.classList.add('pokemon');
 
-    carta.addEventListener('click', ()=>{
-        oculto.style.display="block";
-        crearOculto(pokemon.id);
-    });
+    // carta.addEventListener('click', ()=>{
+    //     oculto.style.display="block";
+    //     oculto.style.opacity="100%";
+    //     crearOculto(pokemon.id);
+    // });
+
+    $(".pokemon").click(function() {
+        $(".oculto").show(100);
+        $(".fondo_oculto").show(200);
+        });
+
+    $(".oculto").click(function() {
+         $(".oculto").hide(500);
+         $(".fondo_oculto").hide(500);
+        });
 
     const spriteContainer=document.createElement('div');
     spriteContainer.classList.add('sprite');
@@ -82,15 +93,9 @@ function crearPokemon(pokemon){
     carta.appendChild(tipos);
 
     pokemonContainer.appendChild(carta);
-}
 
-function  crearOculto(id, pokemon){
-
-    fetch(`https://pokeapi.co/api/v2/pokemon/${crearPokemon(id)}/`)
-    .then((res)=> res.json())
-    .then((data)=> {
-        crearOculto(data);
-    });
+    const pokemonOculto=document.createElement('div');
+    pokemonOculto.classList.add('pokemon_oculto');
 
     const sprite_number=document.createElement('div');
     sprite_number.classList.add('sprite_number');
@@ -99,12 +104,54 @@ function  crearOculto(id, pokemon){
     sprite.classList.add('img_oculto');
     sprite.src= pokemon.sprites.front_default;
 
-    const number=document.createElement('p');
-    number.classList.add('number_oculto');
-    number.textContent= `#${pokemon.id.toString().padStart(3, 0)}`;
+    const numero_oculto=document.createElement('p');
+    numero_oculto.classList.add('numero_oculto');
+    numero_oculto.textContent= `#${pokemon.id.toString().padStart(3, 0)}`;
 
+    sprite_number.appendChild(sprite);
+    sprite_number.appendChild(numero_oculto);
+
+    oculto.appendChild(sprite_number);
+
+    oculto.appendChild(pokemonOculto);
 
 }
+
+/*function  crearOculto(id, pokemon_oculto){
+
+    console.log(id);
+    
+    if(id!=1){
+        id-=1;
+    }
+    
+    console.log(id);
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+        .then((res)=> res.json())
+        .then((data)=> {
+        crearOculto(data);
+    });
+
+    const div_oculto= document.createElement('div');
+    div_oculto.classList.add('pokemon_oculto');
+
+    const sprite_number=document.createElement('div');
+    sprite_number.classList.add('sprite_number');
+
+    const sprite=document.createElement('img');
+    sprite.classList.add('img_oculto');
+    sprite.src= pokemon_oculto.sprites.front_default;
+
+    const number=document.createElement('p');
+    number.classList.add('number_oculto');
+    number.textContent= `#${pokemon_oculto.id.toString().padStart(3, 0)}`;
+
+    sprite_number.appendChild(sprite);
+    sprite_number.appendChild(number);
+
+    oculto.appendChild(sprite_number);
+
+}*/
 
 function removePokemons(parent){
     while(parent.firstChild){
