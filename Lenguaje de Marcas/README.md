@@ -21,3 +21,9 @@ Realización de las [prácticas propuestas](https://github.com/Manumdt/FPDUAL_MM
 ## Martes 11 - Viernes 14
 
 Realización del proyecto final de lenguaje de marcas, se ha realizado una web enlaza con la pokeapi de pokemon en el que se simulará un pokedex, es decir, un sumario de los pokemons existentes y sus datos.
+
+En el ejercicio se ha creado un documento HTML con la estructura básica necesaria en la que se incluye un header, un section y un footer.
+
+Con CSS además de los estilos visuales se ha implementado flexbox y se ha construido una página responsiva adaptada a la mayoría de pantallas.
+
+Con JavaScript se ha realizado la conexión con la API pública y se han recogido todos los datos para mostrarlos en la web para lo que ha habido que crear elementos desde JavaScript para HTML y alguna modificación en CSS.
