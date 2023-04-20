@@ -41,6 +41,7 @@ CREATE TABLE Productos(
 CREATE TABLE IdiomaPaises(
 	CodigoPais CHAR(3) NOT NULL,
 	IdiomaPais VARCHAR(30) NOT NULL,
+    PRIMARY KEY(CodigoPais, IdiomaPais),
     CONSTRAINT CodigoPais_IdiomaPaises_fk FOREIGN KEY (CodigoPais) REFERENCES Paises(Codigo)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
@@ -251,7 +252,7 @@ INSERT INTO Ciudades (Id, Nombre, CodigoPais, Distrito) VALUES (1, 'Kabul       
 (154, 'Narayanganj                        ', 'BGD', 'Dhaka               '),
 (155, 'Rangpur                            ', 'BGD', 'Rajshahi            '),
 (156, 'Mymensingh                         ', 'BGD', 'Dhaka               '),
-(157, 'Barisal                            ', 'BGD', 'Barisal             '),
+(157, 'Barisal                            ', 'BGD', 'sal             '),
 (158, 'Tungi                              ', 'BGD', 'Dhaka               '),
 (159, 'Jessore                            ', 'BGD', 'Khulna              '),
 (160, 'Comilla                            ', 'BGD', 'Chitta),ng          '),
@@ -1567,7 +1568,7 @@ INSERT INTO Ciudades (Id, Nombre, CodigoPais, Distrito) VALUES (1, 'Kabul       
 (1470, 'Bologna                            ', 'ITA', 'Emilia-Romagna      '),
 (1471, 'Firenze                            ', 'ITA', 'Toscana             '),
 (1472, 'Catania                            ', 'ITA', 'Sisilia             '),
-(1473, 'Bari                               ', 'ITA', 'Apulia              '),
+(1473, 'Bari', 'ITA', 'Apulia              '),
 (1474, 'Venezia                            ', 'ITA', 'Veneto              '),
 (1475, 'Messina                            ', 'ITA', 'Sisilia             '),
 (1476, 'Verona                             ', 'ITA', 'Veneto              '),
