@@ -4,11 +4,11 @@ const siguiente= document.querySelector('#siguiente');
 const oculto= document.querySelector('.oculto');
 
 let offset=1;
-let limit= 11;
+let limit= 19;
 
 anterior.addEventListener('click', ()=>{
     if(offset !=1){
-        offset-=12;
+        offset-=20;
         removePokemons(pokemonContainer);
         fetchAllPokemons(offset, limit);
     }
@@ -16,7 +16,7 @@ anterior.addEventListener('click', ()=>{
 
 siguiente.addEventListener('click', ()=>{
     if(offset <=1008){
-        offset+=12;
+        offset+=20;
         removePokemons(pokemonContainer);
         fetchAllPokemons(offset, limit);
     }
@@ -29,6 +29,14 @@ function fetchPokemon(id){
         crearPokemon(data);
     });
 }
+
+/*function fetchOculto(id){
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+    .then((res)=> res.json())
+    .then((data)=> {
+        crearOculto(data);
+    });
+}*/
 
 function fetchAllPokemons(offset, limit){
     for(let i=offset; i<=offset+limit; i++){
@@ -49,11 +57,35 @@ function crearPokemon(pokemon){
     $(".pokemon").click(function() {
         $(".oculto").show(100);
         $(".fondo_oculto").show(200);
+        crearOculto(pokemon.id);
+
+        /*
+        const pokemonOculto=document.createElement('div');
+        pokemonOculto.classList.add('pokemon_oculto');
+    
+        const sprite_number=document.createElement('div');
+        sprite_number.classList.add('sprite_number');
+    
+        const sprite=document.createElement('img');
+        sprite.classList.add('img_oculto');
+        sprite.src= pokemon.sprites.front_default;
+    
+        const numero_oculto=document.createElement('p');
+        numero_oculto.classList.add('numero_oculto');
+        numero_oculto.textContent= `#${pokemon.id.toString().padStart(3, 0)}`;
+    
+        sprite_number.appendChild(sprite);
+        sprite_number.appendChild(numero_oculto);
+    
+        oculto.appendChild(sprite_number);
+    
+        oculto.appendChild(pokemonOculto);*/
         });
 
     $(".oculto").click(function() {
          $(".oculto").hide(500);
          $(".fondo_oculto").hide(500);
+         removePokemons(pokemon_oculto);
         });
 
     const spriteContainer=document.createElement('div');
@@ -93,65 +125,39 @@ function crearPokemon(pokemon){
     carta.appendChild(tipos);
 
     pokemonContainer.appendChild(carta);
-
-    const pokemonOculto=document.createElement('div');
-    pokemonOculto.classList.add('pokemon_oculto');
-
-    const sprite_number=document.createElement('div');
-    sprite_number.classList.add('sprite_number');
-
-    const sprite=document.createElement('img');
-    sprite.classList.add('img_oculto');
-    sprite.src= pokemon.sprites.front_default;
-
-    const numero_oculto=document.createElement('p');
-    numero_oculto.classList.add('numero_oculto');
-    numero_oculto.textContent= `#${pokemon.id.toString().padStart(3, 0)}`;
-
-    sprite_number.appendChild(sprite);
-    sprite_number.appendChild(numero_oculto);
-
-    oculto.appendChild(sprite_number);
-
-    oculto.appendChild(pokemonOculto);
-
 }
 
-/*function  crearOculto(id, pokemon_oculto){
+function  crearOculto(id, pokemon_oculto){
 
-    console.log(id);
-    
-    if(id!=1){
-        id-=1;
-    }
-    
-    console.log(id);
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-        .then((res)=> res.json())
-        .then((data)=> {
-        crearOculto(data);
-    });
+    // fetchOculto();
+        
+    id -= 1;
 
-    const div_oculto= document.createElement('div');
+        fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+        .then((res) => res.json())
+        .then((data) => {
+            crearOculto(id, data);
+        });
+        
+    const div_oculto = document.createElement('div');
     div_oculto.classList.add('pokemon_oculto');
 
-    const sprite_number=document.createElement('div');
+    const sprite_number = document.createElement('div');
     sprite_number.classList.add('sprite_number');
 
-    const sprite=document.createElement('img');
+    const sprite = document.createElement('img');
     sprite.classList.add('img_oculto');
-    sprite.src= pokemon_oculto.sprites.front_default;
-
-    const number=document.createElement('p');
+    sprite.src = pokemon_oculto.sprites.front_default;
+    
+    const number = document.createElement('p');
     number.classList.add('number_oculto');
-    number.textContent= `#${pokemon_oculto.id.toString().padStart(3, 0)}`;
-
+    number.textContent = `#${pokemon_oculto.id.toString().padStart(3, 0)}`;
+    
     sprite_number.appendChild(sprite);
     sprite_number.appendChild(number);
-
+    
     oculto.appendChild(sprite_number);
-
-}*/
+}
 
 function removePokemons(parent){
     while(parent.firstChild){
