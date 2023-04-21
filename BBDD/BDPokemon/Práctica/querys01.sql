@@ -27,10 +27,9 @@ WHERE Altura >=0.5;
 -- 4. Muestra el nombre de los movimientos cuya precision es mayor que 75 y menor o igual que 100 ordenalo por preciosión de mayor a menor.
 
 SELECT
-	Nombre,
-    PrecisionMov
+	*
 FROM movimiento
-WHERE PrecisionMov BETWEEN 75 AND 100
+WHERE PrecisionMov BETWEEN 76 AND 100
 ORDER BY 2 DESC;
 
 -- 5. Mostrar el Pokemon más pesado:
