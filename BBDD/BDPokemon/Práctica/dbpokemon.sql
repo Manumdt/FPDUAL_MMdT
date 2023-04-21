@@ -110,9 +110,9 @@ CREATE TABLE tipo_evolucion(
 
 CREATE TABLE forma_evolucion(
 	IdFormaEvolucion INT UNSIGNED,
-    TipoEvolucion INT UNSIGNED,
+    IdTipoEvolucion INT UNSIGNED,
     PRIMARY KEY (IdFormaEvolucion),
-    CONSTRAINT TipoEvolucion_forma_evolucion_fk FOREIGN KEY (TipoEvolucion) REFERENCES tipo_evolucion(IdTipoEvolucion)
+    CONSTRAINT IdTipoEvolucion_forma_evolucion_fk FOREIGN KEY (IdTipoEvolucion) REFERENCES tipo_evolucion(IdTipoEvolucion)
 );
 
 CREATE TABLE nivel_evolucion(
