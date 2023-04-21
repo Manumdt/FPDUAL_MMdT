@@ -2,6 +2,8 @@ DROP DATABASE IF EXISTS dbpokemon;
 CREATE DATABASE dbpokemon CHARSET utf8mb4;
 USE dbpokemon;
 
+-- Parte01
+
 CREATE TABLE pokemon(
 	NumeroPokedex INT UNSIGNED,
     Nombre VARCHAR(15),
@@ -43,4 +45,41 @@ CREATE TABLE pokemon_tipo(
     PRIMARY KEY(NumeroPokedex,IdTipo),
     CONSTRAINT NumeroPokedex_pokemon_tipo_fk FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex),
     CONSTRAINT IdTipo_fk_pokemon_tipo FOREIGN KEY (IdTipo) REFERENCES tipo(IdTIpo)
+);
+
+-- Parte02
+
+CREATE TABLE estadisticas_base(
+	NumeroPokedex INT UNSIGNED,
+    Ps INT UNSIGNED,
+    Ataque INT,
+    Defensa INT,
+    Especial INT,
+    Velocidad INT,
+    PRIMARY KEY(NumeroPokedex),
+    CONSTRAINT NumeroPokedex_estadisticas_base_fk FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex)
+);
+
+CREATE TABLE efecto_secundario(
+	IdEfectoSecundario INT UNSIGNED,
+    EfectoSecundario VARCHAR(30),
+    PRIMARY KEY (IdEfectoSecundario)
+);
+
+CREATE TABLE movimiento_efecto_secundario(
+	IdMovimiento INT UNSIGNED,
+    IdEfectoSecundario INT UNSIGNED,
+    Probabilidad FLOAT(6.3),
+    PRIMARY KEY (IdMovimiento, IdEfectoSecundario),
+    CONSTRAINT IdMovimiento_movimiento_fk FOREIGN KEY (IdMovimiento) REFERENCES movimiento(IdMovimiento),
+    CONSTRAINT IdEfectoSecundario_movimiento_efecto_secundario_fk FOREIGN KEY (IdEfectoSecundario) REFERENCES efecto_secundario(IdEfectoSecundario)
+);
+
+CREATE TABLE pokemon_movimiento_forma(
+	NumeroPokedex INT UNSIGNED,
+    IdMovimiento INT UNSIGNED,
+    IdFormaAprendizaje INT UNSIGNED,
+    PRIMARY KEY (NumeroPokedex, IdMovimiento, IdFormaAprendizaje),
+    CONSTRAINT NumeroPokedex_pokemon_movimiento_forma_fk FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex),
+    CONSTRAINT IdMovimiento_pokemon_movimiento_forma_fk FOREIGN KEY (IdMovimiento) REFERENCES movimiento(IdMovimiento)
 );
