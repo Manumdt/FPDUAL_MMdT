@@ -169,3 +169,22 @@ CREATE TABLE mt(
     PRIMARY KEY (IdFormaAprendizaje),
     CONSTRAINT IdFormaAprendizaje_mt_fk FOREIGN KEY (IdFormaAprendizaje) REFERENCES forma_aprendizaje(IdFormaAprendizaje)
 );
+
+-- Trigger
+
+CREATE TABLE pokemon_historico(
+	NumeroPokedex INT UNSIGNED,
+    Nombre VARCHAR(15),
+    Peso FLOAT (6.3),
+    Altura FLOAT (6.3),
+    FechaRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(NumeroPokedex)
+);
+
+DELIMITER $$
+CREATE TRIGGER historial AFTER INSERT ON pokemon
+FOR EACH ROW
+BEGIN
+INSERT INTO pokemon_historico VALUES(NEW.NumeroPokedex, NEW.Nombre, NEW.Peso, NEW.Altura, NOW());
+END$$
+DELIMITER ;
