@@ -51,67 +51,28 @@ function crearPokemon(pokemon) {
     const carta = document.createElement('div');
     carta.classList.add('pokemon');
 
-    // carta.addEventListener('click', ()=>{
-    //     oculto.style.display="block";
-    //     oculto.style.opacity="100%";
-    //     crearOculto(pokemon.id);
-    // });
+    fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
 
-    const desc = pokemon.flavor_text_entries.find(entry => entry.language.name === 'es').flavor_text; /** Filtramos el contenido por idioma y sólo cogemos la descripción el español ('es') */
-    const pokemon_oculto = document.createElement('div');
-    const descripcion = document.createElement('p')
-    pokemon_oculto.classList.add('pokemon_oculto');
-    descripcion.classList.add("descripcion");
-    descripcion.textContent = desc;
-    //descripcion.style.display = "none"; /* Dejamos la descripción oculta hasta que hagamos click */
+        const desc = data.flavor_text_entries.find(entry => entry.language.name === 'es').flavor_text; /** Filtramos el contenido por idioma y sólo cogemos la descripción el español ('es') */
+        const pokemon_oculto = document.createElement('div');
+        const descripcion=document.createElement('p');
+        pokemon_oculto.classList.add('pokemon_oculto', pokemon.id);
+        descripcion.classList.add("descripcion");
+        descripcion.textContent = desc;
+        descripcion.style.display = "none";
 
-    pokemon_oculto.appendChild(descripcion);
-    oculto.appendChild(pokemon_oculto);
-
+        pokemon_oculto.appendChild(descripcion);
+        oculto.appendChild(pokemon_oculto);
+    }); 
 
     $(".pokemon").click(function () {
         $(".oculto").show(100);
         $(".fondo_oculto").show(200);
+        $('.pokemon_oculto', pokemon.id).show(200);
         // crearOculto(pokemon.id);
 
-        // fetch(url)
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //         const desc = data.flavor_text_entries.find(entry => entry.language.name === 'es').flavor_text; /** Filtramos el contenido por idioma y sólo cogemos la descripción el español ('es') */
-        //         const pokemon_oculto = document.createElement('div');
-        //         pokemon_oculto.classList.add('pokemon_oculto');
-        //         descripcion.classList.add("descripcion");
-        //         descripcion.textContent = desc;
-        //         //descripcion.style.display = "none"; /* Dejamos la descripción oculta hasta que hagamos click */
-
-        //         pokemon_oculto.appendChild(descripcion);
-        //         oculto.appendChild(pokemon_oculto);
-        //     }); 
-        
-
-
-
-        /*
-        const pokemonOculto=document.createElement('div');
-        pokemonOculto.classList.add('pokemon_oculto');
-    
-        const sprite_number=document.createElement('div');
-        sprite_number.classList.add('sprite_number');
-    
-        const sprite=document.createElement('img');
-        sprite.classList.add('img_oculto');
-        sprite.src= pokemon.sprites.front_default;
-    
-        const numero_oculto=document.createElement('p');
-        numero_oculto.classList.add('numero_oculto');
-        numero_oculto.textContent= `#${pokemon.id.toString().padStart(3, 0)}`;
-    
-        sprite_number.appendChild(sprite);
-        sprite_number.appendChild(numero_oculto);
-    
-        oculto.appendChild(sprite_number);
-    
-        oculto.appendChild(pokemonOculto);*/
     });
 
     $(".oculto").click(function () {
