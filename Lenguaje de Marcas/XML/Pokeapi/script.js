@@ -30,14 +30,6 @@ function fetchPokemon(id) {
         });
 }
 
-/*function fetchOculto(id){
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-    .then((res)=> res.json())
-    .then((data)=> {
-        crearOculto(data);
-    });
-}*/
-
 function fetchAllPokemons(offset, limit) {
     for (let i = offset; i <= offset + limit; i++) {
         fetchPokemon(i);
@@ -46,40 +38,10 @@ function fetchAllPokemons(offset, limit) {
 
 function crearPokemon(pokemon) {
 
-    let url = pokemon.species.url;
+    const url = pokemon.species.url;
 
     const carta = document.createElement('div');
     carta.classList.add('pokemon');
-
-    fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-
-        const desc = data.flavor_text_entries.find(entry => entry.language.name === 'es').flavor_text; /** Filtramos el contenido por idioma y sólo cogemos la descripción el español ('es') */
-        const pokemon_oculto = document.createElement('div');
-        const descripcion=document.createElement('p');
-        pokemon_oculto.classList.add('pokemon_oculto', pokemon.id);
-        descripcion.classList.add("descripcion");
-        descripcion.textContent = desc;
-        descripcion.style.display = "none";
-
-        pokemon_oculto.appendChild(descripcion);
-        oculto.appendChild(pokemon_oculto);
-    }); 
-
-    $(".pokemon").click(function () {
-        $(".oculto").show(100);
-        $(".fondo_oculto").show(200);
-        $('.pokemon_oculto', pokemon.id).show(200);
-        // crearOculto(pokemon.id);
-
-    });
-
-    $(".oculto").click(function () {
-        $(".oculto").hide(500);
-        $(".fondo_oculto").hide(500);
-        //  removePokemons(pokemon_oculto);
-    });
 
     const spriteContainer = document.createElement('div');
     spriteContainer.classList.add('sprite');
@@ -118,41 +80,39 @@ function crearPokemon(pokemon) {
     carta.appendChild(tipos);
 
     pokemonContainer.appendChild(carta);
+
+    fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+
+        const desc = data.flavor_text_entries.find(entry => entry.language.name === 'es').flavor_text;
+        const descripcion=document.createElement('p');
+        descripcion.classList.add("descripcion");
+        descripcion.textContent = desc;
+        descripcion.style.display = "none";
+
+        carta.appendChild(descripcion);
+    });
+
+    $(".pokemon").click(function () {
+        $(".descripcion").show(200);
+        $(".pokemon").position.display= "fixed";
+
+    });
+    
+    $(".pokemon").click(function () {
+        $(".descripcion").hide(500);
+        $(".pokemon").style.position= "initial";
+    });
 }
 
-// function  crearOculto(id, pokemon_oculto){
-
-//     // fetchOculto();
-
-//     id -= 1;
-
-//         fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-//         .then((res) => res.json())
-//         .then((data) => {
-//             crearOculto(id, data);
-//         });
-
-//     const div_oculto = document.createElement('div');
-//     div_oculto.classList.add('pokemon_oculto');
-
-//     const sprite_number = document.createElement('div');
-//     sprite_number.classList.add('sprite_number');
-
-//     const sprite = document.createElement('img');
-//     sprite.classList.add('img_oculto');
-//     sprite.src = pokemon_oculto.sprites.front_default;
-
-//     const number = document.createElement('p');
-//     number.classList.add('number_oculto');
-//     number.textContent = `#${pokemon_oculto.id.toString().padStart(3, 0)}`;
-
-//     sprite_number.appendChild(sprite);
-//     sprite_number.appendChild(number);
-
-//     oculto.appendChild(sprite_number);
-// }
-
 function removePokemons(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+function removePokemonOculto(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
