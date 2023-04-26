@@ -156,7 +156,8 @@ function crearPokemon(pokemon) {
             carta.style.position="initial";
             carta.style.paddingTop="10px";
             carta.style.paddingBottom="20px";
-            carta.style.paddingLeft="0";          
+            carta.style.paddingLeft="0";
+            carta.style.boxShadow="none";  
             carta.classList.add('noHover');
             imagen.style.width="70%";
             imagen.style.maxHeight="none";
