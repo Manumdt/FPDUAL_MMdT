@@ -81,7 +81,7 @@ function crearPokemon(pokemon) {
 
     pokemonContainer.appendChild(carta);
 
-    fetch(url)
+    /*fetch(url)
     .then((res) => res.json())
     .then((data) => {
 
@@ -96,15 +96,53 @@ function crearPokemon(pokemon) {
 
     $(".pokemon").click(function () {
         $(".descripcion").show(200);
-        $(".pokemon").position.display= "fixed";
+        $(".pokemon").style.position="fixed";
+        $(".pokemon").style.width= "500px";
+
 
     });
     
     $(".pokemon").click(function () {
         $(".descripcion").hide(500);
         $(".pokemon").style.position= "initial";
+    });*/
+
+    const descripcion=document.createElement('p');
+    var clicked = false;
+
+    fetch(url)
+    .then((res) => res.json())
+    .then((data) =>{
+        const desc = data.flavor_text_entries.find(entry => entry.language.name === 'es').flavor_text;
+        descripcion.textContent=desc;
+        descripcion.classList.add("descripcion");
+        descripcion.style.display = "none";
+        carta.appendChild(descripcion);
+    });
+
+
+    carta.addEventListener("click", () => {
+        if (clicked == false){
+            carta.style.width="90%";
+            carta.style.height="80%";
+            carta.style.position="fixed";
+            imagen.style.width="20%";
+            imagen.src = pokemon.sprites.other.dream_world.front_default;
+            descripcion.style.display = "block";
+            clicked = true;
+        }else{
+            carta.style.width="200px";
+            carta.style.height="280px";
+            carta.style.position="initial";
+            imagen.style.width="70%";
+            imagen.src=pokemon.sprites.front_default;
+            descripcion.style.display = "none";
+            clicked = false;
+        }
     });
 }
+
+
 
 function removePokemons(parent) {
     while (parent.firstChild) {
