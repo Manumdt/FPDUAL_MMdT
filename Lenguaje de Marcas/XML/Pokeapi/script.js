@@ -2,6 +2,7 @@ const pokemonContainer = document.querySelector('.pokemon-container');
 const anterior = document.querySelector('#anterior');
 const siguiente = document.querySelector('#siguiente');
 const oculto = document.querySelector('.oculto');
+const body = document.querySelector('.body');
 
 let offset = 1;
 let limit = 23;
@@ -42,6 +43,7 @@ function crearPokemon(pokemon) {
 
     const carta = document.createElement('div');
     carta.classList.add('pokemon');
+    carta.classList.add('noHover');
 
     const spriteContainer = document.createElement('div');
     spriteContainer.classList.add('sprite');
@@ -50,6 +52,7 @@ function crearPokemon(pokemon) {
     imagen.src = pokemon.sprites.front_default;
 
     const number = document.createElement('p');
+    number.classList.add('number');
     number.textContent = `#${pokemon.id.toString().padStart(3, 0)}`;
 
     const name = document.createElement('p');
@@ -126,16 +129,45 @@ function crearPokemon(pokemon) {
             carta.style.width="90%";
             carta.style.height="80%";
             carta.style.position="fixed";
-            imagen.style.width="20%";
+            carta.style.paddingTop="50px";
+            carta.style.paddingBottom="50px";
+            carta.style.paddingLeft="20px";
+            carta.style.transition="200ms";
+            carta.style.boxShadow="1px 1px 20px white";
+            carta.classList.remove('noHover');
+            imagen.style.width="100%";
+            imagen.style.maxHeight="150px";
+            imagen.style.paddingBottom="20px";
             imagen.src = pokemon.sprites.other.dream_world.front_default;
-            descripcion.style.display = "block";
+            tipos.style.width="20%";
+            tipos.style.float="left";
+            spriteContainer.style.textAlign="left";
+            spriteContainer.style.width="20%";
+            number.style.width="20%";
+            name.style.width="20%";
+            descripcion.style.width="70"
+            descripcion.style.textAlign="center";
+            descripcion.style.marginLeft="60px";
+            descripcion.style.display="block";
             clicked = true;
         }else{
             carta.style.width="200px";
             carta.style.height="280px";
             carta.style.position="initial";
+            carta.style.paddingTop="10px";
+            carta.style.paddingBottom="20px";
+            carta.style.paddingLeft="0";          
+            carta.classList.add('noHover');
             imagen.style.width="70%";
+            imagen.style.maxHeight="none";
+            imagen.style.paddingBottom="0";
             imagen.src=pokemon.sprites.front_default;
+            tipos.style.width="60%";
+            tipos.style.float="initial";
+            spriteContainer.style.textAlign="center";
+            spriteContainer.style.width="initial";
+            number.style.width="100%";
+            name.style.width="100%";
             descripcion.style.display = "none";
             clicked = false;
         }

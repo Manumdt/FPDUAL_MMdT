@@ -68,13 +68,13 @@ section{
     letter-spacing: 2px;
 }
 
-.pokemon:hover{
+.noHover:hover{
     cursor: pointer;
     background-color: black;
     border: 2px solid red;
 }
 
-.pokemon:hover .sprite{
+.noHover:hover .sprite{
     transition: 0.1s ease;
     transform: scale(1.3);
 }
