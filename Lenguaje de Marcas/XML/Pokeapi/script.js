@@ -73,7 +73,36 @@ function crearPokemon(pokemon) {
         tipo2.classList.add('tipo2', pokemon.types[1].type.name);
     }
 
+    const descripcion=document.createElement('p');
+    const pesoAltura=document.createElement('div');
+    pesoAltura.classList.add('pesoAltura');
+    const peso=document.createElement('p');
+    const altura=document.createElement('p');
+    var clicked = false;
+
+    fetch(url)
+    .then((res) => res.json())
+    .then((data) =>{
+        const desc = data.flavor_text_entries.find(entry => entry.language.name === 'es').flavor_text;
+        descripcion.textContent=desc;
+        descripcion.classList.add("descripcion");
+        descripcion.style.display = "none";
+
+        peso.textContent="Peso: " + pokemon.weight + " Kg";
+        peso.classList.add('peso');
+        carta.appendChild(peso);
+
+        altura.textContent="Altura: " + pokemon.height*0.1 + " m";
+        altura.classList.add('altura');
+
+        pesoAltura.appendChild(peso);
+        pesoAltura.appendChild(altura);
+        carta.appendChild(pesoAltura);
+
+    });
+
     spriteContainer.appendChild(imagen);
+    spriteContainer.appendChild(descripcion);
     carta.appendChild(spriteContainer);
     carta.appendChild(number);
     carta.appendChild(name);
@@ -110,24 +139,12 @@ function crearPokemon(pokemon) {
         $(".pokemon").style.position= "initial";
     });*/
 
-    const descripcion=document.createElement('p');
-    var clicked = false;
-
-    fetch(url)
-    .then((res) => res.json())
-    .then((data) =>{
-        const desc = data.flavor_text_entries.find(entry => entry.language.name === 'es').flavor_text;
-        descripcion.textContent=desc;
-        descripcion.classList.add("descripcion");
-        descripcion.style.display = "none";
-        carta.appendChild(descripcion);
-    });
 
 
     carta.addEventListener("click", () => {
         if (clicked == false){
             carta.style.width="90%";
-            carta.style.height="80%";
+            carta.style.height="75%";
             carta.style.position="fixed";
             carta.style.paddingTop="50px";
             carta.style.paddingBottom="50px";
@@ -135,19 +152,18 @@ function crearPokemon(pokemon) {
             carta.style.transition="200ms";
             carta.style.boxShadow="1px 1px 20px white";
             carta.classList.remove('noHover');
-            imagen.style.width="100%";
+            imagen.style.width="20%";
             imagen.style.maxHeight="150px";
             imagen.style.paddingBottom="20px";
             imagen.src = pokemon.sprites.other.dream_world.front_default;
             tipos.style.width="20%";
             tipos.style.float="left";
             spriteContainer.style.textAlign="left";
-            spriteContainer.style.width="20%";
+            spriteContainer.style.width="100%";
+            spriteContainer.style.display="flex";
             number.style.width="20%";
             name.style.width="20%";
-            descripcion.style.width="70"
-            descripcion.style.textAlign="center";
-            descripcion.style.marginLeft="60px";
+            pesoAltura.style.display="block"
             descripcion.style.display="block";
             clicked = true;
         }else{
@@ -158,6 +174,7 @@ function crearPokemon(pokemon) {
             carta.style.paddingBottom="20px";
             carta.style.paddingLeft="0";
             carta.style.boxShadow="none";  
+            carta.style.display="initial";
             carta.classList.add('noHover');
             imagen.style.width="70%";
             imagen.style.maxHeight="none";
@@ -167,8 +184,10 @@ function crearPokemon(pokemon) {
             tipos.style.float="initial";
             spriteContainer.style.textAlign="center";
             spriteContainer.style.width="initial";
+            spriteContainer.style.display="initial";
             number.style.width="100%";
             name.style.width="100%";
+            pesoAltura.style.display="none"
             descripcion.style.display = "none";
             clicked = false;
         }

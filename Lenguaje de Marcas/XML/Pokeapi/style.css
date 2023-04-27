@@ -68,6 +68,23 @@ section{
     letter-spacing: 2px;
 }
 
+.pokemonOculto{
+    display: none;
+}
+
+.descripcion{
+    width:80%;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 150%;
+}
+
+.pesoAltura{
+    display: none;
+    height: 20px;
+    margin-top: 10%;
+}
+
 .noHover:hover{
     cursor: pointer;
     background-color: black;
