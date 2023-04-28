@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    background-color: #bc98f3;
+    color: white;
+    text-align: center;
+    padding: 2%;
+    font-size: 300%;
+}
+
+table{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 2%;
+    padding: 2%;
+    font-size: 150%;
+    border-collapse: collapse;
+}
+
+.cabecera{
+    background-color: #bc98f3;
+    color: white;
+    font-weight: bold;
+}
+
+tr{
+    width: 33%;
+}
+
+td{
+    border: 3px solid #bc98f3;
+    padding: 1%;
+}
