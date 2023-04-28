@@ -80,9 +80,11 @@ section{
 }
 
 .pesoAltura{
+    width: 20%;
     display: none;
-    height: 20px;
+    font-size: 120%;
     margin-top: 10%;
+    vertical-align: top;
 }
 
 .noHover:hover{

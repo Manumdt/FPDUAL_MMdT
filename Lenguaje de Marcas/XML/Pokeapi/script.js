@@ -92,7 +92,7 @@ function crearPokemon(pokemon) {
         peso.classList.add('peso');
         carta.appendChild(peso);
 
-        altura.textContent="Altura: " + pokemon.height*0.1 + " m";
+        altura.textContent="Altura: " + (pokemon.height*0.1).toFixed(2) + " m";
         altura.classList.add('altura');
 
         pesoAltura.appendChild(peso);
