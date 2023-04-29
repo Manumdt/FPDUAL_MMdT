@@ -68,10 +68,6 @@ section{
     letter-spacing: 2px;
 }
 
-.pokemonOculto{
-    display: none;
-}
-
 .descripcion{
     width:80%;
     text-align: center;
@@ -79,12 +75,71 @@ section{
     font-size: 150%;
 }
 
-.pesoAltura{
-    width: 20%;
+.alturaPeso{
     display: none;
-    font-size: 120%;
-    margin-top: 10%;
-    vertical-align: top;
+    width: 20%;
+    padding-left: 4%;
+    font-size: 110%;
+    margin-top: 2%;
+    text-align: center;
+}
+
+.nombreNumero{
+    width: 100%;
+}
+
+.altura{
+    display: none;
+    width: 100%;
+    margin-top: 1%;
+    margin-bottom: -2%;
+    text-align: left;
+}
+
+.peso{
+    display: none;
+    width: 100%;
+    margin-top: 2%;
+    text-align: left;
+}
+
+.stats{
+    display: none;
+    width: 60%;
+    position: fixed;
+    margin: 10% 0 0 27%;
+}
+
+meter{
+    width: 40%;
+    height: 60px;
+}
+
+.stat{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.stat p{
+    width: 20%;
+    margin-top:2%;
+}
+
+meter::-webkit-meter-suboptimum-value{
+    background-color: #77dd77;
+}
+
+meter::-webkit-meter-optimum-value{
+    background-color: #77dd77;
+}
+
+meter::-webkit-meter-even-less-good-value{
+    background-color: #77dd77;
+}
+
+meter::-webkit-meter-bar{
+    background-color: #262626;
 }
 
 .noHover:hover{
@@ -107,10 +162,6 @@ section{
 
 .sprite img{
     width: 70%; 
-}
-
-.tipos{
-    text-transform: uppercase;
 }
 
 .paginacion{
@@ -148,6 +199,8 @@ button:hover{
     width: 60%;
     margin: 0 auto;
     font-weight: 400;
+    margin-bottom: 2%;
+    text-transform: uppercase;
 }
 
 .tipo1{

@@ -51,6 +51,9 @@ function crearPokemon(pokemon) {
     const imagen = document.createElement('img');
     imagen.src = pokemon.sprites.front_default;
 
+    const nombreNumero=document.createElement('div');
+    nombreNumero.classList.add('nombreNumero');
+
     const number = document.createElement('p');
     number.classList.add('number');
     number.textContent = `#${pokemon.id.toString().padStart(3, 0)}`;
@@ -74,10 +77,36 @@ function crearPokemon(pokemon) {
     }
 
     const descripcion=document.createElement('p');
-    const pesoAltura=document.createElement('div');
-    pesoAltura.classList.add('pesoAltura');
     const peso=document.createElement('p');
     const altura=document.createElement('p');
+    const alturaPeso=document.createElement('div');
+    alturaPeso.classList.add('alturaPeso');
+    const stats=document.createElement('div');
+    stats.classList.add('stats');
+    const statHp=document.createElement('div');
+    statHp.classList.add('stat');
+    const statAttack=document.createElement('div');
+    statAttack.classList.add('stat');
+    const statDefense=document.createElement('div');
+    statDefense.classList.add('stat');
+    const statSpecialAttack=document.createElement('div');
+    statSpecialAttack.classList.add('stat');
+    const statSpecialDefense=document.createElement('div');
+    statSpecialDefense.classList.add('stat');
+    const statSpeed=document.createElement('div');
+    statSpeed.classList.add('stat');
+    const hp=document.createElement('meter');
+    const attack=document.createElement('meter');
+    const defense=document.createElement('meter');
+    const specialAttack=document.createElement('meter');
+    const specialDefense=document.createElement('meter');
+    const speed=document.createElement('meter');
+    const hpName=document.createElement('p');
+    const attackName=document.createElement('p');
+    const defenseName=document.createElement('p');
+    const specialAttackName=document.createElement('p');
+    const specialDefenseName=document.createElement('p');
+    const speedName=document.createElement('p');
     var clicked = false;
 
     fetch(url)
@@ -88,24 +117,96 @@ function crearPokemon(pokemon) {
         descripcion.classList.add("descripcion");
         descripcion.style.display = "none";
 
-        peso.textContent="Peso: " + pokemon.weight + " Kg";
+        peso.textContent="Peso: " + (pokemon.weight*0.1).toFixed(2) + " Kg";
         peso.classList.add('peso');
         carta.appendChild(peso);
 
         altura.textContent="Altura: " + (pokemon.height*0.1).toFixed(2) + " m";
         altura.classList.add('altura');
 
-        pesoAltura.appendChild(peso);
-        pesoAltura.appendChild(altura);
-        carta.appendChild(pesoAltura);
+        hp.setAttribute('min','1');
+        hp.setAttribute('max','255');
+        hp.setAttribute('low','80');
+        hp.setAttribute('high','180');
+        hp.setAttribute('optium','200');
+        hp.setAttribute('value', pokemon.stats[0].base_stat);
+        hpName.textContent=(pokemon.stats[0].stat.name).toUpperCase();
+
+        attack.setAttribute('min','1');
+        attack.setAttribute('max','255');
+        attack.setAttribute('low','80');
+        attack.setAttribute('high','180');
+        attack.setAttribute('optium','200');
+        attack.setAttribute('value', pokemon.stats[1].base_stat);
+        attackName.textContent=(pokemon.stats[1].stat.name).toUpperCase();
+
+        defense.setAttribute('min','1');
+        defense.setAttribute('max','255');
+        defense.setAttribute('low','80');
+        defense.setAttribute('high','180');
+        defense.setAttribute('optium','200');
+        defense.setAttribute('value', pokemon.stats[2].base_stat);
+        defenseName.textContent=(pokemon.stats[2].stat.name).toUpperCase();
+
+        specialAttack.setAttribute('min','1');
+        specialAttack.setAttribute('max','255');
+        specialAttack.setAttribute('low','80');
+        specialAttack.setAttribute('high','180');
+        specialAttack.setAttribute('optium','200');
+        specialAttack.setAttribute('value', pokemon.stats[3].base_stat);
+        specialAttackName.textContent=(pokemon.stats[3].stat.name).toUpperCase();
+
+        specialDefense.setAttribute('min','1');
+        specialDefense.setAttribute('max','255');
+        specialDefense.setAttribute('low','80');
+        specialDefense.setAttribute('high','180');
+        specialDefense.setAttribute('optium','200');
+        specialDefense.setAttribute('value', pokemon.stats[4].base_stat);
+        specialDefenseName.textContent=(pokemon.stats[4].stat.name).toUpperCase();
+
+        speed.setAttribute('min','1');
+        speed.setAttribute('max','255');
+        speed.setAttribute('low','80');
+        speed.setAttribute('high','180');
+        speed.setAttribute('optium','200');
+        speed.setAttribute('value', pokemon.stats[5].base_stat);
+        speedName.textContent=(pokemon.stats[5].stat.name).toUpperCase();
+
+        statHp.appendChild(hpName);
+        statAttack.appendChild(attackName);
+        statDefense.appendChild(defenseName);
+        statSpecialAttack.appendChild(specialAttackName);
+        statSpecialDefense.appendChild(specialDefenseName);
+        statSpeed.appendChild(speedName);
+
+        statHp.appendChild(hp);
+        statAttack.appendChild(attack);
+        statDefense.appendChild(defense);
+        statSpecialAttack.appendChild(specialAttack);
+        statSpecialDefense.appendChild(specialDefense);
+        statSpeed.appendChild(speed);
+
+        stats.appendChild(statHp);
+        stats.appendChild(statAttack);
+        stats.appendChild(statDefense);
+        stats.appendChild(statSpecialAttack);
+        stats.appendChild(statSpecialDefense);
+        stats.appendChild(statSpeed);
+
+
+        alturaPeso.appendChild(altura);
+        alturaPeso.appendChild(peso);
+        carta.appendChild(alturaPeso);
+        carta.appendChild(stats);
 
     });
 
     spriteContainer.appendChild(imagen);
     spriteContainer.appendChild(descripcion);
     carta.appendChild(spriteContainer);
-    carta.appendChild(number);
-    carta.appendChild(name);
+    nombreNumero.appendChild(number);
+    nombreNumero.appendChild(name);
+    carta.appendChild(nombreNumero);
 
     tipos.appendChild(tipo1);
     tipos.appendChild(tipo2);
@@ -139,17 +240,19 @@ function crearPokemon(pokemon) {
         $(".pokemon").style.position= "initial";
     });*/
 
-
-
     carta.addEventListener("click", () => {
         if (clicked == false){
             carta.style.width="90%";
-            carta.style.height="75%";
+            carta.style.height="70%";
             carta.style.position="fixed";
             carta.style.paddingTop="50px";
             carta.style.paddingBottom="50px";
             carta.style.paddingLeft="20px";
             carta.style.transition="200ms";
+            carta.style.display="flex";
+            carta.style.flexWrap="wrap";
+            carta.style.flexDirection="column";
+            carta.style.justifyContent="left";
             carta.style.boxShadow="1px 1px 20px white";
             carta.classList.remove('noHover');
             imagen.style.width="20%";
@@ -157,13 +260,32 @@ function crearPokemon(pokemon) {
             imagen.style.paddingBottom="20px";
             imagen.src = pokemon.sprites.other.dream_world.front_default;
             tipos.style.width="20%";
-            tipos.style.float="left";
+            tipos.style.display="flex";
+            tipos.style.flexDirection="column";
+            tipos.style.justifyContent="left";
+            tipos.style.margin="0";
+            tipo1.style.width="100%";
+            tipo1.style.paddingTop="10px";
+            tipo2.style.width="100%";
+            tipo2.style.paddingTop="10px";
             spriteContainer.style.textAlign="left";
             spriteContainer.style.width="100%";
             spriteContainer.style.display="flex";
-            number.style.width="20%";
-            name.style.width="20%";
-            pesoAltura.style.display="block"
+            number.style.width="100%";
+            number.style.textAlign="left";
+            name.style.width="100%";
+            name.style.textAlign="left";
+            nombreNumero.style.width="20%";
+            nombreNumero.style.marginLeft="5%";
+            nombreNumero.style.display="flex";
+            nombreNumero.style.flexDirection="column";
+            altura.style.display="block";
+            peso.style.display="block";
+            alturaPeso.style.display="flex";
+            alturaPeso.style.flexDirection="column";
+            stats.style.display="flex";
+            stats.style.flexWrap="wrap";
+            // stats.style.flexDirection="row";
             descripcion.style.display="block";
             clicked = true;
         }else{
@@ -182,12 +304,30 @@ function crearPokemon(pokemon) {
             imagen.src=pokemon.sprites.front_default;
             tipos.style.width="60%";
             tipos.style.float="initial";
+            tipos.style.display="block";
+            tipos.style.flexDirection="none";
+            tipos.style.margin="0 auto";
+            tipo1.style.paddingTop="5px";
+            tipo1.style.width="initial";
+            tipo2.style.paddingTop="5px";
+            tipo2.style.width="initial";
             spriteContainer.style.textAlign="center";
             spriteContainer.style.width="initial";
             spriteContainer.style.display="initial";
             number.style.width="100%";
+            number.style.textAlign="center";
             name.style.width="100%";
-            pesoAltura.style.display="none"
+            name.style.textAlign="center";
+            nombreNumero.style.width="100%";
+            nombreNumero.style.marginLeft="0";
+            nombreNumero.style.display="initial";
+            nombreNumero.style.flexDirection="initial";
+            altura.style.display="none";
+            peso.style.display="none";
+            alturaPeso.style.display="none";
+            alturaPeso.style.flexDirection="initial";
+            stats.style.display="none";
+            stats.style.flexDirection="initial";
             descripcion.style.display = "none";
             clicked = false;
         }
