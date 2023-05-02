@@ -9,3 +9,20 @@
 Comienzo del curso de Base de Datos donde se repasan los conceptos generales de una base de datos como atributo, relación, cardinalidad o generalización entre otros.
 
 También, se repasan los diagramas entidad-relación, el modelo relacional y la normalización donde se revisa como realizar cada ejercicio y ejemplos resueltos de los mismos.
+
+## Martes 18 de Marzo
+
+Continuación del curso empezado el día anterior.
+
+## Miércoles 19 de Marzo
+
+Finalización del curso de Base de Datos y comienzo de otro curso más avanzado de SQL en el que se estudian los conceptos relacionados con las consultas y subconsultas de las base de datos.
+
+## Jueves 20 de Marzo
+
+Finalización del curso SQL empezado el día anterior con todos los ejercicios propuestos resueltos y subidos al repositorio.
+Comienzo de ejercicio propuesto por el tutor en el que se creará una base de datos, se harán consultas de la misma con datos insertados y se aprenderá como crear un trigger.
+
+## Viernes 21 de Marzo
+
+Realización del ejercicio propuesto haciendo commits a la finalización de cada parte y al terminar se ha mergeado la rama creada para el ejercicio con la principal.
