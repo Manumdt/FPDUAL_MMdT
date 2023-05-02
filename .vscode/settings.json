@@ -1,5 +1,7 @@
 {
     "conventionalCommits.scopes": [
-        "Base de Datos"
+        "Lenguaje de Marcas",
+        "Base de Datos",
+        "Cursos"
     ]
 }
