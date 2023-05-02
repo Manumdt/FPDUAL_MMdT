@@ -24,5 +24,4 @@ WHERE UPPER(Region)='POLYNESIA';
 SELECT CONCAT('Nombre: ', cli.Nombre, 'Apellido: ', cli.Apellido, 'Dirección: ', cli.Direccion) AS Cliente
 FROM Clientes cli
 JOIN Ciudades ciu ON cli.IdCiudad=ciu.Id
-WHERE UPPER(ciu.Nombre)='BARI';
-
+WHERE UPPER(ciu.Nombre) LIKE 'BARI%';
