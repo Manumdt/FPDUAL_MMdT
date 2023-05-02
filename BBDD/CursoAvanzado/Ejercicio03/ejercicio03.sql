@@ -37,4 +37,10 @@ INSERT INTO mascotas (Nombre,NombreDueño) VALUES('Halley','Manuel'),
 
 -- Llamar a las dos tablas unidas.
 
-SELECT * FROM 
+SELECT *
+FROM mascotas
+
+UNION ALL
+
+SELECT *
+FROM dueños;
