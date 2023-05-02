@@ -57,6 +57,7 @@ section{
     width: 200px;
     height: 280px;
     margin: 5px;
+    display: flex;
     border: 2px solid white;
     text-align: center;
     padding-top: 10px;
@@ -68,24 +69,37 @@ section{
     letter-spacing: 2px;
 }
 
+.col33{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    vertical-align: center;
+}
+
+.col66{
+    display: none;
+    width: 66%;
+    margin-left: 2%;
+    vertical-align: center;
+}
+
 .descripcion{
-    width:80%;
+    width:100%;
     text-align: center;
     padding-top: 30px;
     font-size: 150%;
 }
 
-.alturaPeso{
-    display: none;
-    width: 20%;
-    padding-left: 4%;
-    font-size: 110%;
-    margin-top: 2%;
-    text-align: center;
-}
-
 .nombreNumero{
     width: 100%;
+}
+
+.alturaPeso{
+    display: none;
+    width: 100%;
+    font-size: 110%;
+    margin-top: 2%;
+    text-transform: uppercase;
 }
 
 .altura{
@@ -93,37 +107,38 @@ section{
     width: 100%;
     margin-top: 1%;
     margin-bottom: -2%;
-    text-align: left;
+    text-align: center;
 }
 
 .peso{
     display: none;
     width: 100%;
     margin-top: 2%;
-    text-align: left;
+    text-align: center;
 }
 
 .stats{
     display: none;
-    width: 60%;
-    position: fixed;
-    margin: 10% 0 0 27%;
-}
-
-meter{
-    width: 40%;
-    height: 60px;
+    width: 90%;
+    text-align: center;
+    margin-top: 4%;
 }
 
 .stat{
     width: 100%;
     display: flex;
     flex-direction: row;
+    text-align: center;
+}
+
+meter{
+    width: 70%;
+    height: 60px;
 }
 
 .stat p{
-    width: 20%;
-    margin-top:2%;
+    width: 30%;
+    padding-top: 3%;
 }
 
 meter::-webkit-meter-suboptimum-value{

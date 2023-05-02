@@ -45,6 +45,12 @@ function crearPokemon(pokemon) {
     carta.classList.add('pokemon');
     carta.classList.add('noHover');
 
+    const col33=document.createElement('div');
+    col33.classList.add('col33');
+    
+    const col66=document.createElement('div');
+    col66.classList.add('col66');
+
     const spriteContainer = document.createElement('div');
     spriteContainer.classList.add('sprite');
 
@@ -192,25 +198,31 @@ function crearPokemon(pokemon) {
         stats.appendChild(statSpecialAttack);
         stats.appendChild(statSpecialDefense);
         stats.appendChild(statSpeed);
-
-
+        
         alturaPeso.appendChild(altura);
         alturaPeso.appendChild(peso);
-        carta.appendChild(alturaPeso);
-        carta.appendChild(stats);
 
     });
 
     spriteContainer.appendChild(imagen);
-    spriteContainer.appendChild(descripcion);
-    carta.appendChild(spriteContainer);
+    col33.appendChild(spriteContainer);
+    
+    col66.appendChild(descripcion);
+    
     nombreNumero.appendChild(number);
     nombreNumero.appendChild(name);
-    carta.appendChild(nombreNumero);
+    col33.appendChild(nombreNumero);
 
     tipos.appendChild(tipo1);
     tipos.appendChild(tipo2);
-    carta.appendChild(tipos);
+    col33.appendChild(tipos);
+
+    col33.appendChild(alturaPeso);
+
+    col66.appendChild(stats);
+
+    carta.appendChild(col33);
+    carta.appendChild(col66);
 
     pokemonContainer.appendChild(carta);
 
@@ -249,17 +261,15 @@ function crearPokemon(pokemon) {
             carta.style.paddingBottom="50px";
             carta.style.paddingLeft="20px";
             carta.style.transition="200ms";
-            carta.style.display="flex";
-            carta.style.flexWrap="wrap";
-            carta.style.flexDirection="column";
-            carta.style.justifyContent="left";
             carta.style.boxShadow="1px 1px 20px white";
             carta.classList.remove('noHover');
-            imagen.style.width="20%";
-            imagen.style.maxHeight="150px";
+            col33.style.width="33%";
+            col66.style.display="block";
+            imagen.style.width="100%";
+            imagen.style.maxHeight="200px";
             imagen.style.paddingBottom="20px";
             imagen.src = pokemon.sprites.other.dream_world.front_default;
-            tipos.style.width="20%";
+            tipos.style.width="100%";
             tipos.style.display="flex";
             tipos.style.flexDirection="column";
             tipos.style.justifyContent="left";
@@ -272,20 +282,16 @@ function crearPokemon(pokemon) {
             spriteContainer.style.width="100%";
             spriteContainer.style.display="flex";
             number.style.width="100%";
-            number.style.textAlign="left";
             name.style.width="100%";
-            name.style.textAlign="left";
-            nombreNumero.style.width="20%";
-            nombreNumero.style.marginLeft="5%";
+            nombreNumero.style.width="100%";
+            nombreNumero.style.marginBottom="1%";
             nombreNumero.style.display="flex";
             nombreNumero.style.flexDirection="column";
             altura.style.display="block";
             peso.style.display="block";
             alturaPeso.style.display="flex";
             alturaPeso.style.flexDirection="column";
-            stats.style.display="flex";
-            stats.style.flexWrap="wrap";
-            // stats.style.flexDirection="row";
+            stats.style.display="block";
             descripcion.style.display="block";
             clicked = true;
         }else{
@@ -296,8 +302,9 @@ function crearPokemon(pokemon) {
             carta.style.paddingBottom="20px";
             carta.style.paddingLeft="0";
             carta.style.boxShadow="none";  
-            carta.style.display="initial";
             carta.classList.add('noHover');
+            col33.style.width="100%";
+            col66.style.display="none";
             imagen.style.width="70%";
             imagen.style.maxHeight="none";
             imagen.style.paddingBottom="0";
@@ -315,11 +322,8 @@ function crearPokemon(pokemon) {
             spriteContainer.style.width="initial";
             spriteContainer.style.display="initial";
             number.style.width="100%";
-            number.style.textAlign="center";
             name.style.width="100%";
-            name.style.textAlign="center";
             nombreNumero.style.width="100%";
-            nombreNumero.style.marginLeft="0";
             nombreNumero.style.display="initial";
             nombreNumero.style.flexDirection="initial";
             altura.style.display="none";
@@ -327,7 +331,6 @@ function crearPokemon(pokemon) {
             alturaPeso.style.display="none";
             alturaPeso.style.flexDirection="initial";
             stats.style.display="none";
-            stats.style.flexDirection="initial";
             descripcion.style.display = "none";
             clicked = false;
         }
