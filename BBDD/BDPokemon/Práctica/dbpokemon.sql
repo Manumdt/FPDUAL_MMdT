@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS dbpokemon;
 CREATE DATABASE dbpokemon CHARSET utf8mb4;
 USE dbpokemon;
 
-CREATE TABLE pok_pokemon(
+CREATE TABLE pokemon(
 	NumeroPokedex INT UNSIGNED,
     Nombre VARCHAR(15),
     Peso FLOAT (6.3),
@@ -10,13 +10,13 @@ CREATE TABLE pok_pokemon(
     PRIMARY KEY(NumeroPokedex)
 );
 
-CREATE TABLE pok_tipo_ataque(
+CREATE TABLE tipo_ataque(
 	IdTipoAtaque INT UNSIGNED,
     Tipo VARCHAR(8),
     PRIMARY KEY(IdTipoAtaque)
 );
 
-CREATE TABLE pok_tipo(
+CREATE TABLE tipo(
 	IdTipo INT UNSIGNED,
     Nombre VARCHAR(10),
     IdTipoAtaque INT UNSIGNED,
@@ -24,7 +24,7 @@ CREATE TABLE pok_tipo(
     CONSTRAINT IdTipoAtaque_pok_tipo_fk FOREIGN KEY (IdTipoAtaque) REFERENCES pok_tipo_ataque(IdTipoAtaque)
 );
 
-CREATE TABLE pok_movimiento(
+CREATE TABLE movimiento(
 	IdMovimiento INT UNSIGNED,
     Nombre VARCHAR(20),
     Potencia INT,
@@ -37,7 +37,7 @@ CREATE TABLE pok_movimiento(
     CONSTRAINT IdTipo_pok_movimiento_fk FOREIGN KEY (IdTipo) REFERENCES pok_tipo(IdTipo)
 );
 
-CREATE TABLE pok_pokemon_tipo(
+CREATE TABLE pokemon_tipo(
 	NumeroPokedex INT UNSIGNED AUTO_INCREMENT,
     IdTipo INT UNSIGNED,
     PRIMARY KEY(NumeroPokedex,IdTipo),
