@@ -25,4 +25,20 @@ Comienzo de ejercicio propuesto por el tutor en el que se creará una base de da
 
 ## Viernes 21 de Marzo
 
-Realización del ejercicio propuesto haciendo commits a la finalización de cada parte y al te
+Realización del ejercicio propuesto haciendo commits a la finalización de cada parte y al terminar se ha mergeado la rama creada para el ejercicio con la principal.
+
+## Martes  25
+
+Comienzo de curso avanzado de SQL en el que se explican nuevos términos como las rutas almacenadas y además se vuelven a repasar las vistas y los triggers.
+
+## Miércoles  26
+
+Continuación con el curso avanzado de SQL haciendo ejercicios propuestos con xampp conectado a phpmyadmin, para poder conectarlo hubo que cambiar la configuración de puertos de la aplicación y de MySQLWorkbench.
+
+## Jueves 27
+
+Realización de práctica propuesta por el curso en el que hay que crear una página de registro, otra de login y enlazarlas con la base de datos, creada desde cero, haciendo que funcione como un formulario de este tipo normal de cualquier página, salvo el encriptado de las contraseñas.
+
+## Viernes 28
+
+Finalización del curso de SQL avanzado.
