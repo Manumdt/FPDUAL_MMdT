@@ -27,3 +27,7 @@ En el ejercicio se ha creado un documento HTML con la estructura básica necesar
 Con CSS además de los estilos visuales se ha implementado flexbox y se ha construido una página responsiva adaptada a la mayoría de pantallas.
 
 Con JavaScript se ha realizado la conexión con la API pública y se han recogido todos los datos para mostrarlos en la web para lo que ha habido que crear elementos desde JavaScript para HTML y alguna modificación en CSS.
+
+## Viernes 21 de Abril a Martes 2 de Mayo
+
+Finalización del proyecto de la pokeapi y enviado un Pull Request para mergearlo a la rama main una vez revisado por el tutor. Durante el proceso surgió una pequeña inconsistencia en gitHub y hubo que hacer uso del comando rebase para arreglarla. El mayor problema para avanzar en este tiempo fue hacer un fecth individual de un solo pokémon al hacer clic en su carta. Por otro lado, se va a seguir avanzando con este proyecto para añadir un buscador y filtros de búsqueda a la página.
