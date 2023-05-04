@@ -11,10 +11,7 @@ public class Gestor {
 			Object object = (Object) Animales.next();
 			
 			System.out.println(object);
-		}
-		
-		
-				
+		}				
 	}
 	
 }
