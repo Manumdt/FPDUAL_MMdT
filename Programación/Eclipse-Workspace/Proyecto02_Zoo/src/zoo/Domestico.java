@@ -23,6 +23,6 @@ public class Domestico extends Animales{
 
 	@Override
 	public String toString() {
-		return super.toString() + " - Domestico [dueno=" + dueno + "]";
+		return super.toString() + " - Domestico [dueño=" + dueno + "]";
 	}
 }
