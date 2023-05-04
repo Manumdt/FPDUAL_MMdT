@@ -3,13 +3,13 @@ package zoo;
 public class Dni {
 	
 	private String letra;
-	private long numero;
+	private String numero;
 	
 	public Dni() {
 		super();
 	}
 
-	public Dni(String letra, long numero) {
+	public Dni(String letra, String numero) {
 		super();
 		this.letra = letra;
 		this.numero = numero;
@@ -23,11 +23,11 @@ public class Dni {
 		this.letra = letra;
 	}
 
-	public long getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(long numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
