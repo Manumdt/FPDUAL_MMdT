@@ -75,6 +75,19 @@ CREATE TABLE movimiento_efecto_secundario(
     CONSTRAINT IdEfectoSecundario_movimiento_efecto_secundario_fk FOREIGN KEY (IdEfectoSecundario) REFERENCES efecto_secundario(IdEfectoSecundario)
 );
 
+CREATE TABLE tipo_forma_aprendizaje(
+	IdTipoAprendizaje INT UNSIGNED,
+    TipoAprendizaje VARCHAR(20),
+    PRIMARY KEY (IdTipoAprendizaje)
+);
+
+CREATE TABLE forma_aprendizaje(
+	IdFormaAprendizaje INT UNSIGNED,
+    IdTipoAprendizaje INT UNSIGNED,
+    PRIMARY KEY (IdFormaAprendizaje),
+    CONSTRAINT IdTipoAprendizaje_forma_aprendizaje_fk FOREIGN KEY (IdTipoAprendizaje) REFERENCES tipo_forma_aprendizaje(IdTipoAprendizaje)
+);
+
 CREATE TABLE pokemon_movimiento_forma(
 	NumeroPokedex INT UNSIGNED,
     IdMovimiento INT UNSIGNED,
@@ -134,19 +147,6 @@ CREATE TABLE piedra(
     PRIMARY KEY (IdFormaEvolucion),
     CONSTRAINT IdTipoPiedra_piedra_fk FOREIGN KEY (IdTipoPiedra) REFERENCES tipo_piedra(IdTipoPiedra),
     CONSTRAINT IdFormaEvolucion_piedra_fk FOREIGN KEY (IdFormaEvolucion) REFERENCES forma_evolucion(IdFormaEvolucion)
-);
-
-CREATE TABLE tipo_forma_aprendizaje(
-	IdTipoAprendizaje INT UNSIGNED,
-    TipoAprendizaje VARCHAR(20),
-    PRIMARY KEY (IdTipoAprendizaje)
-);
-
-CREATE TABLE forma_aprendizaje(
-	IdFormaAprendizaje INT UNSIGNED,
-    IdTipoAprendizaje INT UNSIGNED,
-    PRIMARY KEY (IdFormaAprendizaje),
-    CONSTRAINT IdTipoAprendizaje_forma_aprendizaje_fk FOREIGN KEY (IdTipoAprendizaje) REFERENCES tipo_forma_aprendizaje(IdTipoAprendizaje)
 );
 
 CREATE TABLE nivel_aprendizaje(
