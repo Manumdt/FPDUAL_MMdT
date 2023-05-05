@@ -1,0 +1,21 @@
+# Diario de base de datos
+
+## Enlace a directorio 
+
+[Base de Datos](https://github.com/Manumdt/FPDUAL_MMdT/tree/main/Programación)
+
+## Miércoles 3 de abril
+
+Comienzo de curso de Java avanzado empezando por conceptos más básicos y una introducción breve a la evolución de este lenguaje. Se continúa con conceptos más avanzados y haciendo como ejercicio básico de repaso una calculadora funcional creada con diferentes métodos.
+
+## Jueves 4
+
+Continuación del curso aprendiendo la creación de objetos, el funcionamiento de los constructores, la clonación, la herencia básica y avanzada, el polimorfismo, las agregaciones, composiciones y colecciones; las estructuras de control y casting y las excepciones. Con esto se construye un ejercicio en el que se simula un Zoo donde hay que introducir los datos de los animales, especificar si su condición es de salvaje o doméstico y en caso de ser doméstico los datos de su dueño.
+
+Después de este ejercicio se repasan las interfaces y su uso.
+
+## Viernes 5
+
+Continuación del curso de Java, se trabaja la creación, lectura y borrado de ficheros con un ejercicio en el que se implementan estas tres funciones haciendo uso de la clase Buffered y File.
+
+Por otro lado, se estudia cómo conectar con Java una base de datos y se pone en práctica con el esquema creado de pokémon con anterioridad.
