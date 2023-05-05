@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "Lenguaje de Marcas",
         "Base de Datos",
-        "Cursos"
+        "Cursos",
+        "Programación"
     ]
 }
