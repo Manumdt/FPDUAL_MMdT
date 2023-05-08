@@ -8,7 +8,6 @@ insert into tipo_piedra values (1,'Piedra trueno'),
 (4,'Piedra lunar'),
 (5,'Piedra hoja');
 
-
 -- Tipo evolucion
 
 insert into tipo_evolucion values (1,'Nivel'),

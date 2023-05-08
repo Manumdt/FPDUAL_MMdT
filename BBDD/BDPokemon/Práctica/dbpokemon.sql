@@ -43,7 +43,7 @@ CREATE TABLE pokemon_tipo(
 	NumeroPokedex INT UNSIGNED AUTO_INCREMENT,
     IdTipo INT UNSIGNED,
     PRIMARY KEY(NumeroPokedex,IdTipo),
-    CONSTRAINT NumeroPokedex_pokemon_tipo_fk FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex),
+    CONSTRAINT NumeroPokedex_pokemon_tipo_fk FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex)ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT IdTipo_fk_pokemon_tipo FOREIGN KEY (IdTipo) REFERENCES tipo(IdTIpo)
 );
 
@@ -57,7 +57,7 @@ CREATE TABLE estadisticas_base(
     Especial INT,
     Velocidad INT,
     PRIMARY KEY(NumeroPokedex),
-    CONSTRAINT NumeroPokedex_estadisticas_base_fk FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex)
+    CONSTRAINT NumeroPokedex_estadisticas_base_fk FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE efecto_secundario(
@@ -93,7 +93,7 @@ CREATE TABLE pokemon_movimiento_forma(
     IdMovimiento INT UNSIGNED,
     IdFormaAprendizaje INT UNSIGNED,
     PRIMARY KEY (NumeroPokedex, IdMovimiento, IdFormaAprendizaje),
-    CONSTRAINT NumeroPokedex_pokemon_movimiento_forma_fk FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex),
+    CONSTRAINT NumeroPokedex_pokemon_movimiento_forma_fk FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT IdMovimiento_pokemon_movimiento_forma_fk FOREIGN KEY (IdMovimiento) REFERENCES movimiento(IdMovimiento),
     CONSTRAINT IdFormaAprendizaje_pokemon_movimiento_forma_fk FOREIGN KEY (IdFormaAprendizaje) REFERENCES forma_aprendizaje(IdFormaAprendizaje)
 );
@@ -104,15 +104,15 @@ CREATE TABLE evoluciona_de(
 	PokemonEvolucionado INT UNSIGNED,
     PokemonOrigen INT UNSIGNED,
     PRIMARY KEY (PokemonEvolucionado,PokemonOrigen),
-    CONSTRAINT PokemonEvolucionado_evoluciona_de_fk FOREIGN KEY (PokemonEvolucionado) REFERENCES pokemon(NumeroPokedex),
-    CONSTRAINT PokemonOrigen_evoluciona_de_fk FOREIGN KEY (PokemonOrigen) REFERENCES pokemon(NumeroPokedex)
+    CONSTRAINT PokemonEvolucionado_evoluciona_de_fk FOREIGN KEY (PokemonEvolucionado) REFERENCES pokemon(NumeroPokedex) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT PokemonOrigen_evoluciona_de_fk FOREIGN KEY (PokemonOrigen) REFERENCES pokemon(NumeroPokedex) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE pokemon_forma_evolucion(
 	NumeroPokedex INT UNSIGNED,
     IdFormaEvolucion INT UNSIGNED,
     PRIMARY KEY (NumeroPokedex,IdFormaEvolucion),
-    CONSTRAINT NumeroPokedex_pokemon_forma_evolucion FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex)
+    CONSTRAINT NumeroPokedex_pokemon_forma_evolucion FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE tipo_evolucion(
