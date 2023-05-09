@@ -19,3 +19,15 @@ Después de este ejercicio se repasan las interfaces y su uso.
 Continuación del curso de Java, se trabaja la creación, lectura y borrado de ficheros con un ejercicio en el que se implementan estas tres funciones haciendo uso de la clase Buffered y File.
 
 Por otro lado, se estudia cómo conectar con Java una base de datos y se pone en práctica con el esquema creado de pokémon con anterioridad.
+
+## Lunes 8
+
+Continuación del curso de Java.
+
+Realización de ejercicio propuesto en el que se realiza un CRUD de la base de datos de pokémon que se creó con anterioridad, conectando Java con la propia base de datos y realizando consultas, inserciones, borrados y actualizaciones sobre la misma.
+
+## Martes 9
+
+Realización de curso de ciberseguridad.
+
+Continuación del curso de Java en el que se explican los conceptos de lambda y streams.
