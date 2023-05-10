@@ -80,31 +80,30 @@ public class Main {
 			}while(salir==true);
 		
 		}catch(SQLException e){
-			System.out.println("Excepción:--------- " + e.getLocalizedMessage());
+			System.out.println("Excepción:------- " + e.getLocalizedMessage());
 		}
 	}
 	
-	private void mostarPokemons(Connection connection) throws ClassNotFoundException, SQLException {
-		
+	private void mostarPokemons(Connection connection) throws SQLException{
+			
 		String sentenciaSQL = "SELECT * FROM pokemon";
 		Statement ins = connection.createStatement();
 		ResultSet rs = ins.executeQuery(sentenciaSQL);
-		
+			
 		System.out.println("Se van a mostar a continuación todos los pokemons");
 		System.out.format("%5s %10s", "NumeroPokedex", "Nombre");
 		System.out.println();
-		
+			
 		while(rs.next()) {
 			System.out.format("%5s %20s",rs.getInt("NumeroPokedex"), rs.getString("Nombre"));
 			System.out.println();
-		}
-				
+		}	
 	}
 	
-	private int actualizarPokemon (Connection connection, Scanner sc) throws ClassNotFoundException, SQLException {
+	private void actualizarPokemon (Connection connection, Scanner sc) throws SQLException {
 		
 		int numeroPokedex;
-		String nombre;
+		String nombre;		
 		
 		System.out.println("Has elegido modificar el nombre de un pokemon");
 		System.out.println("Introduce el numero de pokedex del pokemon a modificar:");
@@ -119,10 +118,10 @@ public class Main {
 		
 		System.out.println("Nombre modificado correctamente");
 		
-		return (ps.executeUpdate());
+		ps.executeUpdate();				
 	}
 	
-	private int borrarPokemon (Connection connection, Scanner sc) throws ClassNotFoundException, SQLException {
+	private void borrarPokemon (Connection connection, Scanner sc) throws SQLException {
 		
 		int numeroPokedex;
 		
@@ -136,10 +135,10 @@ public class Main {
 		
 		System.out.println("Se ha eliminado el pokemon " + numeroPokedex + " correctamente");
 		
-		return (ps.executeUpdate());
+		ps.executeUpdate();
 	}
 	
-	private int crearPokemon (Connection connection,Scanner sc) throws ClassNotFoundException, SQLException {
+	private void crearPokemon (Connection connection,Scanner sc) throws SQLException {
 		
 		int numeroPokedex;
 		float peso, altura;
@@ -169,10 +168,10 @@ public class Main {
 		
 		System.out.println("Pokemon insertado correctamente");
 		
-		return (ps.executeUpdate());
+		ps.executeUpdate();
 	}
 	
-	private void mostrarStats(Connection connection, Scanner sc) throws ClassNotFoundException, SQLException{
+	private void mostrarStats(Connection connection, Scanner sc) throws SQLException{
 		
 		int numeroPokedex;
 		
@@ -195,7 +194,7 @@ public class Main {
 		System.out.println();
 	}
 	
-	private void mostrarAprendizajeMovimientos(Connection connection, Scanner sc) throws ClassNotFoundException, SQLException{
+	private void mostrarAprendizajeMovimientos(Connection connection, Scanner sc) throws SQLException{
 		
 		int numeroPokedex, formaAprendizaje;
 		
@@ -219,7 +218,7 @@ public class Main {
 		}				
 	}
 	
-	private void mostrarTipoEvolucion(Connection connection, Scanner sc) throws ClassNotFoundException, SQLException {
+	private void mostrarTipoEvolucion(Connection connection, Scanner sc) throws SQLException {
 		
 		int numeroPokedex, tipoEvolucion;
 		
@@ -299,7 +298,5 @@ public class Main {
 		}
 				
 	}
-	
-
 
 }
