@@ -10,19 +10,87 @@ import java.util.Scanner;
 
 public class Main {
 
-	private static String driver = "com.mysql.jdbc.Driver";
-	private static String url ="jdbc:mysql://localhost:6666/dbpokemon";
-	private Connection connection;	
-
-	private void mostarPokemons() throws ClassNotFoundException, SQLException {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		int numeroPokedex, opcion;
+		float peso, altura;
+		String nombre;
+		boolean salir=true;
+		
+		String driver = "com.mysql.jdbc.Driver";
+		String url ="jdbc:mysql://localhost:6666/dbpokemon";
+		
+		Scanner sc = new Scanner(System.in);
+		Main mn = new Main();
+		
+		try {
 		
 		Class.forName(driver);
-		connection = DriverManager.getConnection(url, "root", "");
+		Connection connection = DriverManager.getConnection(url, "root", "");		
+		
+			do {
+				
+				System.out.println("----------------------- MENÚ PRINCIPAL -----------------------");
+				System.out.println("1. Mostrar todos los pokemons");
+				System.out.println("2. Actualizar el nombre del pokemon por su numero de pokedex");
+				System.out.println("3. Borrar pokemon");
+				System.out.println("4. Insertar un nuevo pokemon");
+				System.out.println("5. Mostrar estadísticas");
+				System.out.println("6. Aprendizaje de movimientos");
+				System.out.println("7. Tipo de evolución");
+				System.out.println("8. SALIR");
+				System.out.println("--------------------------------------------------------------");
+				System.out.println("Ingrese una opcion:");
+				opcion = sc.nextInt();
+				
+				switch(opcion) {
+					case 1:						
+						mn.mostarPokemons(connection);					
+						break;
+						
+					case 2:																									
+						mn.actualizarPokemon(connection, sc);
+						break;
+						
+					case 3:											
+						mn.borrarPokemon(connection, sc);
+						break;
+						
+					case 4:						
+						mn.crearPokemon(connection, sc);
+						break;
+						
+					case 5:						
+						mn.mostrarStats(connection, sc);
+						break;
+						
+					case 6:						
+						mn.mostrarAprendizajeMovimientos(connection, sc);						
+						break;
+						
+					case 7:										
+						mn.mostrarTipoEvolucion(connection, sc);						
+						break;
+						
+					case 8:
+						System.exit(0);
+						break;					
+				}
+				
+			}while(salir==true);
+		
+		}catch(SQLException e){
+			System.out.println("Excepción:--------- " + e.getLocalizedMessage());
+		}
+	}
+	
+	private void mostarPokemons(Connection connection) throws ClassNotFoundException, SQLException {
 		
 		String sentenciaSQL = "SELECT * FROM pokemon";
 		Statement ins = connection.createStatement();
 		ResultSet rs = ins.executeQuery(sentenciaSQL);
 		
+		System.out.println("Se van a mostar a continuación todos los pokemons");
 		System.out.format("%5s %10s", "NumeroPokedex", "Nombre");
 		System.out.println();
 		
@@ -33,10 +101,16 @@ public class Main {
 				
 	}
 	
-	private int actualizarPokemon (int numeroPokedex, String nombre) throws ClassNotFoundException, SQLException {
+	private int actualizarPokemon (Connection connection, Scanner sc) throws ClassNotFoundException, SQLException {
 		
-		Class.forName(driver);
-		connection = DriverManager.getConnection(url, "root", "");
+		int numeroPokedex;
+		String nombre;
+		
+		System.out.println("Has elegido modificar el nombre de un pokemon");
+		System.out.println("Introduce el numero de pokedex del pokemon a modificar:");
+		numeroPokedex = sc.nextInt();
+		System.out.println("Introduce el nuevo nombre:");
+		nombre = sc.next();
 		
 		String sentenciaSQL = "UPDATE pokemon SET Nombre=? WHERE NumeroPokedex=?";
 		PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
@@ -48,10 +122,13 @@ public class Main {
 		return (ps.executeUpdate());
 	}
 	
-	private int borrarPokemon (int numeroPokedex) throws ClassNotFoundException, SQLException {
+	private int borrarPokemon (Connection connection, Scanner sc) throws ClassNotFoundException, SQLException {
 		
-		Class.forName(driver);
-		connection = DriverManager.getConnection(url, "root", "");
+		int numeroPokedex;
+		
+		System.out.println("Has elegido eliminar un pokemon");
+		System.out.println("Introduce el numero de pokedex del pokemon a eliminar:");
+		numeroPokedex = sc.nextInt();
 		
 		String sentenciaSQL = "DELETE FROM pokemon WHERE NumeroPokedex=?";
 		PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
@@ -62,12 +139,19 @@ public class Main {
 		return (ps.executeUpdate());
 	}
 	
-	private int crearPokemon (String nombre, float peso, float altura) throws ClassNotFoundException, SQLException {
+	private int crearPokemon (Connection connection,Scanner sc) throws ClassNotFoundException, SQLException {
 		
 		int numeroPokedex;
+		float peso, altura;
+		String nombre;
 		
-		Class.forName(driver);
-		connection = DriverManager.getConnection(url, "root", "");
+		System.out.println("Has elegido insertar un pokemon");
+		System.out.println("Introduce el nombre");
+		nombre = sc.next();
+		System.out.println("Introduce el peso");
+		peso = sc.nextFloat();
+		System.out.println("Introduce la altura");
+		altura = sc.nextFloat();
 		
 		String sentenciaSQL1 = "SELECT NumeroPokedex FROM pokemon ORDER BY NumeroPokedex DESC LIMIT 1;";
 		Statement ins = connection.createStatement();
@@ -88,10 +172,13 @@ public class Main {
 		return (ps.executeUpdate());
 	}
 	
-	private void mostrarStats(int numeroPokedex) throws ClassNotFoundException, SQLException{
+	private void mostrarStats(Connection connection, Scanner sc) throws ClassNotFoundException, SQLException{
 		
-		Class.forName(driver);
-		connection = DriverManager.getConnection(url, "root", "");
+		int numeroPokedex;
+		
+		System.out.println("Has elegido mostrar estadísticas");
+		System.out.println("Introduce el numero de pokedex del pokemon deseado:");
+		numeroPokedex = sc.nextInt();
 		
 		String sentenciaSQL = "SELECT pok.Nombre, eb.* FROM pokemon pok JOIN estadisticas_base eb ON pok.NumeroPokedex = eb.NumeroPokedex WHERE pok.NumeroPokedex = ?";
 		
@@ -106,13 +193,20 @@ public class Main {
 		System.out.format("%5s %8s %6s %9s %9s %9s", rs.getString("pok.Nombre"), rs.getInt("eb.Ps"), rs.getInt("eb.Ataque"), 
 						  rs.getInt("Defensa"), rs.getInt("Especial"),  rs.getInt("Velocidad"));
 		System.out.println();
-
 	}
 	
-	private void mostrarAprendizajeMovimientos(int numeroPokedex, int formaAprendizaje) throws ClassNotFoundException, SQLException{
+	private void mostrarAprendizajeMovimientos(Connection connection, Scanner sc) throws ClassNotFoundException, SQLException{
 		
-		Class.forName(driver);
-		connection = DriverManager.getConnection(url, "root", "");
+		int numeroPokedex, formaAprendizaje;
+		
+		System.out.println("Has elegido aprendizaje de movimientos");
+		System.out.println("Introduce el numero de pokedex del pokemon deseado:");
+		numeroPokedex = sc.nextInt();
+		System.out.println("Que tipo de aprendizaje quieres comprobar");
+		System.out.println("1. Mt");
+		System.out.println("2. Mo");
+		System.out.println("3. Nivel");
+		formaAprendizaje=sc.nextInt();
 		
 		String sentenciaSQL = "SELECT mov.Nombre FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.NumeroPokedex=?;";
 		PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
@@ -125,12 +219,13 @@ public class Main {
 		}				
 	}
 	
-	private void mostrarTipoEvolucion(int numeroPokedex) throws ClassNotFoundException, SQLException {
+	private void mostrarTipoEvolucion(Connection connection, Scanner sc) throws ClassNotFoundException, SQLException {
 		
-		int tipoEvolucion;
+		int numeroPokedex, tipoEvolucion;
 		
-		Class.forName(driver);
-		connection = DriverManager.getConnection(url, "root", "");
+		System.out.println("Has elegido tipo de evolución");
+		System.out.println("Introduce el numero de pokedex del pokemon deseado:");
+		numeroPokedex = sc.nextInt();
 		
 		String sentenciaSQL = "SELECT tiev.IdTipoEvolucion FROM tipo_evolucion tiev JOIN forma_evolucion foel ON tiev.IdTipoEvolucion = foel.IdTipoEvolucion JOIN pokemon_forma_evolucion pfe ON foel.IdFormaEvolucion = pfe.IdFormaEvolucion WHERE pfe.NumeroPokedex=?";
 		PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
@@ -205,105 +300,6 @@ public class Main {
 				
 	}
 	
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-	
-		int numeroPokedex, opcion;
-		float peso, altura;
-		String nombre;
-		boolean salir=true;
-		
-		Scanner sc = new Scanner(System.in);
-		Main mn = new Main();
 
-		do {
-			
-			System.out.println("----------------------- MENÚ PRINCIPAL -----------------------");
-			System.out.println("1. Mostrar todos los pokemons");
-			System.out.println("2. Actualizar el nombre del pokemon por su numero de pokedex");
-			System.out.println("3. Borrar pokemon");
-			System.out.println("4. Insertar un nuevo pokemon");
-			System.out.println("5. Mostrar estadísticas");
-			System.out.println("6. Aprendizaje de movimientos");
-			System.out.println("7. Tipo de evolución");
-			System.out.println("8. SALIR");
-			System.out.println("--------------------------------------------------------------");
-			System.out.println("Ingrese una opcion:");
-			opcion = sc.nextInt();
-			
-			switch(opcion) {
-				case 1:
-					System.out.println("Se van a mostar a continuación todos los pokemons");
-					mn.mostarPokemons();					
-					break;
-					
-				case 2:													
-					System.out.println("Has elegido modificar el nombre de un pokemon");
-					System.out.println("Introduce el numero de pokedex del pokemon a modificar:");
-					numeroPokedex = sc.nextInt();
-					System.out.println("Introduce el nuevo nombre:");
-					nombre = sc.next();
-					
-					mn.actualizarPokemon(numeroPokedex, nombre);
-					break;
-					
-				case 3:
-					System.out.println("Has elegido eliminar un pokemon");
-					System.out.println("Introduce el numero de pokedex del pokemon a eliminar:");
-					numeroPokedex = sc.nextInt();
-					
-					mn.borrarPokemon(numeroPokedex);
-					break;
-					
-				case 4:
-					System.out.println("Has elegido insertar un pokemon");
-					System.out.println("Introduce el nombre");
-					nombre = sc.next();
-					System.out.println("Introduce el peso");
-					peso = sc.nextFloat();
-					System.out.println("Introduce la altura");
-					altura = sc.nextFloat();
-					
-					mn.crearPokemon(nombre, peso, altura);
-					break;
-					
-				case 5:
-					System.out.println("Has elegido mostrar estadísticas");
-					System.out.println("Introduce el numero de pokedex del pokemon deseado:");
-					numeroPokedex = sc.nextInt();
-					
-					mn.mostrarStats(numeroPokedex);
-					break;
-					
-				case 6:
-					System.out.println("Has elegido aprendizaje de movimientos");
-					System.out.println("Introduce el numero de pokedex del pokemon deseado:");
-					numeroPokedex = sc.nextInt();
-					System.out.println("Que tipo de aprendizaje quieres comprobar");
-					System.out.println("1. Mt");
-					System.out.println("2. Mo");
-					System.out.println("3. Nivel");
-					opcion=sc.nextInt();
-					
-					mn.mostrarAprendizajeMovimientos(numeroPokedex, opcion);
-					
-					break;
-					
-				case 7:
-					System.out.println("Has elegido tipo de evolución");
-					System.out.println("Introduce el numero de pokedex del pokemon deseado:");
-					numeroPokedex = sc.nextInt();
-					
-					mn.mostrarTipoEvolucion(numeroPokedex);
-					
-					break;
-					
-				case 8:
-					System.exit(0);
-					break;					
-			}
-			
-		}while(salir==true);
-		
-	}
 
 }
