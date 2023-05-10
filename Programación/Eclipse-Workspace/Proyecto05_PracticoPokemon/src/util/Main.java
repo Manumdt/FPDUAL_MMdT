@@ -14,7 +14,7 @@ public class Main {
 	private static String url ="jdbc:mysql://localhost:6666/dbpokemon";
 	private Connection connection;	
 
-	public void mostarPokemons() throws ClassNotFoundException, SQLException {
+	private void mostarPokemons() throws ClassNotFoundException, SQLException {
 		
 		Class.forName(driver);
 		connection = DriverManager.getConnection(url, "root", "");
@@ -33,7 +33,7 @@ public class Main {
 				
 	}
 	
-	public int actualizarPokemon (int numeroPokedex, String nombre) throws ClassNotFoundException, SQLException {
+	private int actualizarPokemon (int numeroPokedex, String nombre) throws ClassNotFoundException, SQLException {
 		
 		Class.forName(driver);
 		connection = DriverManager.getConnection(url, "root", "");
@@ -48,7 +48,7 @@ public class Main {
 		return (ps.executeUpdate());
 	}
 	
-	public int borrarPokemon (int numeroPokedex) throws ClassNotFoundException, SQLException {
+	private int borrarPokemon (int numeroPokedex) throws ClassNotFoundException, SQLException {
 		
 		Class.forName(driver);
 		connection = DriverManager.getConnection(url, "root", "");
@@ -62,7 +62,7 @@ public class Main {
 		return (ps.executeUpdate());
 	}
 	
-	public int crearPokemon (String nombre, float peso, float altura) throws ClassNotFoundException, SQLException {
+	private int crearPokemon (String nombre, float peso, float altura) throws ClassNotFoundException, SQLException {
 		
 		int numeroPokedex;
 		
@@ -88,7 +88,7 @@ public class Main {
 		return (ps.executeUpdate());
 	}
 	
-	public void mostrarStats(int numeroPokedex) throws ClassNotFoundException, SQLException{
+	private void mostrarStats(int numeroPokedex) throws ClassNotFoundException, SQLException{
 		
 		Class.forName(driver);
 		connection = DriverManager.getConnection(url, "root", "");
@@ -109,7 +109,7 @@ public class Main {
 
 	}
 	
-	public void mostrarAprendizajeMovimientos(int numeroPokedex, int formaAprendizaje) throws ClassNotFoundException, SQLException{
+	private void mostrarAprendizajeMovimientos(int numeroPokedex, int formaAprendizaje) throws ClassNotFoundException, SQLException{
 		
 		Class.forName(driver);
 		connection = DriverManager.getConnection(url, "root", "");
@@ -125,7 +125,7 @@ public class Main {
 		}				
 	}
 	
-	public void mostrarTipoEvolucion(int numeroPokedex) throws ClassNotFoundException, SQLException {
+	private void mostrarTipoEvolucion(int numeroPokedex) throws ClassNotFoundException, SQLException {
 		
 		int tipoEvolucion;
 		
@@ -248,7 +248,7 @@ public class Main {
 					
 				case 3:
 					System.out.println("Has elegido eliminar un pokemon");
-					System.out.println("Introduce el numero de pokedex del pokemon a modificar:");
+					System.out.println("Introduce el numero de pokedex del pokemon a eliminar:");
 					numeroPokedex = sc.nextInt();
 					
 					mn.borrarPokemon(numeroPokedex);
