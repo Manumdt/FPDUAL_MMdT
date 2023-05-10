@@ -71,7 +71,7 @@ CREATE TABLE movimiento_efecto_secundario(
     IdEfectoSecundario INT UNSIGNED,
     Probabilidad FLOAT(6.3),
     PRIMARY KEY (IdMovimiento, IdEfectoSecundario),
-    CONSTRAINT IdMovimiento_movimiento_fk FOREIGN KEY (IdMovimiento) REFERENCES movimiento(IdMovimiento),
+    CONSTRAINT IdMovimiento_movimiento_fk FOREIGN KEY (IdMovimiento) REFERENCES movimiento(IdMovimiento) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT IdEfectoSecundario_movimiento_efecto_secundario_fk FOREIGN KEY (IdEfectoSecundario) REFERENCES efecto_secundario(IdEfectoSecundario)
 );
 
@@ -94,7 +94,7 @@ CREATE TABLE pokemon_movimiento_forma(
     IdFormaAprendizaje INT UNSIGNED,
     PRIMARY KEY (NumeroPokedex, IdMovimiento, IdFormaAprendizaje),
     CONSTRAINT NumeroPokedex_pokemon_movimiento_forma_fk FOREIGN KEY (NumeroPokedex) REFERENCES pokemon(NumeroPokedex) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT IdMovimiento_pokemon_movimiento_forma_fk FOREIGN KEY (IdMovimiento) REFERENCES movimiento(IdMovimiento),
+    CONSTRAINT IdMovimiento_pokemon_movimiento_forma_fk FOREIGN KEY (IdMovimiento) REFERENCES movimiento(IdMovimiento) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT IdFormaAprendizaje_pokemon_movimiento_forma_fk FOREIGN KEY (IdFormaAprendizaje) REFERENCES forma_aprendizaje(IdFormaAprendizaje)
 );
 
