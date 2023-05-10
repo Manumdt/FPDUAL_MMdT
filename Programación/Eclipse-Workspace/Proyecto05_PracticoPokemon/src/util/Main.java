@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -38,7 +39,11 @@ public class Main {
 				System.out.println("5. Mostrar estadísticas");
 				System.out.println("6. Aprendizaje de movimientos");
 				System.out.println("7. Tipo de evolución");
-				System.out.println("8. SALIR");
+				System.out.println("8. Mostrar un solo pokemon (ArrayList)");
+				System.out.println("9. Ver pokemons más pesados (ArrayList)");
+				System.out.println("10. Mostrar pokemons (API)");
+				System.out.println("11. Modificar el nombre de un pokemon (ArrayList)");
+				System.out.println("12. SALIR");
 				System.out.println("--------------------------------------------------------------");
 				System.out.println("Ingrese una opcion:");
 				opcion = sc.nextInt();
@@ -73,8 +78,25 @@ public class Main {
 						break;
 						
 					case 8:
+						mn.mostrarPokemonArrayList(connection, sc);
+						break;	
+					
+					case 9:
+						
+						break;	
+						
+					case 10:
+						
+						break;	
+						
+					case 11:
+						
+						break;	
+						
+					case 12:
+						connection.close();
 						System.exit(0);
-						break;					
+						break;	
 				}
 				
 			}while(salir==true);
@@ -298,5 +320,52 @@ public class Main {
 		}
 				
 	}
+	
+	private void mostrarPokemonArrayList (Connection connection, Scanner sc) throws SQLException{
+		
+			int i,numeroPokedex;
+			ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+			
+			System.out.println("Introduce el número del pokemon del que quieres obtener los datos");
+			numeroPokedex = sc.nextInt();
+			
+			String sentenciaSQL = "SELECT * FROM pokemon";
+			Statement ins = connection.createStatement();
+			ResultSet rs = ins.executeQuery(sentenciaSQL);
+				
+			while(rs.next()) {
+				pokemons.add(new Pokemon (rs.getInt("NumeroPokedex"), rs.getString("Nombre"), rs.getFloat("Peso"), rs.getFloat("Altura")));
+			}	
+			
+			System.out.println(pokemons.get(numeroPokedex));			
+	}
+	
+	private void mostrarMasPesados (Connection connection, Scanner sc) throws SQLException{
+		
+			ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+			
+			System.out.println("Se van a mostrar los 10 pokemons más pesados");
+		
+	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
