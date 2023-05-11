@@ -7,27 +7,35 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class Main {
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
 		
-		int numeroPokedex, opcion;
-		float peso, altura;
-		String nombre;
+		int opcion;
 		boolean salir=true;
 		
-		String driver = "com.mysql.jdbc.Driver";
-		String url ="jdbc:mysql://localhost:6666/dbpokemon";
+		Conexion connection = new Conexion();
+		Connection cn = connection.conexion();
 		
-		Scanner sc = new Scanner(System.in);
 		Main mn = new Main();
+		Scanner sc = new Scanner(System.in);		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		try {
-		
-		Class.forName(driver);
-		Connection connection = DriverManager.getConnection(url, "root", "");		
 		
 			do {
 				
@@ -50,60 +58,56 @@ public class Main {
 				
 				switch(opcion) {
 					case 1:						
-						mn.mostarPokemons(connection);					
+						mn.mostarPokemons(cn);					
 						break;
 						
 					case 2:																									
-						mn.actualizarPokemon(connection, sc);
+						mn.actualizarPokemon(cn, sc);
 						break;
 						
 					case 3:											
-						mn.borrarPokemon(connection, sc);
+						mn.borrarPokemon(cn, sc);
 						break;
 						
 					case 4:						
-						mn.crearPokemon(connection, sc);
+						mn.crearPokemon(cn, sc);
 						break;
 						
 					case 5:						
-						mn.mostrarStats(connection, sc);
+						mn.mostrarStats(cn, sc);
 						break;
 						
 					case 6:						
-						mn.mostrarAprendizajeMovimientos(connection, sc);						
+						mn.mostrarAprendizajeMovimientos(cn, sc);						
 						break;
 						
 					case 7:										
-						mn.mostrarTipoEvolucion(connection, sc);						
+						mn.mostrarTipoEvolucion(cn, sc);						
 						break;
 						
 					case 8:
-						mn.mostrarPokemonArrayList(connection, sc);
+						mn.mostrarPokemonArrayList(cn, sc);
 						break;	
 					
 					case 9:
-						
+						mn.mostrarMasPesados(cn, sc);
 						break;	
 						
 					case 10:
-						
+						mn.mostrarPokemonsApi(cn, br);
 						break;	
 						
 					case 11:
-						
+						mn.modificarNombre(cn, br);
 						break;	
 						
 					case 12:
-						connection.close();
-						System.exit(0);
+						cn.close();
+						salir=false;
 						break;	
 				}
 				
 			}while(salir==true);
-		
-		}catch(SQLException e){
-			System.out.println("Excepción:------- " + e.getLocalizedMessage());
-		}
 	}
 	
 	private void mostarPokemons(Connection connection) throws SQLException{
@@ -337,15 +341,113 @@ public class Main {
 				pokemons.add(new Pokemon (rs.getInt("NumeroPokedex"), rs.getString("Nombre"), rs.getFloat("Peso"), rs.getFloat("Altura")));
 			}	
 			
-			System.out.println(pokemons.get(numeroPokedex));			
+			System.out.println(pokemons.get(numeroPokedex-1));				
 	}
 	
 	private void mostrarMasPesados (Connection connection, Scanner sc) throws SQLException{
 		
+			int i;
 			ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 			
 			System.out.println("Se van a mostrar los 10 pokemons más pesados");
 		
+			String sentenciaSQL = "SELECT * FROM pokemon";
+			Statement ins = connection.createStatement();
+			ResultSet rs = ins.executeQuery(sentenciaSQL);
+				
+			while(rs.next()) {
+				pokemons.add(new Pokemon (rs.getInt("NumeroPokedex"), rs.getString("Nombre"), rs.getFloat("Peso"), rs.getFloat("Altura")));
+			}
+			
+			Collections.sort(pokemons, new Comparator<Pokemon>(){
+				
+				@Override
+				public int compare(Pokemon p1, Pokemon p2) {
+																			
+					return Float.compare(p2.getPeso(), p1.getPeso());
+					
+				}							
+			});	
+			
+			for(i=0; i<10; i++) {
+				System.out.println(pokemons.get(i));
+			}						
+	}
+	
+	private void mostrarPokemonsApi (Connection connection, BufferedReader br) throws SQLException, IOException{
+		
+		int responseCode;
+		String linea;
+		
+		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+		StringBuilder resultado = new StringBuilder();
+		URL url = new URL ("https://pokeapi.co/api/v2/pokemon/?limit=151");
+
+		HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+		conexion.setRequestMethod("GET");
+		responseCode = conexion.getResponseCode();
+		BufferedReader rd = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+		
+		if(responseCode != 200) {
+			System.out.println("Error " + responseCode);
+		}else {
+			System.out.println("Conexión correcta");
+			while((linea = rd.readLine()) != null) {
+				resultado.append(linea + "\n");
+				String json = resultado.toString();
+				JsonObject pokemon = new JsonParser().parse(json).getAsJsonObject();
+				JsonObject convertir = new Gson().fromJson(json, JsonObject.class);
+				System.out.println(convertir.get("name"));
+			}
+			
+			rd.close();
+		}
+	}
+	
+	private void modificarNombre(Connection connection, BufferedReader br) throws SQLException, IOException{
+		
+		int numeroPokedex=0;
+		String nombreOG, nombreNEW;
+		
+		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();		
+	
+		String sentenciaSQL = "SELECT * FROM pokemon";
+		Statement ins = connection.createStatement();
+		ResultSet rs = ins.executeQuery(sentenciaSQL);
+			
+		while(rs.next()) {
+			pokemons.add(new Pokemon (rs.getInt("NumeroPokedex"), rs.getString("Nombre"), rs.getFloat("Peso"), rs.getFloat("Altura")));
+		}	
+		
+		do {
+		
+			System.out.println("Introduce el nombre del pokemon a modificar");
+			nombreOG = br.readLine();
+			
+			for (Pokemon pokemon : pokemons) {
+				if(pokemon.getNombre().toUpperCase().equals(nombreOG.toUpperCase())) {
+					numeroPokedex=pokemon.getNumeroPokedex();
+					System.out.println("El pokemon " + nombreOG + " se encuentra en la posición " + numeroPokedex + " de la pokedex");
+					break;				
+				}else {
+					numeroPokedex = -1;
+				}
+			}
+			
+			if(numeroPokedex == -1) {
+				System.out.println("El pokemon introducido no existe");
+				break;
+			}
+			
+		}while(numeroPokedex == -1);
+		
+		System.out.println("Introduce el nuevo nombre del pokemon");
+		nombreNEW = br.readLine();
+		
+		pokemons.get(numeroPokedex-1).setNombre(nombreNEW);		
+		
+		System.out.println("Se ha cambiado el nombre de " + nombreOG + " a " + pokemons.get(numeroPokedex-1).getNombre());
+		System.out.println(pokemons.get(numeroPokedex-1));
 	}
 
 	
