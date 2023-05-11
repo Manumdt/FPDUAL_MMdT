@@ -53,8 +53,7 @@ public class Pokemon {
 
 	@Override
 	public String toString() {
-		return "numeroPokedex= " + numeroPokedex + "\nnombre= " + nombre + "\npeso= " + peso + "\naltura= "
-				+ altura;
+		return "numeroPokedex= " + numeroPokedex + " nombre= " + nombre + " peso= " + peso + " altura= " + altura;
 	}
 	
 }
