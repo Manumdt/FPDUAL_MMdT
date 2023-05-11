@@ -379,7 +379,7 @@ public class Main {
 		int responseCode;
 		String linea;
 		
-		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+		// ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 		StringBuilder resultado = new StringBuilder();
 		URL url = new URL ("https://pokeapi.co/api/v2/pokemon/?limit=151");
 
@@ -397,7 +397,12 @@ public class Main {
 				String json = resultado.toString();
 				JsonObject pokemon = new JsonParser().parse(json).getAsJsonObject();
 				JsonObject convertir = new Gson().fromJson(json, JsonObject.class);
-				System.out.println(convertir.get("name"));
+				//System.out.println(convertir.get("name").getAsString());
+				
+				Gson gson = new Gson();
+				Pokemon pokemons = gson.fromJson(convertir, Pokemon.class);
+				System.out.println(pokemons);
+				
 			}
 			
 			rd.close();
