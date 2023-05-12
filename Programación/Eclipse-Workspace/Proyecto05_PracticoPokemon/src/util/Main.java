@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -379,7 +378,7 @@ public class Main {
 		int responseCode;
 		String linea;
 		
-		// ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 		StringBuilder resultado = new StringBuilder();
 		URL url = new URL ("https://pokeapi.co/api/v2/pokemon/?limit=151");
 
@@ -394,18 +393,18 @@ public class Main {
 			System.out.println("Conexión correcta");
 			while((linea = rd.readLine()) != null) {
 				resultado.append(linea + "\n");
-				String json = resultado.toString();
-				JsonObject pokemon = new JsonParser().parse(json).getAsJsonObject();
-				JsonObject convertir = new Gson().fromJson(json, JsonObject.class);
-				//System.out.println(convertir.get("name").getAsString());
-				
-				Gson gson = new Gson();
-				Pokemon pokemons = gson.fromJson(convertir, Pokemon.class);
-				System.out.println(pokemons);
-				
+			}
+			rd.close();
+			
+			Gson gson = new Gson();
+			JsonObject json = gson.fromJson(resultado.toString(), JsonObject.class);
+			JsonArray lista = (JsonArray) json.get("results");
+			
+			for(int i=0; i < lista.size(); i++) {
+				JsonObject aux = (JsonObject) lista.get(i);
+				System.out.println((i+1) + " " + aux.get("name").getAsString().toUpperCase().charAt(0) + aux.get("name").getAsString().substring(1));
 			}
 			
-			rd.close();
 		}
 	}
 	
