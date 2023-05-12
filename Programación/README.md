@@ -2,7 +2,7 @@
 
 ## Enlace a directorio 
 
-[Base de Datos](https://github.com/Manumdt/FPDUAL_MMdT/tree/main/Programación)
+[Programación](https://github.com/Manumdt/FPDUAL_MMdT/tree/main/Programación)
 
 ## Miércoles 3 de abril
 
@@ -31,3 +31,15 @@ Realización de ejercicio propuesto en el que se realiza un CRUD de la base de d
 Realización de curso de ciberseguridad.
 
 Continuación del curso de Java en el que se explican los conceptos de lambda y streams.
+
+## Miércoles 10
+
+Continuación de curso de java poniendo en prácticas los streams y lambda aprendidos.
+
+## Jueves 11
+
+Realización del ejercicio propuesto, ampliación del anterior, en el que hay que implementar cuatro nuevas funcionalidades en el que se ponen en uso la creación y manejo de ArrayList y la conexión a una API pública desde Java.
+
+## Viernes 12
+
+Finalización del ejercicio propuesto, hubo complicaciones a la hora de tratar los datos de la API pero se soluciona y se amplía el ejercicio con más datos para practicar.
