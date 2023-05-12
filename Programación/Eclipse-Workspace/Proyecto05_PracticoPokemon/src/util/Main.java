@@ -33,23 +33,7 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 			do {
-				System.out.println("----------------------- MENÚ PRINCIPAL -----------------------");
-				System.out.println("1. Mostrar todos los pokemons");
-				System.out.println("2. Actualizar el nombre del pokemon por su numero de pokedex");
-				System.out.println("3. Borrar pokemon");
-				System.out.println("4. Insertar un nuevo pokemon");
-				System.out.println("5. Mostrar estadísticas");
-				System.out.println("6. Aprendizaje de movimientos");
-				System.out.println("7. Tipo de evolución");
-				System.out.println("8. Mostrar un solo pokemon (ArrayList)");
-				System.out.println("9. Ver pokemons más pesados (ArrayList)");
-				System.out.println("10. Mostrar pokemons (API)");
-				System.out.println("11. Modificar el nombre de un pokemon (ArrayList)");
-				System.out.println("12. SALIR");
-				System.out.println("--------------------------------------------------------------");
-				System.out.println("Ingrese una opcion:");
-				opcion = sc.nextInt();
-				
+				opcion = menu(sc);				
 				switch(opcion) {
 					case 1:						
 						mn.mostarPokemons(cn);					
@@ -101,6 +85,27 @@ public class Main {
 						break;	
 				}	
 			}while(salir==true);
+	}
+
+	private static int menu(Scanner sc) {
+		int opcion;
+		System.out.println("----------------------- MENÚ PRINCIPAL -----------------------");
+		System.out.println("1. Mostrar todos los pokemons");
+		System.out.println("2. Actualizar el nombre del pokemon por su numero de pokedex");
+		System.out.println("3. Borrar pokemon");
+		System.out.println("4. Insertar un nuevo pokemon");
+		System.out.println("5. Mostrar estadísticas");
+		System.out.println("6. Aprendizaje de movimientos");
+		System.out.println("7. Tipo de evolución");
+		System.out.println("8. Mostrar un solo pokemon (ArrayList)");
+		System.out.println("9. Ver pokemons más pesados (ArrayList)");
+		System.out.println("10. Mostrar pokemons (API)");
+		System.out.println("11. Modificar el nombre de un pokemon (ArrayList)");
+		System.out.println("12. SALIR");
+		System.out.println("--------------------------------------------------------------");
+		System.out.println("Ingrese una opcion:");
+		opcion = sc.nextInt();
+		return opcion;
 	}
 	
 	private void mostarPokemons(Connection connection){
