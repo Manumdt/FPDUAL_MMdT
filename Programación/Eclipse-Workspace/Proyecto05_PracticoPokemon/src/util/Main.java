@@ -228,15 +228,34 @@ public class Main {
 		System.out.println("3. Nivel");
 		formaAprendizaje=sc.nextInt();
 		
-		String sentenciaSQL = "SELECT mov.Nombre FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.NumeroPokedex=?;";
-		PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
-		ps.setInt(1, formaAprendizaje);
-		ps.setInt(2, numeroPokedex);
+		if(formaAprendizaje == 1 || formaAprendizaje == 2) {
+			String sentenciaSQL = "SELECT mov.Nombre FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.NumeroPokedex=?;";
+			PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
+			ps.setInt(1, formaAprendizaje);
+			ps.setInt(2, numeroPokedex);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				System.out.println(rs.getString("mov.Nombre"));	
+			}				
+		}else if(formaAprendizaje == 3){
+			String sentenciaSQL = "SELECT mov.Nombre, niap.Nivel  FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje JOIN nivel_aprendizaje niap ON foap.IdFormaAprendizaje = niap.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.NumeroPokedex=? ORDER BY 2;";
+			PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
+			ps.setInt(1, formaAprendizaje);
+			ps.setInt(2, numeroPokedex);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			System.out.format("%15s %10s", "Movimiento", "Nivel");
+			System.out.println();
+			
+			while(rs.next()) {	
+				System.out.format("%15s %10s", rs.getString("mov.Nombre"), rs.getString("niap.Nivel"));	
+				System.out.println();
+			}				
+		}
 		
-		ResultSet rs = ps.executeQuery();
-		while(rs.next()) {
-			System.out.println(rs.getString("mov.Nombre"));	
-		}				
+		
 	}
 	
 	private void mostrarTipoEvolucion(Connection connection, Scanner sc) throws SQLException {
@@ -316,8 +335,7 @@ public class Main {
 			System.out.format("%10s %20s", rs.getString("pok.Nombre"), "No evoluciona");
 			System.out.println();
 			
-		}
-				
+		}				
 	}
 	
 	private void mostrarPokemonArrayList (Connection connection, Scanner sc) throws SQLException{
@@ -358,9 +376,8 @@ public class Main {
 				
 				@Override
 				public int compare(Pokemon p1, Pokemon p2) {
-																			
-					return Float.compare(p2.getPeso(), p1.getPeso());
 					
+					return Float.compare(p2.getPeso(), p1.getPeso());
 				}							
 			});	
 			
