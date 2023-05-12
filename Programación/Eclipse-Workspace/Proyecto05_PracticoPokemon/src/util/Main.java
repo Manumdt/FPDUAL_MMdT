@@ -123,7 +123,7 @@ public class Main {
 		}
 	}
 	
-	private void actualizarPokemon (Connection connection, Scanner sc) throws SQLException {
+	private void actualizarPokemon (Connection connection, Scanner sc){
 		
 		int numeroPokedex;
 		String nombre;		
@@ -541,4 +541,4 @@ public class Main {
 			System.out.println("Excepción: ------- " + ioe.getLocalizedMessage());
 		}
 	}
-}
+} 
