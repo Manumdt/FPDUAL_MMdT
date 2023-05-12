@@ -1,7 +1,6 @@
 package util;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,9 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class Main {
 
@@ -28,8 +25,8 @@ public class Main {
 		int opcion;
 		boolean salir=true;
 		
-		Conexion connection = new Conexion();
-		Connection cn = connection.conexion();
+		//Conexion connection = new Conexion();
+		Connection cn = Conexion.conexion();
 		
 		Main mn = new Main();
 		Scanner sc = new Scanner(System.in);		
@@ -377,8 +374,7 @@ public class Main {
 		
 		int responseCode;
 		String linea;
-		
-		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+	
 		StringBuilder resultado = new StringBuilder();
 		URL url = new URL ("https://pokeapi.co/api/v2/pokemon/?limit=151");
 
@@ -392,7 +388,7 @@ public class Main {
 		}else {
 			System.out.println("Conexión correcta");
 			while((linea = rd.readLine()) != null) {
-				resultado.append(linea + "\n");
+				resultado.append(linea);
 			}
 			rd.close();
 			
@@ -424,7 +420,6 @@ public class Main {
 		}	
 		
 		do {
-		
 			System.out.println("Introduce el nombre del pokemon a modificar");
 			nombreOG = br.readLine();
 			
@@ -453,25 +448,4 @@ public class Main {
 		System.out.println("Se ha cambiado el nombre de " + nombreOG + " a " + pokemons.get(numeroPokedex-1).getNombre());
 		System.out.println(pokemons.get(numeroPokedex-1));
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
