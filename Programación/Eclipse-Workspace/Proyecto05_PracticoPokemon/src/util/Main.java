@@ -228,16 +228,26 @@ public class Main {
 		System.out.println("3. Nivel");
 		formaAprendizaje=sc.nextInt();
 		
-		if(formaAprendizaje == 1 || formaAprendizaje == 2) {
-			String sentenciaSQL = "SELECT mov.Nombre FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.NumeroPokedex=?;";
+		if(formaAprendizaje == 1) {
+			String sentenciaSQL = "SELECT CONCAT(mt.Mt,  ' ',  mov.Nombre) AS MT FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje JOIN mt ON foap.IdFormaAprendizaje = mt.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.NumeroPokedex=?;";
 			PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
 			ps.setInt(1, formaAprendizaje);
 			ps.setInt(2, numeroPokedex);
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				System.out.println(rs.getString("mov.Nombre"));	
+				System.out.println(rs.getString("MT"));	
 			}				
+		}else if(formaAprendizaje == 2) {
+			String sentenciaSQL = "SELECT CONCAT(mo.Mo,  ' ',  mov.Nombre) AS MO FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje JOIN mo ON foap.IdFormaAprendizaje = mo.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.NumeroPokedex=?;";
+			PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
+			ps.setInt(1, formaAprendizaje);
+			ps.setInt(2, numeroPokedex);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				System.out.println(rs.getString("MO"));	
+			}		
 		}else if(formaAprendizaje == 3){
 			String sentenciaSQL = "SELECT mov.Nombre, niap.Nivel  FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje JOIN nivel_aprendizaje niap ON foap.IdFormaAprendizaje = niap.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.NumeroPokedex=? ORDER BY 2;";
 			PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
@@ -253,9 +263,7 @@ public class Main {
 				System.out.format("%15s %10s", rs.getString("mov.Nombre"), rs.getString("niap.Nivel"));	
 				System.out.println();
 			}				
-		}
-		
-		
+		}	
 	}
 	
 	private void mostrarTipoEvolucion(Connection connection, Scanner sc) throws SQLException {
