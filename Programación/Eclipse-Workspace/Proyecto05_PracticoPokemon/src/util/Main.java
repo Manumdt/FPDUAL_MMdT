@@ -379,7 +379,7 @@ public class Main {
 	
 	private void mostrarPokemonArrayList (Connection connection, Scanner sc){
 		
-			int i,numeroPokedex;
+			int numeroPokedex;
 			ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 			
 			System.out.println("Introduce el número del pokemon del que quieres obtener los datos");
