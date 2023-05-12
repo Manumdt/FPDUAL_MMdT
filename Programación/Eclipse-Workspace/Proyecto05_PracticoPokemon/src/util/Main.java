@@ -17,6 +17,9 @@ import java.net.URL;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
 
 public class Main {
 
@@ -25,16 +28,13 @@ public class Main {
 		int opcion;
 		boolean salir=true;
 		
-		//Conexion connection = new Conexion();
 		Connection cn = Conexion.conexion();
 		
 		Main mn = new Main();
 		Scanner sc = new Scanner(System.in);		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		
 			do {
-				
 				System.out.println("----------------------- MENÚ PRINCIPAL -----------------------");
 				System.out.println("1. Mostrar todos los pokemons");
 				System.out.println("2. Actualizar el nombre del pokemon por su numero de pokedex");
@@ -101,8 +101,7 @@ public class Main {
 						cn.close();
 						salir=false;
 						break;	
-				}
-				
+				}	
 			}while(salir==true);
 	}
 	
@@ -390,6 +389,7 @@ public class Main {
 			while((linea = rd.readLine()) != null) {
 				resultado.append(linea);
 			}
+			
 			rd.close();
 			
 			Gson gson = new Gson();
@@ -398,11 +398,42 @@ public class Main {
 			
 			for(int i=0; i < lista.size(); i++) {
 				JsonObject aux = (JsonObject) lista.get(i);
-				System.out.println((i+1) + " " + aux.get("name").getAsString().toUpperCase().charAt(0) + aux.get("name").getAsString().substring(1));
+				System.out.print((i+1) + " " + aux.get("name").getAsString().toUpperCase().charAt(0) + aux.get("name").getAsString().substring(1));
+				
+				String lineaAll;
+				StringBuilder resultadoAll = new StringBuilder();
+				URL urlAll = new URL (aux.get("url").getAsString());
+					
+				HttpURLConnection conexionAll = (HttpURLConnection) urlAll.openConnection();
+				conexionAll.setRequestMethod("GET");
+				responseCode = conexionAll.getResponseCode();
+				BufferedReader rdAll = new BufferedReader(new InputStreamReader(conexionAll.getInputStream()));
+
+				
+				if(responseCode != 200) {
+					System.out.println("Error " + responseCode);
+					break;
+				}else {
+					while((lineaAll = rdAll.readLine()) != null) {
+						resultadoAll.append(lineaAll);
+					}										
+				}
+				
+				rdAll.close();
+				
+				Gson gsonAll = new Gson();
+				JsonObject jsonAll = gsonAll.fromJson(resultadoAll.toString(), JsonObject.class);
+				//JsonArray listaAll = (JsonArray) jsonAll.getAsJsonArray();
+				JsonElement peso = (JsonElement) jsonAll.get("weight");				
+				JsonElement altura = (JsonElement) jsonAll.get("height");
+				System.out.print(" Peso: " + peso.getAsFloat()/10 + "Kg Altura: " + altura.getAsFloat()/10 + "m\n");
+				
 			}
-			
+				
 		}
+			
 	}
+	
 	
 	private void modificarNombre(Connection connection, BufferedReader br) throws SQLException, IOException{
 		
