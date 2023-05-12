@@ -400,40 +400,32 @@ public class Main {
 				JsonObject aux = (JsonObject) lista.get(i);
 				System.out.print((i+1) + " " + aux.get("name").getAsString().toUpperCase().charAt(0) + aux.get("name").getAsString().substring(1));
 				
-				String lineaAll;
 				StringBuilder resultadoAll = new StringBuilder();
-				URL urlAll = new URL (aux.get("url").getAsString());
+				url = new URL (aux.get("url").getAsString());
 					
-				HttpURLConnection conexionAll = (HttpURLConnection) urlAll.openConnection();
-				conexionAll.setRequestMethod("GET");
-				responseCode = conexionAll.getResponseCode();
-				BufferedReader rdAll = new BufferedReader(new InputStreamReader(conexionAll.getInputStream()));
+				conexion = (HttpURLConnection) url.openConnection();
+				conexion.setRequestMethod("GET");
+				responseCode = conexion.getResponseCode();
+				BufferedReader rdAll = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
 
-				
 				if(responseCode != 200) {
 					System.out.println("Error " + responseCode);
 					break;
 				}else {
-					while((lineaAll = rdAll.readLine()) != null) {
-						resultadoAll.append(lineaAll);
+					while((linea = rdAll.readLine()) != null) {
+						resultadoAll.append(linea);
 					}										
 				}
 				
 				rdAll.close();
-				
-				Gson gsonAll = new Gson();
-				JsonObject jsonAll = gsonAll.fromJson(resultadoAll.toString(), JsonObject.class);
-				//JsonArray listaAll = (JsonArray) jsonAll.getAsJsonArray();
-				JsonElement peso = (JsonElement) jsonAll.get("weight");				
-				JsonElement altura = (JsonElement) jsonAll.get("height");
+
+				json = gson.fromJson(resultadoAll.toString(), JsonObject.class);
+				JsonElement peso = (JsonElement) json.get("weight");				
+				JsonElement altura = (JsonElement) json.get("height");
 				System.out.print(" Peso: " + peso.getAsFloat()/10 + "Kg Altura: " + altura.getAsFloat()/10 + "m\n");
-				
 			}
-				
 		}
-			
 	}
-	
 	
 	private void modificarNombre(Connection connection, BufferedReader br) throws SQLException, IOException{
 		
