@@ -29,14 +29,14 @@ public class Main {
 		Connection cn = Conexion.conexion();
 		
 		Main mn = new Main();
-		Scanner sc = new Scanner(System.in);		
+		Scanner sc = new Scanner(System.in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 			do {
 				opcion = menu(sc);				
 				switch(opcion) {
 					case 1:						
-						mn.mostarPokemons(cn);					
+						mn.mostarPokemons(cn);
 						break;
 						
 					case 2:																									
@@ -55,35 +55,35 @@ public class Main {
 						mn.mostrarStats(cn, sc);
 						break;
 						
-					case 6:						
+					case 6:
 						mn.mostrarAprendizajeMovimientos(cn, sc);						
 						break;
 						
-					case 7:										
+					case 7:
 						mn.mostrarTipoEvolucion(cn, sc);						
 						break;
 						
 					case 8:
 						mn.mostrarPokemonArrayList(cn, sc);
-						break;	
+						break;
 					
 					case 9:
 						mn.mostrarMasPesados(cn, sc);
-						break;	
+						break;
 						
 					case 10:
 						mn.mostrarPokemonsApi(cn, br);
-						break;	
+						break;
 						
 					case 11:
 						mn.modificarNombre(cn, br);
-						break;	
+						break;
 						
 					case 12:
 						cn.close();
 						salir=false;
-						break;	
-				}	
+						break;
+				}
 			}while(salir==true);
 	}
 
@@ -118,11 +118,11 @@ public class Main {
 			System.out.println("Se van a mostar a continuación todos los pokemons");
 			System.out.format("%5s %10s", "NumeroPokedex", "Nombre");
 			System.out.println();
-				
+
 			while(rs.next()) {
 				System.out.format("%5s %20s",rs.getInt("NumeroPokedex"), rs.getString("Nombre"));
 				System.out.println();
-			}	
+			}
 		}catch(SQLException e) {
 			System.out.println("Excepción: ------- " + e.getLocalizedMessage());
 		}
@@ -131,8 +131,8 @@ public class Main {
 	private void actualizarPokemon (Connection connection, Scanner sc){
 		
 		int numeroPokedex;
-		String nombre;		
-		
+		String nombre;
+
 		try {
 			System.out.println("Has elegido modificar el nombre de un pokemon");
 			System.out.println("Introduce el numero de pokedex del pokemon a modificar:");
@@ -147,10 +147,10 @@ public class Main {
 			
 			System.out.println("Nombre modificado correctamente");
 			
-			ps.executeUpdate();		
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println("Excepción: ------- " + e.getLocalizedMessage());
-		}				
+		}
 	}
 	
 	private void borrarPokemon (Connection connection, Scanner sc){
@@ -171,7 +171,7 @@ public class Main {
 			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println("Excepción: ------- " + e.getLocalizedMessage());
-		}				
+		}
 	}
 	
 	private void crearPokemon (Connection connection,Scanner sc){
@@ -208,7 +208,7 @@ public class Main {
 			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println("Excepción: ------- " + e.getLocalizedMessage());
-		}		
+		}
 	}
 	
 	private void mostrarStats(Connection connection, Scanner sc){
