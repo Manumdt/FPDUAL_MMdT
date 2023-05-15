@@ -43,3 +43,9 @@ Realización del ejercicio propuesto, ampliación del anterior, en el que hay qu
 ## Viernes 12
 
 Finalización del ejercicio propuesto, hubo complicaciones a la hora de tratar los datos de la API pero se soluciona y se amplía el ejercicio con más datos para practicar.
+
+## Lunes 15
+
+Adición de nuevas funcionalidades al ejercicio anterior, refactorización del código y añadidos comentarios para mejorar la compresión del código.
+
+Por otro lado, comienzo del curso sobre colecciones y estructuras de datos en Java.
