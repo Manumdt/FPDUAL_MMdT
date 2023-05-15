@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 
 public class Conexion {
 
+	// Carga del driver
 	private static final String driver="com.mysql.jdbc.Driver";
 	private static final String bbdd="jdbc:mysql://localhost:6666/dbpokemon";
 	private static final String user ="root";
@@ -16,6 +17,7 @@ public class Conexion {
 		
 		try {
 			
+			// Llamada al driver
 			Class.forName(driver);
 			connection = DriverManager.getConnection(bbdd, user, password);
 			
