@@ -49,3 +49,7 @@ Finalización del ejercicio propuesto, hubo complicaciones a la hora de tratar l
 Adición de nuevas funcionalidades al ejercicio anterior, refactorización del código y añadidos comentarios para mejorar la compresión del código.
 
 Por otro lado, comienzo del curso sobre colecciones y estructuras de datos en Java.
+
+## Martes 16
+
+Continuación del curso de java sobre colecciones y estructuras de datos. Se han trabajado los ArrayList y las listas enlazadas.
