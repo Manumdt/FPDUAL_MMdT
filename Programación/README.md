@@ -53,3 +53,7 @@ Por otro lado, comienzo del curso sobre colecciones y estructuras de datos en Ja
 ## Martes 16
 
 Continuación del curso de java sobre colecciones y estructuras de datos. Se han trabajado los ArrayList y las listas enlazadas.
+
+## Miércoles 17
+
+Continuación del curso de java sobre colecciones y estructuras de datos. Se ha continuado con las listas enlazadas y por otro lado, se ha empezado a ver los conceptos relacionados con las pilas y colas y la implementación de las mismas con sus diferentes métodos.
