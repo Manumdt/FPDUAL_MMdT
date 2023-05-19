@@ -1,16 +1,41 @@
 package com.pokeapi.pokeapi.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.ArrayList;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.pokeapi.pokeapi.model.Pokemon;
+import com.pokeapi.pokeapi.Service.PokemonService;
 
 @RestController
 @RequestMapping("api")
-public class demo {
+public class ApiPokemon {
 
-	@GetMapping("/saludar")
-	public String saludar() {
-		
-		return "Hola Mundo desde Spring";
+	@Autowired
+	PokemonService pokemonService;
+	
+	@GetMapping("/all")
+	public ArrayList<Pokemon> getAllPokemon(){
+		return pokemonService.getAllPokemon();
+	}
+	
+	@GetMapping("/find/{numeroPokedex}")
+	public Optional<Pokemon> getPokemonById(@PathVariable("numeroPokedex") int numeroPokedex){
+		return pokemonService.getPokemonById(numeroPokedex);
+	}
+	
+	@PostMapping("/save")
+	public Pokemon savePokemon (@RequestBody Pokemon p) {
+		return pokemonService.savePokemon(p);
+	}
+	
+	@DeleteMapping("/delete/{numeroPokemon}")
+	public String deletePokemonById(@PathVariable("numeroPokedex") int numeroPokedex) {
+		if(pokemonService.deletePokemonById(numeroPokedex))
+			return "Se ha eliminado el usuario";
+		else
+			return "No se ha eliminado el usuario";
 	}
 }
