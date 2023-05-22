@@ -28,17 +28,17 @@ public class conexion {
 			ResultSet rs = ins.executeQuery(sentenciaSQL);
 			
 			while(rs.next()) {
-				System.out.println(rs.getInt("NumeroPokedex") + "\t|" + rs.getString("Nombre") + "\t|" + rs.getFloat("Altura") 
-				+ "\t|" + rs.getFloat("peso"));
+				System.out.println(rs.getInt("numero_pokedex") + "\t|" + rs.getString("Nombre") + "\t|" + rs.getFloat("Altura") 
+				+ "\t|" + rs.getFloat("Peso"));
 			}
 		}
 			
-		public void crearPokemon (int NumeroPokedex, String nombre, float peso, float altura) throws ClassNotFoundException, SQLException {
+		public void crearPokemon (int numero_pokedex, String Nombre, float Peso, float Altura) throws ClassNotFoundException, SQLException {
 			
 			Class.forName(driver);
 			connection = connection= DriverManager.getConnection(url, "root", "");
 			
-			String sentenciaSQL = "INSERT INTO pokemon (NumeroPokedex, Nombre, Peso, Altura) VALUES (?, ?, ?, ?)";
+			String sentenciaSQL = "INSERT INTO pokemon (numero_pokedex, Nombre, Peso, Altura) VALUES (?, ?, ?, ?)";
 			PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
 			
 		}

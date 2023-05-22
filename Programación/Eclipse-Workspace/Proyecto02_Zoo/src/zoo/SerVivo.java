@@ -2,25 +2,25 @@ package zoo;
 
 public abstract class SerVivo {
 	 
-	private String nombre;
+	private String Nombre;
 	private int edad;
 	
 	public SerVivo() {
 		super();
 	}
 
-	public SerVivo(String nombre, int edad) {
+	public SerVivo(String Nombre, int edad) {
 		super();
-		this.nombre = nombre;
+		this.Nombre = Nombre;
 		this.edad = edad;
 	}
 
 	public String getNombre() {
-		return nombre;
+		return Nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(String Nombre) {
+		this.Nombre = Nombre;
 	}
 
 	public int getEdad() {
@@ -33,6 +33,6 @@ public abstract class SerVivo {
 
 	@Override
 	public String toString() {
-		return "SerVivo [nombre=" + nombre + ", edad=" + edad + "]";
+		return "SerVivo [Nombre=" + Nombre + ", edad=" + edad + "]";
 	}
 }

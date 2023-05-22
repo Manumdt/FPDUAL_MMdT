@@ -11,6 +11,7 @@ import com.pokeapi.pokeapi.Service.PokemonService;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin(origins = "*")
 public class ApiPokemon {
 
 	@Autowired
@@ -21,9 +22,9 @@ public class ApiPokemon {
 		return pokemonService.getAllPokemon();
 	}
 	
-	@GetMapping("/find/{numeroPokedex}")
-	public Optional<Pokemon> getPokemonById(@PathVariable("numeroPokedex") int numeroPokedex){
-		return pokemonService.getPokemonById(numeroPokedex);
+	@GetMapping("/find/{NumeroPokedex}")
+	public Optional<Pokemon> getPokemonById(@PathVariable("NumeroPokedex") int NumeroPokedex){
+		return pokemonService.getPokemonById(NumeroPokedex);
 	}
 	
 	@PostMapping("/save")
@@ -32,8 +33,8 @@ public class ApiPokemon {
 	}
 	
 	@DeleteMapping("/delete/{numeroPokemon}")
-	public String deletePokemonById(@PathVariable("numeroPokedex") int numeroPokedex) {
-		if(pokemonService.deletePokemonById(numeroPokedex))
+	public String deletePokemonById(@PathVariable("NumeroPokedex") int NumeroPokedex) {
+		if(pokemonService.deletePokemonById(NumeroPokedex))
 			return "Se ha eliminado el usuario";
 		else
 			return "No se ha eliminado el usuario";

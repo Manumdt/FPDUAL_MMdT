@@ -4,12 +4,12 @@ public class Domestico extends Animales{
 
 	private Dueno dueno;
 
-	public Domestico(String nombre, int edad) {
-		super(nombre, edad);
+	public Domestico(String Nombre, int edad) {
+		super(Nombre, edad);
 	}
 
-	public Domestico(String nombre, int edad, Dueno dueno) {
-		super(nombre, edad);
+	public Domestico(String Nombre, int edad, Dueno dueno) {
+		super(Nombre, edad);
 		this.dueno = dueno;
 	}
 

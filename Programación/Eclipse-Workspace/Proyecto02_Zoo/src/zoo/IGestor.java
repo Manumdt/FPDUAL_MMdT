@@ -2,6 +2,6 @@ package zoo;
 
 public interface IGestor {
 
-	public Animales getAnimalByNombre(String nombre);
+	public Animales getAnimalByNombre(String Nombre);
 	
 }

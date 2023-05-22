@@ -7,55 +7,55 @@ public class Pokemon {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int numeroPokedex;
-	private String nombre;
-	private float peso;
-	private float altura;
+	private int NumeroPokedex;
+	private String Nombre;
+	private float Peso;
+	private float Altura;
 	
 	public Pokemon() {
 	}
 
-	public Pokemon(int numeroPokedex, String nombre, float peso, float altura) {
-		this.nombre = nombre;
-		this.peso = peso;
-		this.altura = altura;
+	public Pokemon(int NumeroPokedex, String Nombre, float Peso, float Altura) {
+		this.Nombre = Nombre;
+		this.Peso = Peso;
+		this.Altura = Altura;
 	}
 
 	public int getNumeroPokedex() {
-		return numeroPokedex;
+		return NumeroPokedex;
 	}
 
-	public void setNumeroPokedex(int numeroPokedex) {
-		this.numeroPokedex = numeroPokedex;
+	public void setNumeroPokedex(int NumeroPokedex) {
+		this.NumeroPokedex = NumeroPokedex;
 	}
 
 	public String getNombre() {
-		return nombre;
+		return Nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(String Nombre) {
+		this.Nombre = Nombre;
 	}
 
 	public float getPeso() {
-		return peso;
+		return Peso;
 	}
 
-	public void setPeso(float peso) {
-		this.peso = peso;
+	public void setPeso(float Peso) {
+		this.Peso = Peso;
 	}
 
 	public float getAltura() {
-		return altura;
+		return Altura;
 	}
 
-	public void setAltura(float altura) {
-		this.altura = altura;
+	public void setAltura(float Altura) {
+		this.Altura = Altura;
 	}
 
 	@Override
 	public String toString() {
-		return "numeroPokedex= " + numeroPokedex + " nombre= " + nombre + " peso= " + peso + " altura= " + altura;
+		return "NumeroPokedex= " + NumeroPokedex + " Nombre= " + Nombre + " Peso= " + Peso + " Altura= " + Altura;
 	}
 	
 }

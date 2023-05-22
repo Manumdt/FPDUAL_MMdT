@@ -2,58 +2,58 @@ package util;
 
 public class Pokemon {
 	
-	private int numeroPokedex;
-	private String nombre;
-	private float peso;
-	private float altura;
+	private int numero_pokedex;
+	private String Nombre;
+	private float Peso;
+	private float Altura;
 	
 	public Pokemon() {
 		super();
 	}
 
-	public Pokemon(int numeroPokedex, String nombre, float peso, float altura) {
+	public Pokemon(int numero_pokedex, String Nombre, float Peso, float Altura) {
 		super();
-		this.numeroPokedex = numeroPokedex;
-		this.nombre = nombre;
-		this.peso = peso;
-		this.altura = altura;
+		this.numero_pokedex = numero_pokedex;
+		this.Nombre = Nombre;
+		this.Peso = Peso;
+		this.Altura = Altura;
 	}
 
-	public int getNumeroPokedex() {
-		return numeroPokedex;
+	public int getnumero_pokedex() {
+		return numero_pokedex;
 	}
 
-	public void setNumeroPokedex(int numeroPokedex) {
-		this.numeroPokedex = numeroPokedex;
+	public void setnumero_pokedex(int numero_pokedex) {
+		this.numero_pokedex = numero_pokedex;
 	}
 
 	public String getNombre() {
-		return nombre;
+		return Nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(String Nombre) {
+		this.Nombre = Nombre;
 	}
 
 	public float getPeso() {
-		return peso;
+		return Peso;
 	}
 
-	public void setPeso(float peso) {
-		this.peso = peso;
+	public void setPeso(float Peso) {
+		this.Peso = Peso;
 	}
 
 	public float getAltura() {
-		return altura;
+		return Altura;
 	}
 
-	public void setAltura(float altura) {
-		this.altura = altura;
+	public void setAltura(float Altura) {
+		this.Altura = Altura;
 	}
 
 	@Override
 	public String toString() {
-		return "numeroPokedex= " + numeroPokedex + " nombre= " + nombre + " peso= " + peso + " altura= " + altura;
+		return "numero_pokedex= " + numero_pokedex + " Nombre= " + Nombre + " Peso= " + Peso + " Altura= " + Altura;
 	}
 	
 }

@@ -28,9 +28,9 @@ public class Lanzadera {
 
 	}
 
-	public static Animales getAnimalNombre(String nombre) {
+	public static Animales getAnimalNombre(String Nombre) {
 		for (Animales a : animales) {
-			if(a.getNombre().equals(nombre)) {
+			if(a.getNombre().equals(Nombre)) {
 				return a;
 			}
 		}

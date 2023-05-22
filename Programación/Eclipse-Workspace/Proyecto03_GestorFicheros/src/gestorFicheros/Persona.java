@@ -2,7 +2,7 @@ package gestorFicheros;
 
 public class Persona {
 
-	private String nombre;
+	private String Nombre;
 	private int edad;
 	private String sexo;
 	
@@ -10,19 +10,19 @@ public class Persona {
 		super();
 	}
 
-	public Persona(String nombre, int edad, String sexo) {
+	public Persona(String Nombre, int edad, String sexo) {
 		super();
-		this.nombre = nombre;
+		this.Nombre = Nombre;
 		this.edad = edad;
 		this.sexo = sexo;
 	}
 
 	public String getNombre() {
-		return nombre;
+		return Nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(String Nombre) {
+		this.Nombre = Nombre;
 	}
 
 	public int getEdad() {

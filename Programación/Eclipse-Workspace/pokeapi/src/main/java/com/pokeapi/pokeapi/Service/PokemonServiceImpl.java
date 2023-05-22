@@ -21,8 +21,8 @@ public class PokemonServiceImpl implements PokemonService{
 	}
 
 	@Override
-	public Optional<Pokemon> getPokemonById(int numeroPokedex) {
-		return pokemonRepository.findById(numeroPokedex);
+	public Optional<Pokemon> getPokemonById(int NumeroPokedex) {
+		return pokemonRepository.findById(NumeroPokedex);
 	}
 
 	@Override
@@ -31,10 +31,10 @@ public class PokemonServiceImpl implements PokemonService{
 	}
 
 	@Override
-	public boolean deletePokemonById(int numeroPokedex) {
+	public boolean deletePokemonById(int NumeroPokedex) {
 		
 		try {
-			Optional<Pokemon> p = getPokemonById(numeroPokedex); 
+			Optional<Pokemon> p = getPokemonById(NumeroPokedex); 
 			pokemonRepository.delete(p.get());
 			return true;
 		}catch(Exception e) {

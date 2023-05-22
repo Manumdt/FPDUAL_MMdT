@@ -4,12 +4,12 @@ public class Dueno extends SerVivo{
 
 	private Dni dni;
 	
-	public Dueno(String nombre, int edad) {
-		super(nombre,edad);
+	public Dueno(String Nombre, int edad) {
+		super(Nombre,edad);
 	}
 	
-	public Dueno(String nombre, int edad, Dni dni) {
-		super(nombre,edad);
+	public Dueno(String Nombre, int edad, Dni dni) {
+		super(Nombre,edad);
 		this.dni= dni;
 	}
 

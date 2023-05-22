@@ -50,21 +50,21 @@ public class GestorFicheros {
 			switch(opcion) {
 				case 1:
 					
-					String nombreFichero;
+					String NombreFichero;
 					String rutaEscritura;
-					String nombre,sexo;
+					String Nombre,sexo;
 					int edad;
 					
 					BufferedWriter bw;
 					
 					System.out.println("\nHas elegido 'Crear fichero'");
 					System.out.println("¿Como quieres llamar al fichero?");
-					nombreFichero=br.readLine();
-					rutaEscritura=ruta+nombreFichero;
+					NombreFichero=br.readLine();
+					rutaEscritura=ruta+NombreFichero;
 					
-					System.out.println("Introduce el nombre:");
-					nombre=br.readLine();
-					per.setNombre(nombre);
+					System.out.println("Introduce el Nombre:");
+					Nombre=br.readLine();
+					per.setNombre(Nombre);
 					
 					System.out.println("Introduce la edad:");
 					edad=Integer.parseInt(br.readLine());
@@ -103,8 +103,8 @@ public class GestorFicheros {
 					}
 					
 					indice=Integer.parseInt(br.readLine());
-					nombreFichero=contenidoLeer[indice-1].getName();
-					rutaLectura= ruta + nombreFichero;
+					NombreFichero=contenidoLeer[indice-1].getName();
+					rutaLectura= ruta + NombreFichero;
 				
 					
 					try {
@@ -112,13 +112,13 @@ public class GestorFicheros {
 						FileReader fr = new FileReader(rutaLectura); 
 						BufferedReader br1 = new BufferedReader(fr); 
 						
-						nombre=br1.readLine();
+						Nombre=br1.readLine();
 						edad=Integer.parseInt(br1.readLine());
 						sexo=br1.readLine();
 						br1.close();
 						
 						
-						System.out.println("\nNombre: " + nombre + "\nEdad: " + edad + "\nSexo: " + sexo + "\n");
+						System.out.println("\nNombre: " + Nombre + "\nEdad: " + edad + "\nSexo: " + sexo + "\n");
 					
 					}catch(IOException e) {
 						System.out.println("Error: " + e.toString());
@@ -146,10 +146,10 @@ public class GestorFicheros {
 						}
 						
 						indice=Integer.parseInt(br.readLine());
-						nombreFichero= contenidoBorrado[indice-1].getName();
+						NombreFichero= contenidoBorrado[indice-1].getName();
 						contenidoBorrado[indice-1].delete();
 						
-						System.out.println("Se ha eliminado el archivo " + nombreFichero);
+						System.out.println("Se ha eliminado el archivo " + NombreFichero);
 						
 					}else if(opcion==2) {
 						System.out.println("Se va a eliminar el contenido de toda la carpeta");

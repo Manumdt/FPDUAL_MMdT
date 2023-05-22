@@ -2,8 +2,8 @@ package zoo;
 
 public class Salvajes extends Animales{
 
-	public Salvajes(String nombre, int edad) {
-		super(nombre, edad);
+	public Salvajes(String Nombre, int edad) {
+		super(Nombre, edad);
 	}
 
 	@Override

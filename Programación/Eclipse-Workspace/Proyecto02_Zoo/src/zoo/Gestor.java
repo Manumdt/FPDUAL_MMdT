@@ -18,7 +18,7 @@ public class Gestor implements IGestor{
 	}
 
 	@Override
-	public Animales getAnimalByNombre(String nombre) {
+	public Animales getAnimalByNombre(String Nombre) {
 		// TODO Auto-generated method stub
 		return null;
 	}

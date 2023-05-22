@@ -8,8 +8,8 @@ import java.util.Optional;
 public interface PokemonService {
 
 	ArrayList<Pokemon> getAllPokemon();
-	Optional<Pokemon> getPokemonById(int numeroPokedex);
+	Optional<Pokemon> getPokemonById(int NumeroPokedex);
 	Pokemon savePokemon(Pokemon p);
-	boolean deletePokemonById(int numeroPokedex);
+	boolean deletePokemonById(int NumeroPokedex);
 	
 }

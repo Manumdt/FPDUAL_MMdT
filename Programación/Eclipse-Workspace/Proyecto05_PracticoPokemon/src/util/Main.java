@@ -95,7 +95,7 @@ public class Main {
 		do {
 			System.out.println("----------------------- MENÚ PRINCIPAL -----------------------");
 			System.out.println("1. Mostrar todos los pokemons");
-			System.out.println("2. Actualizar el nombre del pokemon por su numero de pokedex");
+			System.out.println("2. Actualizar el Nombre del pokemon por su numero de pokedex");
 			System.out.println("3. Borrar pokemon");
 			System.out.println("4. Insertar un nuevo pokemon");
 			System.out.println("5. Mostrar estadísticas");
@@ -104,7 +104,7 @@ public class Main {
 			System.out.println("8. Mostrar un solo pokemon (ArrayList)");
 			System.out.println("9. Ver pokemons más pesados (ArrayList)");
 			System.out.println("10. Mostrar pokemons (API)");
-			System.out.println("11. Modificar el nombre de un pokemon (ArrayList)");
+			System.out.println("11. Modificar el Nombre de un pokemon (ArrayList)");
 			System.out.println("12. SALIR");
 			System.out.println("--------------------------------------------------------------");
 			System.out.println("Ingrese una opcion:");
@@ -117,28 +117,28 @@ public class Main {
 		return opcion;
 	}
 	
-	protected static boolean comprobarPokemons(Connection connection, int numeroPokedex) {
+	protected static boolean comprobarPokemons(Connection connection, int numero_pokedex) {
 		
-		int numeroPokedexMin, numeroPokedexMax;
+		int numero_pokedexMin, numero_pokedexMax;
 		boolean noExiste = true;
 		
 		try {
 			
-			String sentenciaSQL = "SELECT NumeroPokedex FROM pokemon ORDER BY NumeroPokedex LIMIT 1;";
+			String sentenciaSQL = "SELECT numero_pokedex FROM pokemon ORDER BY numero_pokedex LIMIT 1;";
 			Statement ins = connection.createStatement();
 			ResultSet rs = ins.executeQuery(sentenciaSQL);
 			
 			rs.next();
-			numeroPokedexMin= rs.getInt("NumeroPokedex");
+			numero_pokedexMin= rs.getInt("numero_pokedex");
 			
-			sentenciaSQL = "SELECT NumeroPokedex FROM pokemon ORDER BY NumeroPokedex DESC LIMIT 1;";
+			sentenciaSQL = "SELECT numero_pokedex FROM pokemon ORDER BY numero_pokedex DESC LIMIT 1;";
 			ins = connection.createStatement();
 			rs = ins.executeQuery(sentenciaSQL);
 			
 			rs.next();
-			numeroPokedexMax= rs.getInt("NumeroPokedex");
+			numero_pokedexMax= rs.getInt("numero_pokedex");
 			
-			if(numeroPokedex < numeroPokedexMin || numeroPokedex > numeroPokedexMax) {
+			if(numero_pokedex < numero_pokedexMin || numero_pokedex > numero_pokedexMax) {
 				System.out.println("El pokemon introducido no existe en la pokedex");
 				noExiste = false;
 			}
@@ -157,16 +157,16 @@ public class Main {
 			ResultSet rs = ins.executeQuery(sentenciaSQL);
 				
 			System.out.println("Se van a mostar a continuación todos los pokemons");
-			System.out.format("%5s %12s", "NumeroPokedex", "Nombre");
+			System.out.format("%5s %12s", "numero_pokedex", "Nombre");
 			System.out.println();
 
 			while(rs.next()) {
-				System.out.format("%5s %20s",rs.getInt("NumeroPokedex"), rs.getString("Nombre"));
+				System.out.format("%5s %20s",rs.getInt("numero_pokedex"), rs.getString("Nombre"));
 				System.out.println();
 			}
 			
 			System.out.println();
-			System.out.format("%5s %12s", "NumeroPokedex", "Nombre");
+			System.out.format("%5s %12s", "numero_pokedex", "Nombre");
 			System.out.println();
 			
 		}catch(SQLException e) {
@@ -176,27 +176,27 @@ public class Main {
 	
 	private void actualizarPokemon (Connection connection, Scanner sc){
 		
-		int numeroPokedex;
-		String nombre;
+		int numero_pokedex;
+		String Nombre;
 		boolean comprobar;
 
 		try {
-			System.out.println("Has elegido modificar el nombre de un pokemon");
+			System.out.println("Has elegido modificar el Nombre de un pokemon");
 			
 			do {
 				System.out.println("Introduce el numero de pokedex del pokemon a modificar:");
-				numeroPokedex = sc.nextInt();
-				comprobar=Main.comprobarPokemons(connection, numeroPokedex);
+				numero_pokedex = sc.nextInt();
+				comprobar=Main.comprobarPokemons(connection, numero_pokedex);
 		
 			}while(comprobar==false);
 			
-			System.out.println("Introduce el nuevo nombre:");
-			nombre = sc.next();
+			System.out.println("Introduce el nuevo Nombre:");
+			Nombre = sc.next();
 			
-			String sentenciaSQL = "UPDATE pokemon SET Nombre=? WHERE NumeroPokedex=?";
+			String sentenciaSQL = "UPDATE pokemon SET Nombre=? WHERE numero_pokedex=?";
 			PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
-			ps.setString(1, nombre);
-			ps.setInt(2,  numeroPokedex);
+			ps.setString(1, Nombre);
+			ps.setInt(2,  numero_pokedex);
 			
 			System.out.println("Nombre modificado correctamente");
 			
@@ -208,7 +208,7 @@ public class Main {
 	
 	private void borrarPokemon (Connection connection, Scanner sc){
 		
-		int numeroPokedex;
+		int numero_pokedex;
 		boolean comprobar;
 		
 		try {
@@ -216,16 +216,16 @@ public class Main {
 			
 			do {
 				System.out.println("Introduce el numero de pokedex del pokemon a eliminar:");
-				numeroPokedex = sc.nextInt();
-				comprobar=Main.comprobarPokemons(connection, numeroPokedex);
+				numero_pokedex = sc.nextInt();
+				comprobar=Main.comprobarPokemons(connection, numero_pokedex);
 				
 			}while(comprobar==false);
 			
-			String sentenciaSQL = "DELETE FROM pokemon WHERE NumeroPokedex=?";
+			String sentenciaSQL = "DELETE FROM pokemon WHERE numero_pokedex=?";
 			PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
-			ps.setInt(1,  numeroPokedex);
+			ps.setInt(1,  numero_pokedex);
 			
-			System.out.println("Se ha eliminado el pokemon " + numeroPokedex + " correctamente");
+			System.out.println("Se ha eliminado el pokemon " + numero_pokedex + " correctamente");
 			
 			ps.executeUpdate();
 		}catch(SQLException e) {
@@ -235,32 +235,32 @@ public class Main {
 	
 	private void crearPokemon (Connection connection,Scanner sc){
 		
-		int numeroPokedex;
-		float peso, altura;
-		String nombre;
+		int numero_pokedex;
+		float Peso, Altura;
+		String Nombre;
 		
 		try {
 			System.out.println("Has elegido insertar un pokemon");
-			System.out.println("Introduce el nombre");
-			nombre = sc.next();
-			System.out.println("Introduce el peso");
-			peso = sc.nextFloat();
-			System.out.println("Introduce la altura");
-			altura = sc.nextFloat();
+			System.out.println("Introduce el Nombre");
+			Nombre = sc.next();
+			System.out.println("Introduce el Peso");
+			Peso = sc.nextFloat();
+			System.out.println("Introduce la Altura");
+			Altura = sc.nextFloat();
 			
-			String sentenciaSQL1 = "SELECT NumeroPokedex FROM pokemon ORDER BY NumeroPokedex DESC LIMIT 1;";
+			String sentenciaSQL1 = "SELECT numero_pokedex FROM pokemon ORDER BY numero_pokedex DESC LIMIT 1;";
 			Statement ins = connection.createStatement();
 			ResultSet rs = ins.executeQuery(sentenciaSQL1);
 			
 			rs.next();
-			numeroPokedex= rs.getInt("NumeroPokedex")+1;
+			numero_pokedex= rs.getInt("numero_pokedex")+1;
 			
-			String sentenciaSQL2 = "INSERT INTO pokemon (NumeroPokedex, Nombre, Peso, Altura) VALUES (?, ?, ?, ?);";
+			String sentenciaSQL2 = "INSERT INTO pokemon (numero_pokedex, Nombre, Peso, Altura) VALUES (?, ?, ?, ?);";
 			PreparedStatement ps = connection.prepareStatement(sentenciaSQL2);
-			ps.setInt(1, numeroPokedex);
-			ps.setString(2, nombre);
-			ps.setFloat(3, peso);
-			ps.setFloat(4, altura);
+			ps.setInt(1, numero_pokedex);
+			ps.setString(2, Nombre);
+			ps.setFloat(3, Peso);
+			ps.setFloat(4, Altura);
 			
 			System.out.println("Pokemon insertado correctamente");
 			
@@ -272,7 +272,7 @@ public class Main {
 	
 	private void mostrarStats(Connection connection, Scanner sc){
 		
-		int numeroPokedex;
+		int numero_pokedex;
 		boolean comprobar;
 		
 		try {
@@ -280,15 +280,15 @@ public class Main {
 			
 			do {
 				System.out.println("Introduce el numero de pokedex del pokemon deseado:");
-				numeroPokedex = sc.nextInt();
-				comprobar=Main.comprobarPokemons(connection, numeroPokedex);
+				numero_pokedex = sc.nextInt();
+				comprobar=Main.comprobarPokemons(connection, numero_pokedex);
 				
 			}while(comprobar==false);
 			
-			String sentenciaSQL = "SELECT pok.Nombre, eb.* FROM pokemon pok JOIN estadisticas_base eb ON pok.NumeroPokedex = eb.NumeroPokedex WHERE pok.NumeroPokedex = ?";
+			String sentenciaSQL = "SELECT pok.Nombre, eb.* FROM pokemon pok JOIN estadisticas_base eb ON pok.numero_pokedex = eb.numero_pokedex WHERE pok.numero_pokedex = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
-			ps.setInt(1, numeroPokedex);
+			ps.setInt(1, numero_pokedex);
 			
 			ResultSet rs=ps.executeQuery();
 			rs.next();
@@ -305,15 +305,15 @@ public class Main {
 	
 	private void mostrarAprendizajeMovimientos(Connection connection, Scanner sc){
 		
-		int numeroPokedex, formaAprendizaje;
+		int numero_pokedex, formaAprendizaje;
 		boolean comprobar;
 		
 		try {
 			System.out.println("Has elegido aprendizaje de movimientos");
 			do {
 				System.out.println("Introduce el numero de pokedex del pokemon deseado:");
-				numeroPokedex = sc.nextInt();
-				comprobar=Main.comprobarPokemons(connection, numeroPokedex);
+				numero_pokedex = sc.nextInt();
+				comprobar=Main.comprobarPokemons(connection, numero_pokedex);
 		
 			}while(comprobar==false);
 			
@@ -325,30 +325,30 @@ public class Main {
 			
 			// Según el tipo de aprendizaje se tiene que realizar una consulta distinta de SQL
 			if(formaAprendizaje == 1) {
-				String sentenciaSQL = "SELECT CONCAT(mt.Mt,  ' ',  mov.Nombre) AS MT FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje JOIN mt ON foap.IdFormaAprendizaje = mt.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.NumeroPokedex=?;";
+				String sentenciaSQL = "SELECT CONCAT(mt.Mt,  ' ',  mov.Nombre) AS MT FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje JOIN mt ON foap.IdFormaAprendizaje = mt.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.numero_pokedex=?;";
 				PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
 				ps.setInt(1, formaAprendizaje);
-				ps.setInt(2, numeroPokedex);
+				ps.setInt(2, numero_pokedex);
 				
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()) {
 					System.out.println(rs.getString("MT"));	
 				}				
 			}else if(formaAprendizaje == 2) {
-				String sentenciaSQL = "SELECT CONCAT(mo.Mo,  ' ',  mov.Nombre) AS MO FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje JOIN mo ON foap.IdFormaAprendizaje = mo.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.NumeroPokedex=?;";
+				String sentenciaSQL = "SELECT CONCAT(mo.Mo,  ' ',  mov.Nombre) AS MO FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje JOIN mo ON foap.IdFormaAprendizaje = mo.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.numero_pokedex=?;";
 				PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
 				ps.setInt(1, formaAprendizaje);
-				ps.setInt(2, numeroPokedex);
+				ps.setInt(2, numero_pokedex);
 				
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()) {
 					System.out.println(rs.getString("MO"));	
 				}		
 			}else if(formaAprendizaje == 3){
-				String sentenciaSQL = "SELECT mov.Nombre, niap.Nivel  FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje JOIN nivel_aprendizaje niap ON foap.IdFormaAprendizaje = niap.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.NumeroPokedex=? ORDER BY 2;";
+				String sentenciaSQL = "SELECT mov.Nombre, niap.Nivel  FROM movimiento mov JOIN pokemon_movimiento_forma pmf ON mov.IdMovimiento = pmf.IdMovimiento JOIN forma_aprendizaje foap ON pmf.IdFormaAprendizaje = foap.IdFormaAprendizaje JOIN nivel_aprendizaje niap ON foap.IdFormaAprendizaje = niap.IdFormaAprendizaje WHERE foap.IdTipoAprendizaje = ? AND pmf.numero_pokedex=? ORDER BY 2;";
 				PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
 				ps.setInt(1, formaAprendizaje);
-				ps.setInt(2, numeroPokedex);
+				ps.setInt(2, numero_pokedex);
 				
 				ResultSet rs = ps.executeQuery();
 				
@@ -367,22 +367,22 @@ public class Main {
 	
 	private void mostrarTipoEvolucion(Connection connection, Scanner sc){
 		
-		int numeroPokedex, tipoEvolucion;
+		int numero_pokedex, tipoEvolucion;
 		boolean comprobar;
 		
 		System.out.println("Has elegido tipo de evolución");
 		
 		do {
 			System.out.println("Introduce el numero de pokedex del pokemon deseado:");
-			numeroPokedex = sc.nextInt();
-			comprobar=Main.comprobarPokemons(connection, numeroPokedex);
+			numero_pokedex = sc.nextInt();
+			comprobar=Main.comprobarPokemons(connection, numero_pokedex);
 	
 		}while(comprobar==false);
 		
 		try {					
-			String sentenciaSQL = "SELECT tiev.IdTipoEvolucion FROM tipo_evolucion tiev JOIN forma_evolucion foel ON tiev.IdTipoEvolucion = foel.IdTipoEvolucion JOIN pokemon_forma_evolucion pfe ON foel.IdFormaEvolucion = pfe.IdFormaEvolucion WHERE pfe.NumeroPokedex=?";
+			String sentenciaSQL = "SELECT tiev.IdTipoEvolucion FROM tipo_evolucion tiev JOIN forma_evolucion foel ON tiev.IdTipoEvolucion = foel.IdTipoEvolucion JOIN pokemon_forma_evolucion pfe ON foel.IdFormaEvolucion = pfe.IdFormaEvolucion WHERE pfe.numero_pokedex=?";
 			PreparedStatement ps = connection.prepareStatement(sentenciaSQL);
-			ps.setInt(1, numeroPokedex);
+			ps.setInt(1, numero_pokedex);
 			
 			ResultSet rs = ps.executeQuery();
 
@@ -395,9 +395,9 @@ public class Main {
 			
 			// Según el tipo de evolución se tiene que realizar una consulta distinta de SQL
 			if(tipoEvolucion==1) {
-				String sentenciaNivel= "SELECT pok.Nombre, tiev.TipoEvolucion, niev.nivel FROM tipo_evolucion tiev JOIN forma_evolucion foel ON tiev.IdTipoEvolucion = foel.IdTipoEvolucion JOIN nivel_evolucion niev ON foel.IdFormaEvolucion = niev.IdFormaEvolucion JOIN pokemon_forma_evolucion pfe ON foel.IdFormaEvolucion = pfe.IdFormaEvolucion JOIN pokemon pok ON pfe.NumeroPokedex = pok.NumeroPokedex WHERE pfe.NumeroPokedex= ?;";
+				String sentenciaNivel= "SELECT pok.Nombre, tiev.TipoEvolucion, niev.nivel FROM tipo_evolucion tiev JOIN forma_evolucion foel ON tiev.IdTipoEvolucion = foel.IdTipoEvolucion JOIN nivel_evolucion niev ON foel.IdFormaEvolucion = niev.IdFormaEvolucion JOIN pokemon_forma_evolucion pfe ON foel.IdFormaEvolucion = pfe.IdFormaEvolucion JOIN pokemon pok ON pfe.numero_pokedex = pok.numero_pokedex WHERE pfe.numero_pokedex= ?;";
 				PreparedStatement psNivel = connection.prepareStatement(sentenciaNivel);
-				psNivel.setInt(1, numeroPokedex);
+				psNivel.setInt(1, numero_pokedex);
 				
 				rs = psNivel.executeQuery();
 				rs.next();
@@ -408,9 +408,9 @@ public class Main {
 				System.out.println();
 				
 			}else if (tipoEvolucion==2) {
-				String sentenciaPiedra = "SELECT pok.Nombre, tiev.TipoEvolucion, tipi.NombrePiedra FROM tipo_evolucion tiev JOIN forma_evolucion foel ON tiev.IdTipoEvolucion = foel.IdTipoEvolucion JOIN piedra pie ON foel.IdFormaEvolucion = pie.IdFormaEvolucion JOIN tipo_piedra tipi ON pie.IdTipoPiedra = tipi.IdTipoPiedra JOIN pokemon_forma_evolucion pfe ON foel.IdFormaEvolucion = pfe.IdFormaEvolucion JOIN pokemon pok ON pfe.NumeroPokedex = pok.NumeroPokedex WHERE pfe.NumeroPokedex=?;";
+				String sentenciaPiedra = "SELECT pok.Nombre, tiev.TipoEvolucion, tipi.NombrePiedra FROM tipo_evolucion tiev JOIN forma_evolucion foel ON tiev.IdTipoEvolucion = foel.IdTipoEvolucion JOIN piedra pie ON foel.IdFormaEvolucion = pie.IdFormaEvolucion JOIN tipo_piedra tipi ON pie.IdTipoPiedra = tipi.IdTipoPiedra JOIN pokemon_forma_evolucion pfe ON foel.IdFormaEvolucion = pfe.IdFormaEvolucion JOIN pokemon pok ON pfe.numero_pokedex = pok.numero_pokedex WHERE pfe.numero_pokedex=?;";
 				PreparedStatement psPiedra = connection.prepareStatement(sentenciaPiedra);
-				psPiedra.setInt(1, numeroPokedex);
+				psPiedra.setInt(1, numero_pokedex);
 				
 				rs = psPiedra.executeQuery();
 				
@@ -424,10 +424,10 @@ public class Main {
 				}
 				
 			}else if (tipoEvolucion==3) {
-				String sentenciaIntercambio = "SELECT pok.Nombre, tiev.TipoEvolucion FROM tipo_evolucion tiev JOIN forma_evolucion foel ON tiev.IdTipoEvolucion = foel.IdTipoEvolucion JOIN pokemon_forma_evolucion pfe ON foel.IdFormaEvolucion = pfe.IdFormaEvolucion JOIN pokemon pok ON pfe.NumeroPokedex = pok.NumeroPokedex WHERE pfe.NumeroPokedex=?;";
+				String sentenciaIntercambio = "SELECT pok.Nombre, tiev.TipoEvolucion FROM tipo_evolucion tiev JOIN forma_evolucion foel ON tiev.IdTipoEvolucion = foel.IdTipoEvolucion JOIN pokemon_forma_evolucion pfe ON foel.IdFormaEvolucion = pfe.IdFormaEvolucion JOIN pokemon pok ON pfe.numero_pokedex = pok.numero_pokedex WHERE pfe.numero_pokedex=?;";
 				
 				PreparedStatement psIntercambio = connection.prepareStatement(sentenciaIntercambio);
-				psIntercambio.setInt(1, numeroPokedex);
+				psIntercambio.setInt(1, numero_pokedex);
 				
 				rs = psIntercambio.executeQuery();
 				rs.next();
@@ -438,10 +438,10 @@ public class Main {
 				System.out.println();
 				
 			}else {
-				String sentenciaNoEvolucion = "SELECT pok.Nombre FROM pokemon pok WHERE pok.NumeroPokedex=?";
+				String sentenciaNoEvolucion = "SELECT pok.Nombre FROM pokemon pok WHERE pok.numero_pokedex=?";
 				
 				PreparedStatement psNoEvolucion = connection.prepareStatement(sentenciaNoEvolucion);
-				psNoEvolucion.setInt(1, numeroPokedex);
+				psNoEvolucion.setInt(1, numero_pokedex);
 				
 				rs = psNoEvolucion.executeQuery();
 				rs.next();
@@ -459,11 +459,11 @@ public class Main {
 	
 	private void mostrarPokemonArrayList (Connection connection, Scanner sc){
 		
-			int numeroPokedex;
+			int numero_pokedex;
 			ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 			
 			System.out.println("Introduce el número del pokemon del que quieres obtener los datos");
-			numeroPokedex = sc.nextInt();
+			numero_pokedex = sc.nextInt();
 			
 			try {
 				String sentenciaSQL = "SELECT * FROM pokemon";
@@ -471,10 +471,10 @@ public class Main {
 				ResultSet rs = ins.executeQuery(sentenciaSQL);
 					
 				while(rs.next()) {
-					pokemons.add(new Pokemon (rs.getInt("NumeroPokedex"), rs.getString("Nombre"), rs.getFloat("Peso"), rs.getFloat("Altura")));
+					pokemons.add(new Pokemon (rs.getInt("numero_pokedex"), rs.getString("Nombre"), rs.getFloat("Peso"), rs.getFloat("Altura")));
 				}	
 				
-				System.out.println(pokemons.get(numeroPokedex-1));	
+				System.out.println(pokemons.get(numero_pokedex-1));	
 			}catch(SQLException e) {
 				System.out.println("Excepción: ------- " + e.getLocalizedMessage());
 			}								
@@ -493,7 +493,7 @@ public class Main {
 				ResultSet rs = ins.executeQuery(sentenciaSQL);
 					
 				while(rs.next()) {
-					pokemons.add(new Pokemon (rs.getInt("NumeroPokedex"), rs.getString("Nombre"), rs.getFloat("Peso"), rs.getFloat("Altura")));
+					pokemons.add(new Pokemon (rs.getInt("numero_pokedex"), rs.getString("Nombre"), rs.getFloat("Peso"), rs.getFloat("Altura")));
 				}
 				
 				// Método comparator
@@ -547,7 +547,7 @@ public class Main {
 				// Se parsea el JsonObject a JsonArray para poder tratarlo
 				JsonArray lista = (JsonArray) json.get("results");
 				
-				System.out.format("%5s %12s %11s %10s", "NumeroPokedex", "Nombre", "Altura", "Peso");
+				System.out.format("%5s %12s %11s %10s", "numero_pokedex", "Nombre", "Altura", "Peso");
 				System.out.println();
 				
 				for(int i=0; i < lista.size(); i++) {
@@ -575,12 +575,12 @@ public class Main {
 
 					json = gson.fromJson(resultadoAll.toString(), JsonObject.class);
 					// En este caso el StringBuilder se pasa a JsonElement porque la respuesta recibida no es un array sino un float
-					JsonElement peso = (JsonElement) json.get("weight");				
-					JsonElement altura = (JsonElement) json.get("height");
-					System.out.format("%12s %10s", peso.getAsFloat()/10,  altura.getAsFloat()/10);
+					JsonElement Peso = (JsonElement) json.get("weight");				
+					JsonElement Altura = (JsonElement) json.get("height");
+					System.out.format("%12s %10s", Peso.getAsFloat()/10,  Altura.getAsFloat()/10);
 					System.out.println();
 				}
-				System.out.format("%5s %13s %11s %10s", "NumeroPokedex", "Nombre", "Altura", "Peso");
+				System.out.format("%5s %13s %11s %10s", "numero_pokedex", "Nombre", "Altura", "Peso");
 				System.out.println();
 			}
 		}catch(IOException e) {
@@ -590,8 +590,8 @@ public class Main {
 	
 	private void modificarNombre(Connection connection, BufferedReader br){
 		
-		int numeroPokedex=0;
-		String nombreOG, nombreNEW;
+		int numero_pokedex=0;
+		String NombreOG, NombreNEW;
 		
 		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();		
 	
@@ -601,35 +601,35 @@ public class Main {
 			ResultSet rs = ins.executeQuery(sentenciaSQL);
 				
 			while(rs.next()) {
-				pokemons.add(new Pokemon (rs.getInt("NumeroPokedex"), rs.getString("Nombre"), rs.getFloat("Peso"), rs.getFloat("Altura")));
+				pokemons.add(new Pokemon (rs.getInt("numero_pokedex"), rs.getString("Nombre"), rs.getFloat("Peso"), rs.getFloat("Altura")));
 			}	
 			
 			do {
-				System.out.println("Introduce el nombre del pokemon a modificar");
-				nombreOG = br.readLine();
+				System.out.println("Introduce el Nombre del pokemon a modificar");
+				NombreOG = br.readLine();
 				
 				for (Pokemon pokemon : pokemons) {
-					if(pokemon.getNombre().toUpperCase().equals(nombreOG.toUpperCase())) {
-						numeroPokedex=pokemon.getNumeroPokedex();
-						System.out.println("El pokemon " + nombreOG + " se encuentra en la posición " + numeroPokedex + " de la pokedex");
+					if(pokemon.getNombre().toUpperCase().equals(NombreOG.toUpperCase())) {
+						numero_pokedex=pokemon.getnumero_pokedex();
+						System.out.println("El pokemon " + NombreOG + " se encuentra en la posición " + numero_pokedex + " de la pokedex");
 						break;				
 					}else {
 						System.out.println("El pokemon introducido no existe");
 						// Se establece como -1 para poder tratarlo en el while
-						numeroPokedex = -1;
+						numero_pokedex = -1;
 						break;
 					}
 				}
 				
-			}while(numeroPokedex == -1);
+			}while(numero_pokedex == -1);
 			
-			System.out.println("Introduce el nuevo nombre del pokemon");
-			nombreNEW = br.readLine();
+			System.out.println("Introduce el nuevo Nombre del pokemon");
+			NombreNEW = br.readLine();
 			
-			pokemons.get(numeroPokedex-1).setNombre(nombreNEW);		
+			pokemons.get(numero_pokedex-1).setNombre(NombreNEW);		
 			
-			System.out.println("Se ha cambiado el nombre de " + nombreOG + " a " + pokemons.get(numeroPokedex-1).getNombre());
-			System.out.println(pokemons.get(numeroPokedex-1));
+			System.out.println("Se ha cambiado el Nombre de " + NombreOG + " a " + pokemons.get(numero_pokedex-1).getNombre());
+			System.out.println(pokemons.get(numero_pokedex-1));
 		
 		}catch(SQLException e) {
 			System.out.println("Excepción: ------- " + e.getLocalizedMessage());
