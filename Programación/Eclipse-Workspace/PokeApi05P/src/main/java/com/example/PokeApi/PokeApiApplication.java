@@ -21,7 +21,6 @@ public class PokeApiApplication {
 				// TODO Auto-generated method stub
 				WebMvcConfigurer.super.addCorsMappings(registry);
 			}
-			
 		};
 	}
 }
