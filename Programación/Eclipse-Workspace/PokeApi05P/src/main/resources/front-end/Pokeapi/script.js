@@ -24,7 +24,7 @@ siguiente.addEventListener('click', () => {
 });
 
 function fetchPokemon(id) {
-    fetch(`http://localhost:8080/find/${id}/`)
+    fetch(`http://localhost:8080/api/find/${id}`)
         .then((res) => res.json())
         .then((data) => {
             crearPokemon(data);
@@ -39,7 +39,7 @@ function fetchAllPokemons(offset, limit) {
 
 function crearPokemon(pokemon) {
 
-    const url = pokemon.species.url;
+    //const url = pokemon.species.url;
 
     const carta = document.createElement('div');
     carta.classList.add('pokemon');
