@@ -21,8 +21,6 @@ import com.example.PokeApi.service.PokemonService;
 @CrossOrigin(origins = "*")
 public class ApiPokemon {
 	
-	
-	
 	@Autowired
 	PokemonService pokemonService;
 	
@@ -53,7 +51,4 @@ public class ApiPokemon {
 		else
 			return "No se ha eliminado el Pokemon";
 	}
-	
-	
-	
 }

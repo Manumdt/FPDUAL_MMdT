@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 public class Pokemon {
 	
 	@Id
-	@GeneratedValue
 	private int numero_pokedex;
 	private String nombre;
 	private float peso;
