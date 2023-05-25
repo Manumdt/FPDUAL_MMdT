@@ -3,7 +3,6 @@ const anterior = document.querySelector('#anterior');
 const siguiente = document.querySelector('#siguiente');
 const oculto = document.querySelector('.oculto');
 const body = document.querySelector('.body');
-const nav = document.querySelector('.nav');
 
 let offset = 1;
 let limit = 23;
@@ -40,23 +39,24 @@ function fetchAllPokemons(offset, limit) {
 
 function crearPokemon(pokemon) {
 
+    //const url = pokemon.species.url;
+
     const carta = document.createElement('div');
     carta.classList.add('pokemon');
     carta.classList.add('noHover');
-    
+
     const col33=document.createElement('div');
     col33.classList.add('col33');
     
     const col66=document.createElement('div');
     col66.classList.add('col66');
-    
+
     const spriteContainer = document.createElement('div');
     spriteContainer.classList.add('sprite');
-    
-    const url = pokemon.url;
+
     const imagen = document.createElement('img');
-    imagen.src = url;
-    
+    //imagen.src = pokemon.sprites.front_default;
+
     const nombreNumero=document.createElement('div');
     nombreNumero.classList.add('nombreNumero');
 
@@ -224,8 +224,10 @@ function crearPokemon(pokemon) {
             carta.classList.remove('noHover');
             col33.style.width="33%";
             col66.style.display="block";
-            imagen.style.width="50%";
+            imagen.style.width="100%";
+            imagen.style.maxHeight="200px";
             imagen.style.paddingBottom="20px";
+            //imagen.src = pokemon.sprites.other.dream_world.front_default;
             tipos.style.width="100%";
             tipos.style.display="flex";
             tipos.style.flexDirection="column";
@@ -238,7 +240,6 @@ function crearPokemon(pokemon) {
             spriteContainer.style.textAlign="left";
             spriteContainer.style.width="100%";
             spriteContainer.style.display="flex";
-            spriteContainer.style.justifyContent="center";
             number.style.width="100%";
             name.style.width="100%";
             nombreNumero.style.width="100%";
@@ -251,7 +252,6 @@ function crearPokemon(pokemon) {
             alturaPeso.style.flexDirection="column";
             stats.style.display="block";
             descripcion.style.display="block";
-            nav.style.display="none";
             clicked = true;
         }else{
             carta.style.width="200px";
@@ -267,6 +267,7 @@ function crearPokemon(pokemon) {
             imagen.style.width="70%";
             imagen.style.maxHeight="none";
             imagen.style.paddingBottom="0";
+            //imagen.src=pokemon.sprites.front_default;
             tipos.style.width="60%";
             tipos.style.float="initial";
             tipos.style.display="block";
@@ -290,11 +291,12 @@ function crearPokemon(pokemon) {
             alturaPeso.style.flexDirection="initial";
             stats.style.display="none";
             descripcion.style.display = "none";
-            nav.style.display="flex";
             clicked = false;
         }
     });
 }
+
+
 
 function removePokemons(parent) {
     while (parent.firstChild) {
