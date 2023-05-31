@@ -46,23 +46,30 @@ nav{
     justify-content: space-between;
 }
 
+nav form{
+    width: 45%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .filaNav{
     font-family: 'Minecraft';
     border: 2px solid white;
     padding: 2%;
-    width: 45%;
+    width: 100%;
     display: flex;
 }
 
 .filaNav label{
-    width: 35%;
+    width: 30%;
     padding: 2%;
     color: white;
     font-size: 150%;
 }
 
 .filaNav input{
-    width: 30%;
+    width: 70%;
     font-family: 'Minecraft';
     padding: 2%;
     font-size: 120%;
@@ -70,6 +77,10 @@ nav{
     background-color: #262626;
     border: 2px solid white;
     margin-right: 5%;
+}
+
+.filaNav .buscar{
+    width: 100%;
 }
 
 .filaNav button{
@@ -87,6 +98,43 @@ nav{
     border: none;
     background-color: white;
     color: #262626;
+}
+
+.mensajeEliminar.correcto{
+    font-family: 'Minecraft';
+    width: 42.6%;
+    height: 99px;
+    position: fixed;
+    background-color: #77dd77;
+    border: 5px solid #307e36;
+    font-size: 160%;
+    color: #262626;
+    text-align: center;
+    display: none;
+    color: white;
+    transition: 500ms;
+}
+
+.mensajeEliminar.error{
+    font-family: 'Minecraft';
+    width: 43%;
+    height: 12%;
+    position: fixed;
+    background-color: #f9a59a;
+    border: 5px solid #fa5f49;
+    font-size: 160%;
+    color: #262626;
+    text-align: center;
+    display: none;
+    color: white;
+    transition: 500ms;
+}
+
+.mensajeEliminar p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .filaBoton{

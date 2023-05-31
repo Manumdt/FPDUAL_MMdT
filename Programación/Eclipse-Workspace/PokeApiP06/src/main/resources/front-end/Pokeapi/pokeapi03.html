@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon list</title>
+    <link rel="icon" href="img/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js" defer></script>
+    
 </head>
 <body class="body">
 
@@ -16,17 +18,24 @@
     </header>
     
     <nav class="nav">
-        <div class="filaNav">
-            <label>Buscar pokemon</label>
-            <input type="number" id="buscar" placeholder="Numero de Pokedex">
-            <button id="buscar">Buscar</button>
-        </div>
 
-        <div class="filaNav">
-            <label>Eliminar pokemon</label>
-            <input type="number" id="eliminar" placeholder="Numero de Pokedex">
-            <button id="eliminar">Eliminar</button>
-        </div>
+        <form>
+            <div class="filaNav">
+                <label>Buscar pokemon</label>
+                <input class="buscar" type="number" id="buscar" name="buscar" placeholder="Numero de Pokedex">
+            </div>
+        </form>
+
+        <form id="eliminarFormulario">
+            <div class="filaNav">
+                <label>Eliminar pokemon</label>
+                <input type="number" id="eliminar" name="eliminar" placeholder="Numero de Pokedex">
+                <button type="submit" id="eliminarBoton">Eliminar</button>
+            </div>
+            <div class="mensajeEliminar">
+                <p class="mensaje"></p>
+            </div>
+        </form>
 
         <div class="filaBoton">
             <a href="./formulario.html"><button class="modificar" id="modificar">Crear Pokemon</button></a>
@@ -34,10 +43,7 @@
     </nav>
 
     <section>
-        <div class="pokemon-container">
-            
-        
-    </div>
+        <div class="pokemon-container"></div>
 </section>
 
     <footer>

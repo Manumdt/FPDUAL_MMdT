@@ -38,7 +38,64 @@ function fetchAllPokemons(offset, limit) {
     }
 }
 
-function crearPokemon(pokemon) {
+buscar.addEventListener('keyup', ()=>{
+    
+    var buscar = document.querySelector('#buscar').value;
+    removePokemons(pokemonContainer);
+
+    console.log(buscar);
+
+    if(buscar.length < 1){
+        fetchAllPokemons(offset, limit);
+    }else{   
+        fetch(`http://localhost:8080/api/find/${buscar}`)
+        .then((res) => res.json())
+        .then((data) => {
+            crearPokemon(data);
+        });
+    }
+});
+
+document.querySelector('#eliminarFormulario').addEventListener('submit', eliminarPokemonPorId);
+
+function eliminarPokemonPorId(event) {
+    event.preventDefault();
+
+    var eliminar = document.querySelector('#eliminar').value;
+    const mensajeEliminar = document.querySelector('.mensajeEliminar');
+    const mensaje = document.querySelector('.mensaje');
+
+    fetch(`http://localhost:8080/api/delete/${eliminar}`, {
+        method: 'DELETE',
+        mode: 'cors',
+        headers: {
+            'Access-Control-Allow-Origin': 'http://127.0.0.1:5500'
+        }
+    })
+    .then((res) => res.json())
+    .then(() => {
+        console.log(data);
+        mensaje.textContent = "El pokemon se ha eliminado correctamente";
+        mensajeEliminar.classList.remove('error');
+        mensajeEliminar.classList.add('correcto');
+        mensajeEliminar.style.display = "block";
+        /*setTimeout(function() {
+            window.location.reload();
+        }, 3000);*/
+    })
+    .catch(error => {
+        mensaje.textContent = "Ha ocurrido un error";
+        mensajeEliminar.classList.remove('correcto');
+        mensajeEliminar.classList.add('error');
+        mensajeEliminar.style.display = "block";
+        console.error('Ocurrió un error en la solicitud:', error);
+        /*setTimeout(function() {
+            window.location.reload();
+        }, 3000);*/
+    });
+}
+
+    function crearPokemon(pokemon) {
 
     const carta = document.createElement('div');
     carta.classList.add('pokemon');
@@ -53,7 +110,12 @@ function crearPokemon(pokemon) {
     const spriteContainer = document.createElement('div');
     spriteContainer.classList.add('sprite');
     
-    const url = pokemon.url;
+    var url;
+    if(pokemon.url.length < 1 || pokemon.url == null){
+        url = "img/interrogacion.png";
+    }else{
+        url = pokemon.url;
+    }
     const imagen = document.createElement('img');
     imagen.src = url;
     
