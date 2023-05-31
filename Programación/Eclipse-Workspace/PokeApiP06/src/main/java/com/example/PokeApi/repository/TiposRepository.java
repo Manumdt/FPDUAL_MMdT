@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.PokeApi.model.Pokemon;
 
 @Repository
-public interface PokemonRepository extends CrudRepository<Pokemon, Integer> {
+public interface TiposRepository extends CrudRepository<Pokemon, Integer> {
 
 }

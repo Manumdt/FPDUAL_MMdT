@@ -20,7 +20,7 @@ public class Stats {
 	
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name = "numero_pokedex")
+	@PrimaryKeyJoinColumn
 	private Pokemon p;
 
 	public int getNumero_pokedex() {

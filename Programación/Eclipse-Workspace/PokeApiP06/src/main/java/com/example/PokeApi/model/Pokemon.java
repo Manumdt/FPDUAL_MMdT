@@ -1,5 +1,7 @@
 package com.example.PokeApi.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -19,6 +21,11 @@ public class Pokemon {
 	@OneToOne(mappedBy = "p")
 	@PrimaryKeyJoinColumn
 	private Stats stats;
+	
+	@ManyToMany
+	@JoinTable(name = "pokemon_tipo", joinColumns = { @JoinColumn(name = "NUMERO_POKEDEX") }, inverseJoinColumns = {
+	@JoinColumn(name = "ID_TIPO") })
+	private List<Tipos> tipos;
 	
 	public Pokemon() {
 		super();
@@ -80,6 +87,22 @@ public class Pokemon {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Stats getStats() {
+		return stats;
+	}
+
+	public void setStats(Stats stats) {
+		this.stats = stats;
+	}
+
+	public List<Tipos> getTipos() {
+		return tipos;
+	}
+
+	public void setTipos(List<Tipos> tipos) {
+		this.tipos = tipos;
 	}
 
 }

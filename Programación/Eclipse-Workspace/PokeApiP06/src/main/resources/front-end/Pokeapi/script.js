@@ -65,7 +65,7 @@ function eliminarPokemonPorId(event) {
     const mensajeEliminar = document.querySelector('.mensajeEliminar');
     const mensaje = document.querySelector('.mensaje');
 
-    fetch(`http://localhost:8080/api/delete/${eliminar}`, {
+    fetch(`http://localhost:8080/api/delete/${eliminar.value}`, {
         method: 'DELETE',
         mode: 'cors',
         headers: {
@@ -193,7 +193,7 @@ function eliminarPokemonPorId(event) {
         hp.setAttribute('low','80');
         hp.setAttribute('high','180');
         hp.setAttribute('optium','200');
-        hp.setAttribute('value', pokemon.ps);
+        hp.setAttribute('value', pokemon.stats.ps);
         hpName.textContent = "HP";
 
         attack.setAttribute('min','1');
@@ -201,7 +201,7 @@ function eliminarPokemonPorId(event) {
         attack.setAttribute('low','80');
         attack.setAttribute('high','180');
         attack.setAttribute('optium','200');
-        attack.setAttribute('value', pokemon.ataque);
+        attack.setAttribute('value', pokemon.stats.ataque);
         attackName.textContent= "ATAQUE"
 
         defense.setAttribute('min','1');
@@ -209,7 +209,7 @@ function eliminarPokemonPorId(event) {
         defense.setAttribute('low','80');
         defense.setAttribute('high','180');
         defense.setAttribute('optium','200');
-        defense.setAttribute('value', pokemon.defensa);
+        defense.setAttribute('value', pokemon.stats.defensa);
         defenseName.textContent= "DEFENSA";
 
         special.setAttribute('min','1');
@@ -217,7 +217,7 @@ function eliminarPokemonPorId(event) {
         special.setAttribute('low','80');
         special.setAttribute('high','180');
         special.setAttribute('optium','200');
-        special.setAttribute('value', pokemon.especial);
+        special.setAttribute('value', pokemon.stats.especial);
         specialName.textContent= "ESPECIAL";
 
         speed.setAttribute('min','1');
@@ -225,7 +225,7 @@ function eliminarPokemonPorId(event) {
         speed.setAttribute('low','80');
         speed.setAttribute('high','180');
         speed.setAttribute('optium','200');
-        speed.setAttribute('value', pokemon.velocidad);
+        speed.setAttribute('value', pokemon.stats.velocidad);
         speedName.textContent= "VELOCIDAD";
 
         statHp.appendChild(hpName);

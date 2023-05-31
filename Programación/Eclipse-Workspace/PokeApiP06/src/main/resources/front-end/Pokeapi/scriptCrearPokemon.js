@@ -15,8 +15,14 @@ document.getElementById('formularioCrear').addEventListener('submit', function(e
         .then(data => {
         console.log(data);
         mensajeCorrecto.style.display="block";
+        setTimeout(function() {
+            window.location.reload();
+        }, 3000);
     })
         .catch(error => {
         console.error('Ocurrió un error en la solicitud:', error);
+        setTimeout(function() {
+            window.location.reload();
+        }, 3000);
     });
     });

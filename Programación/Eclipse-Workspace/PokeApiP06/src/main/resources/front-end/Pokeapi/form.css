@@ -88,6 +88,7 @@ textarea{
     color: white;
     border: 2px solid white;
     font-size: 140%;
+    cursor: pointer;
     transition: 500ms;
 }
 
@@ -103,11 +104,12 @@ textarea{
     font-size: 150%;
     text-decoration: none;
     padding: 2%;
+    cursor: pointer;
     transition: 300ms;
 }
 
 .botones a:hover {
-    text-shadow: 0 0 0.2em white;
+    text-shadow: 1px 1px 10px yellow;
 }
 
 .mensajeCorrecto{
@@ -126,4 +128,30 @@ textarea{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#formularioModificar{
+    display: none;
+}
+
+#seleccionarPokemon{
+    font-family: 'Minecraft';
+    width: 70%;
+    font-size: 200%;
+    padding: 2%;
+}
+
+#seleccionarPokemon label{
+    width: 100%;
+    text-align: center;
+}
+
+#seleccionarPokemon input{
+    font-family: 'Minecraft';
+    font-size: 70%;
+    background-color: #262626;
+    width: 100%;
+    padding: 2%;
+    border: 2px solid white;
+    color: white;
 }

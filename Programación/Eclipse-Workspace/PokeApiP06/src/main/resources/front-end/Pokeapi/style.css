@@ -145,7 +145,7 @@ nav form{
     padding: 2;
 }
 
-.modificar{
+.crear{
     width: 100%;
     font-family: 'Minecraft';
     color: white;
@@ -157,18 +157,18 @@ nav form{
     cursor: pointer;
 }
 
-.modificar:hover{
+.crear:hover{
     border: none;
     background-color: white;
     color: #262626;
 }
 
-.modificar a{
+.crear a{
     color: white;
     text-decoration: none;
 }
 
-.modificar:hover a{
+.crear:hover a{
     color: #262626;
 }
 
