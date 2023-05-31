@@ -57,3 +57,7 @@ Continuación del curso de java sobre colecciones y estructuras de datos. Se han
 ## Miércoles 17
 
 Continuación del curso de java sobre colecciones y estructuras de datos. Se ha continuado con las listas enlazadas y por otro lado, se ha empezado a ver los conceptos relacionados con las pilas y colas y la implementación de las mismas con sus diferentes métodos.
+
+## Jueves 18 a Miércoles 31
+
+Realización de un proyecto en el que se ha creado una API propia en Java con la base de datos de pokemon que se hizo con anterioridad. Una vez creada la API se ha utilizado para enlazarla con el front-end que se hizo también en el proyecto de la pokedex. Además, con Java, se han implementado nuevas funcionalidades como un buscador, una función para eliminar pokemons de la base de datos y otra para crearlos.
