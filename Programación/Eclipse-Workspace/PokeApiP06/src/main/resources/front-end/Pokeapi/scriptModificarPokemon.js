@@ -1,12 +1,12 @@
 document.querySelector('#seleccionarPokemon').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const numeroPokedex = document.getElementById('numeroPokedex');
+    const numeroPokedex = document.getElementById('numeroPokedex').value;
 
-    fetch(`http://localhost:8080/api/find/${numeroPokedex.value}`)
+    fetch(`http://localhost:8080/api/find/${numeroPokedex}`)
         .then((res) => res.json())
         .then((data) => {           
-            mostarPokemon(data, numeroPokedex.value);
+            mostarPokemon(data, numeroPokedex);
         })
         .catch(error => {
             console.error('Ocurrió un error en la solicitud:', error);
@@ -23,46 +23,64 @@ function mostarPokemon(pokemon, numeroPokedex){
     formularioModificar.style.display = "block";
     seleccionarPokemon.style.display="none";
 
-    numero_Pokedex = document.getElementById('numero_Pokedex');
+    id = document.getElementById('id');
     nombre = document.getElementById('nombre');
     altura = document.getElementById('altura');
     peso = document.getElementById('peso');
     imagen = document.getElementById('imagen');
     descripcion = document.getElementById('descripcion');
     
-    numero_Pokedex.value = numeroPokedex;
+    id.value = numeroPokedex;
     nombre.value = pokemon.nombre;
     altura.value = pokemon.altura;
     peso.value = pokemon.peso;
     imagen.value = pokemon.imagen;
     descripcion.value = pokemon.descripcion;
+    
 }
 
 document.getElementById('formularioModificar').addEventListener('submit', function(event) { event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const pokemonData = Object.fromEntries(formData.entries());
-    const mensajeCorrecto = document.querySelector('.mensajeCorrecto');
     
-    fetch('http://localhost:8080/api/save', {
-        method: 'POST',
+    const formData = new FormData(event.target);
+    const mensajeCorrecto = document.querySelector('.mensajeCorrecto');
+
+    id = document.getElementById('id');
+    nombre = document.getElementById('nombre');
+    altura = document.getElementById('altura');
+    peso = document.getElementById('peso');
+    imagen = document.getElementById('imagen');
+    descripcion = document.getElementById('descripcion');
+
+    const bodyPut={
+        "numero_pokedex": id.value,
+        "nombre": nombre.value,
+        "peso": peso.value,
+        "altura": altura.value,
+        "descripcion": descripcion.value,
+        "url": imagen.value
+    };
+
+    fetch(`http://localhost:8080/api/update/${id.value}`, {
+        method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip, deflate, br'
         },
-    body: JSON.stringify(pokemonData)
+    body: JSON.stringify(bodyPut)
     })
         .then(response => response.json())
         .then(data => {
         console.log(data);
         mensajeCorrecto.style.display="block";
-        setTimeout(function() {
+        /*setTimeout(function() {
             location.href = "pokeapi03.html";
-        }, 2000);
+        }, 2000);*/
     })
         .catch(error => {
         console.error('Ocurrió un error en la solicitud:', error);
-        setTimeout(function() {
+        /*setTimeout(function() {
             window.location.reload();
-        }, 2000);
+        }, 2000);*/
     });
     });

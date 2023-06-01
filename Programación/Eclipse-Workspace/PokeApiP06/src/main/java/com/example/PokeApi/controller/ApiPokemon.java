@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.PokeApi.model.Pokemon;
 import com.example.PokeApi.service.PokemonService;
+import com.example.PokeApi.service.PokemonServiceImpl;
 
 @RestController
 @RequestMapping("api")
@@ -23,6 +27,9 @@ public class ApiPokemon {
 	
 	@Autowired
 	PokemonService pokemonService;
+	
+	@Autowired
+    PokemonServiceImpl pokemonServiceImpl;
 	
 	@GetMapping("/saludar")
 	public String saludar() {
@@ -52,6 +59,27 @@ public class ApiPokemon {
 			return "No se ha eliminado el Pokemon";
 	}
 	
-	
-	
+		
+	@PutMapping("/update/{numero_pokedex}")
+	public ResponseEntity<Pokemon>updatePokemon(@PathVariable int numero_pokedex, @RequestBody Pokemon pokemon){
+		
+		Optional<Pokemon> pokemonForId = pokemonServiceImpl.getPokemonByNumero_pokedex(numero_pokedex);
+		
+		if(pokemonForId.isEmpty()) {
+		
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {		
+			
+			Pokemon p = pokemonForId.get();
+			
+			p.setNombre(pokemon.getNombre());
+			p.setPeso(pokemon.getPeso());
+			p.setAltura(pokemon.getAltura());
+			p.setUrl(pokemon.getUrl());
+			p.setDescripcion(pokemon.getDescripcion());
+			Pokemon pokemonUpdate = pokemonServiceImpl.savePokemon(p);
+			return new ResponseEntity<>(pokemonUpdate, HttpStatus.OK);
+		}
+		
+	}	
 }

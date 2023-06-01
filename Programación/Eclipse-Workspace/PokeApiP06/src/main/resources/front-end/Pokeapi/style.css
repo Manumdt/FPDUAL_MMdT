@@ -346,7 +346,7 @@ footer button:hover{
 }
 
 .tipos{
-    width: 60%;
+    width: 65%;
     margin: 0 auto;
     font-weight: 400;
     margin-bottom: 2%;
@@ -368,92 +368,92 @@ footer button:hover{
     padding-top: 5px;
 }
 
-.bug{
+.Bicho{
     background-color: #3c9950;
 	color: black;
 }
 
-.dark{
+.Siniestro{
 	background-color: #595978;
 	color: black;
 }
 
-.dragon{
+.Dragon{
 	background-color: #62cad9;
 	color: black;
 }
 
-.electric{
+.Electrico{
 	background-color: #fbfa72;
 	color: black;
 }
 
-.fairy{
+.Hada{
 	background-color: #ea1368;
 	color: black;
 }
 
-.fighting{
+.Lucha{
 	background-color: #f06239;
 	color: black;
 }
 
-.fire{
+.Fuego{
 	background-color: #fd4b5a;
 	color: black;
 }
 
-.flying{
+.Volador{
 	background-color: #94b2c7;
 	color: black;
 }
 
-.ghost{
+.Fantasma{
 	background-color: #906791;
 	color: black;
 }
 
-.grass{
+.Planta{
 	background-color: #27cb50;
 	color: black;
 }
 
-.ground{
+.Tierra{
 	background-color: #6e491f;
 	color: black;
 }
 
-.ice{
+.Hielo{
 	background-color: #d8f0fa;
 	color: black;
 }
 
-.normal{
+.Normal{
 	background-color: #ca98a6;
 	color: black;
 }
 
-.poison{
+.Veneno{
 	background-color: #9b69da;
 	color: black;
 }
 
-.psychic{
+.Psiquico{
 	background-color: #f71d92;
 	color: black;
 }
 
-.rock{
+.Roca{
 	background-color: #8b3e22;
 	color: black;
 }
 
-.steel{
+.Hierro{
 	background-color: #43bd94;
 	color: black;
 }
 
-.water{
+.Agua{
 	background-color: #85a8fb;
 	color: black;
 }

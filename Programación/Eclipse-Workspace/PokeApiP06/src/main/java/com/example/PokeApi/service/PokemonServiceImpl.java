@@ -39,5 +39,7 @@ public class PokemonServiceImpl implements PokemonService {
 			return false;
 		}
 	}
+	
+
 
 }

@@ -11,4 +11,5 @@ public interface PokemonService {
 	Optional<Pokemon> getPokemonByNumero_pokedex(int numero_pokedex);
 	Pokemon savePokemon (Pokemon p);
 	boolean deletePokemonByNumero_Pokedex(int numero_pokedex);
+
 }

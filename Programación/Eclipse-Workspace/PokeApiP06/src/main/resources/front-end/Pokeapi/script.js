@@ -163,15 +163,15 @@ function eliminarPokemonPorId(eliminar) {
     tipos.classList.add('tipos');
     const tipo1 = document.createElement('p');
     const tipo2 = document.createElement('p');
-    /*if (pokemon.types.length == 1) {
-        tipo1.textContent = pokemon.types[0].type.name;
-        tipo1.classList.add('tipo1', pokemon.types[0].type.name);
-    } else if (pokemon.types.length == 2) {
-        tipo1.textContent = pokemon.types[0].type.name;
-        tipo1.classList.add('tipo1', pokemon.types[0].type.name);
-        tipo2.textContent = pokemon.types[1].type.name;
-        tipo2.classList.add('tipo2', pokemon.types[1].type.name);
-    }*/
+    if (pokemon.tipos.length == 1) {
+        tipo1.textContent = pokemon.tipos[0].nombre;
+        tipo1.classList.add('tipo1', pokemon.tipos[0].nombre);
+    } else if (pokemon.tipos.length == 2) {
+        tipo1.textContent = pokemon.tipos[0].nombre;
+        tipo1.classList.add('tipo1', pokemon.tipos[0].nombre);
+        tipo2.textContent = pokemon.tipos[1].nombre;
+        tipo2.classList.add('tipo2', pokemon.tipos[1].nombre);
+    }
 
     const descripcion=document.createElement('p');
     const peso=document.createElement('p');

@@ -28,17 +28,18 @@ public class Pokemon {
 	private List<Tipos> tipos;
 	
 	public Pokemon() {
-		super();
+		
 	}
 
-	public Pokemon(int numero_pokedex, String nombre, float peso, float altura, String descripcion, String url) {
-		super();
+	public Pokemon(int numero_pokedex, String nombre, float peso, float altura, String descripcion, String url, Stats stats, List<Tipos> tipos) {
 		this.numero_pokedex = numero_pokedex;
 		this.nombre = nombre;
 		this.peso = peso;
 		this.altura = altura;
 		this.descripcion = descripcion;
 		this.url = url;
+		this.stats = stats;
+		this.tipos = tipos;
 	}
 
 	public int getNumero_pokedex() {
@@ -104,5 +105,8 @@ public class Pokemon {
 	public void setTipos(List<Tipos> tipos) {
 		this.tipos = tipos;
 	}
+
+
+	
 
 }
