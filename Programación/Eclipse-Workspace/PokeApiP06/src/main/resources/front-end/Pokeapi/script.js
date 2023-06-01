@@ -56,44 +56,75 @@ buscar.addEventListener('keyup', ()=>{
     }
 });
 
-document.querySelector('#eliminarFormulario').addEventListener('submit', eliminarPokemonPorId);
+document.querySelector('#eliminarFormulario').addEventListener('submit', buscarPokemon);
 
-function eliminarPokemonPorId(event) {
+function buscarPokemon(event){
     event.preventDefault();
 
     var eliminar = document.querySelector('#eliminar').value;
     const mensajeEliminar = document.querySelector('.mensajeEliminar');
     const mensaje = document.querySelector('.mensaje');
 
-    fetch(`http://localhost:8080/api/delete/${eliminar.value}`, {
+    fetch(`http://localhost:8080/api/find/${eliminar}`)
+    .then((res) => res.json())
+    .then((data) => {
+        if(data == null){
+            mensaje.textContent = "Ha ocurrido un error";
+            mensajeEliminar.classList.remove('correcto');
+            mensajeEliminar.classList.add('error');
+            mensajeEliminar.style.display = "block";
+            setTimeout(function() {
+                window.location.reload();
+            }, 2000);
+        }else{
+            eliminarPokemonPorId(eliminar);
+        }
+    })
+    .catch(error => {
+        console.log(error);
+        mensaje.textContent = "Ha ocurrido un error";
+        mensajeEliminar.classList.remove('correcto');
+        mensajeEliminar.classList.add('error');
+        mensajeEliminar.style.display = "block";
+        setTimeout(function() {
+            window.location.reload();
+        }, 2000);
+    });
+}
+
+function eliminarPokemonPorId(eliminar) {
+    
+    const mensajeEliminar = document.querySelector('.mensajeEliminar');
+    const mensaje = document.querySelector('.mensaje');
+
+    fetch(`http://localhost:8080/api/delete/${eliminar}`, {
         method: 'DELETE',
         mode: 'cors',
         headers: {
             'Access-Control-Allow-Origin': 'http://127.0.0.1:5500'
         }
     })
-    .then((res) => res.json())
-    .then(() => {
-        console.log(data);
-        mensaje.textContent = "El pokemon se ha eliminado correctamente";
-        mensajeEliminar.classList.remove('error');
-        mensajeEliminar.classList.add('correcto');
-        mensajeEliminar.style.display = "block";
-        /*setTimeout(function() {
-            window.location.reload();
-        }, 3000);*/
-    })
-    .catch(error => {
-        mensaje.textContent = "Ha ocurrido un error";
-        mensajeEliminar.classList.remove('correcto');
-        mensajeEliminar.classList.add('error');
-        mensajeEliminar.style.display = "block";
-        console.error('Ocurrió un error en la solicitud:', error);
-        /*setTimeout(function() {
-            window.location.reload();
-        }, 3000);*/
-    });
-}
+        .then((data) => {
+            console.log(data);
+            mensaje.textContent = "El pokemon se ha eliminado correctamente";
+            mensajeEliminar.classList.remove('error');
+            mensajeEliminar.classList.add('correcto');
+            mensajeEliminar.style.display = "block";
+            setTimeout(function() {
+                window.location.reload();
+            }, 2000);
+        })
+        .catch(error => {
+            console.log(error);
+            mensaje.textContent = "Ha ocurrido un error";
+            mensajeEliminar.classList.remove('correcto');
+            mensajeEliminar.classList.add('error');
+            mensajeEliminar.style.display = "block";
+            setTimeout(function() {
+                window.location.reload();
+            }, 2000);
+        });
+}      
 
     function crearPokemon(pokemon) {
 
@@ -110,15 +141,13 @@ function eliminarPokemonPorId(event) {
     const spriteContainer = document.createElement('div');
     spriteContainer.classList.add('sprite');
     
-    var url;
-    if(pokemon.url.length < 1 || pokemon.url == null){
-        url = "img/interrogacion.png";
-    }else{
-        url = pokemon.url;
-    }
     const imagen = document.createElement('img');
-    imagen.src = url;
-    
+    if(pokemon.url.length < 1){
+        imagen.src = "img/interrogacion.png"
+    }else{
+        imagen.src = pokemon.url;
+    }
+ 
     const nombreNumero=document.createElement('div');
     nombreNumero.classList.add('nombreNumero');
 

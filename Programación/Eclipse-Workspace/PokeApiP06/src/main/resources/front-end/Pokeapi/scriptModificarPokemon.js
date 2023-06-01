@@ -12,7 +12,7 @@ document.querySelector('#seleccionarPokemon').addEventListener('submit', functio
             console.error('Ocurrió un error en la solicitud:', error);
             setTimeout(function() {
                 window.location.reload();
-            }, 3000);
+            }, 2000);
         });
 });
 
@@ -57,12 +57,12 @@ document.getElementById('formularioModificar').addEventListener('submit', functi
         mensajeCorrecto.style.display="block";
         setTimeout(function() {
             location.href = "pokeapi03.html";
-        }, 3000);
+        }, 2000);
     })
         .catch(error => {
         console.error('Ocurrió un error en la solicitud:', error);
         setTimeout(function() {
             window.location.reload();
-        }, 3000);
+        }, 2000);
     });
     });

@@ -16,13 +16,13 @@ document.getElementById('formularioCrear').addEventListener('submit', function(e
         console.log(data);
         mensajeCorrecto.style.display="block";
         setTimeout(function() {
-            window.location.reload();
-        }, 3000);
+            location.href = "pokeapi03.html";
+        }, 2000);
     })
         .catch(error => {
         console.error('Ocurrió un error en la solicitud:', error);
         setTimeout(function() {
             window.location.reload();
-        }, 3000);
+        }, 2000);
     });
     });
