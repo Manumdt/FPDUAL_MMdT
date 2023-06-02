@@ -73,14 +73,14 @@ document.getElementById('formularioModificar').addEventListener('submit', functi
         .then(data => {
         console.log(data);
         mensajeCorrecto.style.display="block";
-        /*setTimeout(function() {
-            location.href = "pokeapi03.html";
-        }, 2000);*/
+        setTimeout(function() {
+            location.href = "../../templates/index.html";
+        }, 2000);
     })
         .catch(error => {
         console.error('Ocurrió un error en la solicitud:', error);
-        /*setTimeout(function() {
+        setTimeout(function() {
             window.location.reload();
-        }, 2000);*/
+        }, 2000);
     });
     });

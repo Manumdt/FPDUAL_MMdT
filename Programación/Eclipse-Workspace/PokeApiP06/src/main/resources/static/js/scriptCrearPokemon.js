@@ -16,7 +16,7 @@ document.getElementById('formularioCrear').addEventListener('submit', function(e
         console.log(data);
         mensajeCorrecto.style.display="block";
         setTimeout(function() {
-            location.href = "pokeapi03.html";
+            location.href = "../../templates/index.html";
         }, 2000);
     })
         .catch(error => {
