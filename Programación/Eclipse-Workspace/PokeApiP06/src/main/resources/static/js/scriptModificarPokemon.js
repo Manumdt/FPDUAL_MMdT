@@ -27,27 +27,28 @@ function mostarPokemon(pokemon, numeroPokedex){
     nombre = document.getElementById('nombre');
     altura = document.getElementById('altura');
     peso = document.getElementById('peso');
-    imagen = document.getElementById('imagen');
+    url = document.getElementById('url');
     descripcion = document.getElementById('descripcion');
     
     id.value = numeroPokedex;
     nombre.value = pokemon.nombre;
     altura.value = pokemon.altura;
     peso.value = pokemon.peso;
-    imagen.value = pokemon.imagen;
+    url.value = pokemon.url;
     descripcion.value = pokemon.descripcion;
 }
 
 document.getElementById('formularioModificar').addEventListener('submit', function(event) { event.preventDefault();
     
     const mensajeCorrecto = document.querySelector('.mensajeCorrecto');
+    const mensajeError = document.querySelector('.mensajeError');
 
     id = document.getElementById('id');
     nombre = document.getElementById('nombre');
     altura = document.getElementById('altura');
     peso = document.getElementById('peso');
-    imagen = document.getElementById('imagen');
     descripcion = document.getElementById('descripcion');
+    url = document.getElementById('url');
 
     const bodyPut={
         "numero_pokedex": id.value,
@@ -55,7 +56,7 @@ document.getElementById('formularioModificar').addEventListener('submit', functi
         "peso": peso.value,
         "altura": altura.value,
         "descripcion": descripcion.value,
-        "url": imagen.value
+        "url": url.value
     };
 
     fetch(`http://localhost:8080/api/update/${id.value}`, {
@@ -77,6 +78,7 @@ document.getElementById('formularioModificar').addEventListener('submit', functi
     })
         .catch(error => {
         console.error('Ocurrió un error en la solicitud:', error);
+        mensajeError.style.display="block";
         setTimeout(function() {
             window.location.reload();
         }, 2000);

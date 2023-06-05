@@ -6,13 +6,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * Clase Aplication 
+ * @author Manuel Mateos de Torres
+ * 
+ */
+
 @SpringBootApplication
 public class PokeApiApplication {
 
+	/**
+	 * Método main desde el que se lanza la SpringApplication
+	 */
     public static void main(String[] args) {
         SpringApplication.run(PokeApiApplication.class, args);
     }
 
+    /**
+     * Configuración para evitar el bloqueo CORS
+     */
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {

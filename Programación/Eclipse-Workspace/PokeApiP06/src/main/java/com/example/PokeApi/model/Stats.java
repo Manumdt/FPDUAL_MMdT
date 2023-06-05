@@ -4,10 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
+/**
+ * Clase entidad stats que hace referencia a la tabla estadisticas_base de la base de datos
+ * @author Manuel Mateos de Torres
+ *
+ */
 @Entity
 @Table(name = "estadisticas_base")
 public class Stats {
 
+	/**
+	 * Atributos de la clase
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "NUMERO_POKEDEX")
@@ -18,6 +26,7 @@ public class Stats {
 	private int especial;
 	private int velocidad;
 	
+	//Enlace con la tabla pokemon
 	@JsonIgnore
 	@OneToOne
 	@PrimaryKeyJoinColumn

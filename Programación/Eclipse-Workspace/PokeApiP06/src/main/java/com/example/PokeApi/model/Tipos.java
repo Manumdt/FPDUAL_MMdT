@@ -6,6 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
+/**
+ * Clase entidad Tipos que hace referencia a la tabla tipo de la base de datos
+ * @author Manuel Mateos de Torres
+ *
+ */
 @Entity
 @Table(name = "tipo")
 public class Tipos {
@@ -16,14 +21,24 @@ public class Tipos {
 	private String nombre;
 	private int id_tipo_ataque;
 	
+	//Enlace con la tabla pokemon
 	@JsonIgnore
 	@ManyToMany(mappedBy = "tipos")
 	private List<Pokemon> pokemons;
 	
+	/**
+	 * Constructor sin parametrizar
+	 */
 	public Tipos() {
 		
 	}
 
+	/**
+	 * Constructor parametrizado
+	 * @param id_tipo
+	 * @param nombre
+	 * @param id_tipo_ataque
+	 */
 	public Tipos(int id_tipo, String nombre, int id_tipo_ataque) {
 		this.id_tipo = id_tipo;
 		this.nombre = nombre;

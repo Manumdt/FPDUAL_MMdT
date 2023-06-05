@@ -4,10 +4,18 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
+/**
+ * Clase entidad Pokemon que hace referencia a la tabla pokemon de la base de datos
+ * @author Manuel Mateos de Torres
+ * 
+ */
+
 @Entity
 @Table(name = "pokemon")
 public class Pokemon {
-	
+	/**
+	 * Atributos de la clase
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "NUMERO_POKEDEX")
@@ -18,19 +26,33 @@ public class Pokemon {
 	private String descripcion;
 	private String url;
 	
+	//Enlace entre la tabla pokemon y stats
 	@OneToOne(mappedBy = "p")
 	@PrimaryKeyJoinColumn
 	private Stats stats;
 	
+	//Enlace entre la tabla pokemon y pokemon_tipo
 	@ManyToMany
 	@JoinTable(name = "pokemon_tipo", joinColumns = { @JoinColumn(name = "NUMERO_POKEDEX") }, inverseJoinColumns = {
 	@JoinColumn(name = "ID_TIPO") })
 	private List<Tipos> tipos;
-	
+	/**
+	 * Constructor por defecto
+	 */
 	public Pokemon() {
 		
 	}
-
+/**
+ * Constructor parametrizado
+ * @param numero_pokedex
+ * @param nombre
+ * @param peso
+ * @param altura
+ * @param descripcion
+ * @param url
+ * @param stats
+ * @param tipos
+ */
 	public Pokemon(int numero_pokedex, String nombre, float peso, float altura, String descripcion, String url, Stats stats, List<Tipos> tipos) {
 		this.numero_pokedex = numero_pokedex;
 		this.nombre = nombre;

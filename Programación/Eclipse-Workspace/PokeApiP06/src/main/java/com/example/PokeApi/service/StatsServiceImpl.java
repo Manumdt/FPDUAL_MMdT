@@ -9,6 +9,11 @@ import com.example.PokeApi.model.Pokemon;
 import com.example.PokeApi.model.Stats;
 import com.example.PokeApi.repository.StatsRepository;
 
+/**
+ * Interfaz de servicios del objeto Stats
+ * @author Manuel Mateos de Torres
+ *
+ */
 @Service
 public class StatsServiceImpl implements StatsService{
 

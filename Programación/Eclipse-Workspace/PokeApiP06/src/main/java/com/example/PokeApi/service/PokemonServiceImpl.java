@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 import com.example.PokeApi.model.Pokemon;
 import com.example.PokeApi.repository.PokemonRepository;
 
+/**
+ * Clase que implementa los servicios de la interfaz PokemonService
+ * @author Manuel Mateos de Torres
+ *
+ */
 @Service
 public class PokemonServiceImpl implements PokemonService {
 	

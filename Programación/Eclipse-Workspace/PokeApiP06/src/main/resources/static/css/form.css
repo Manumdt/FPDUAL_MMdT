@@ -130,6 +130,24 @@ textarea{
     transform: translate(-50%, -50%);
 }
 
+.mensajeError{
+    font-family: 'Minecraft';
+    width: 70%;
+    height: 50%;
+    position: fixed;
+    border: 5px solid #fa5f49;
+    background-color: #f9a59a;
+    font-size: 400%;
+    display: none;
+}
+
+.mensajeError p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #formularioModificar{
     display: none;
 }

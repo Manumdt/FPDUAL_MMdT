@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import com.example.PokeApi.model.Tipos;
 import com.example.PokeApi.repository.TiposRepository;
 
+/**
+ * Interfaz de servicios del objeto Tipos
+ * @author Manuel Mateos de Torres
+ *
+ */
 @Service
 public class TiposServiceImpl implements TiposService{
 

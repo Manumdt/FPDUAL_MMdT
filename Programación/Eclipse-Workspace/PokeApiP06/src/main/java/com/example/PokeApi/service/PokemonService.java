@@ -5,6 +5,11 @@ import java.util.Optional;
 
 import com.example.PokeApi.model.Pokemon;
 
+/**
+ * Interfaz de servicios del objeto Pokemon
+ * @author Manuel Mateos de Torres
+ *
+ */
 public interface PokemonService {
 	
 	ArrayList<Pokemon> getAllPokemons();

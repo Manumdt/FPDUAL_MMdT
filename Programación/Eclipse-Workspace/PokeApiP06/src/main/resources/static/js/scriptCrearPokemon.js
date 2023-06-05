@@ -3,6 +3,7 @@ document.getElementById('formularioCrear').addEventListener('submit', function(e
     const formData = new FormData(event.target);
     const pokemonData = Object.fromEntries(formData.entries());
     const mensajeCorrecto = document.querySelector('.mensajeCorrecto');
+    const mensajeError = document.querySelector('.mensajeError');
     
     fetch('http://localhost:8080/api/save', {
         method: 'POST',
@@ -21,6 +22,7 @@ document.getElementById('formularioCrear').addEventListener('submit', function(e
     })
         .catch(error => {
         console.error('Ocurrió un error en la solicitud:', error);
+        mensajeError.style.display="block";
         setTimeout(function() {
             window.location.reload();
         }, 2000);
