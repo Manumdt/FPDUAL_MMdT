@@ -72,7 +72,7 @@ document.getElementById('formularioModificar').addEventListener('submit', functi
         console.log(data);
         mensajeCorrecto.style.display="block";
         setTimeout(function() {
-            location.href = "index.html";
+            location.href = "../html/index.html";
         }, 2000);
     })
         .catch(error => {
