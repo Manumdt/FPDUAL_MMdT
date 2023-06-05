@@ -143,7 +143,7 @@ function eliminarPokemonPorId(eliminar) {
     
     const imagen = document.createElement('img');
     if(pokemon.url.length < 1){
-        imagen.src = "../../media/img/interrogacion.png"
+        imagen.src = "img/interrogacion.png"
     }else{
         imagen.src = pokemon.url;
     }

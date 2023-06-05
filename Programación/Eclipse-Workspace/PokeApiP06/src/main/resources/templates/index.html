@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon list</title>
-    <link rel="favicon" href="../../media/img/favicon.ico">
-    <link rel="stylesheet" href="../css/style.css">
-    <script defer src="../js/script.js"></script>
+    <link rel="icon" th:href="@{/img/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <script defer th:src="@{/js/script.js}"></script>
 </head>
 <body class="body">
 
@@ -36,10 +36,10 @@
         </form>
 
         <div class="filaBoton">
-            <a href="formularioCrear.html"><button class="crear" id="crear">Crear Pokemon</button></a>
+            <a th:href="@{html/formularioCrear.html}"><button class="crear" id="crear">Crear Pokemon</button></a>
         </div>
         <div class="filaBoton">
-            <a href="formularioModificar.html"><button class="crear" id="modificar">Modificar Pokemon</button></a>
+            <a th:href="@{html/formularioModificar.html}"><button class="crear" id="modificar">Modificar Pokemon</button></a>
         </div>
     </nav>
 

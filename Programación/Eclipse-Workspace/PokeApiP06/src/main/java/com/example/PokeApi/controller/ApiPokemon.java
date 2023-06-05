@@ -80,6 +80,5 @@ public class ApiPokemon {
 			Pokemon pokemonUpdate = pokemonServiceImpl.savePokemon(p);
 			return new ResponseEntity<>(pokemonUpdate, HttpStatus.OK);
 		}
-		
 	}	
 }

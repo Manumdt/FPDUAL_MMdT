@@ -16,7 +16,7 @@ document.getElementById('formularioCrear').addEventListener('submit', function(e
         console.log(data);
         mensajeCorrecto.style.display="block";
         setTimeout(function() {
-            location.href = "../../templates/index.html";
+            location.href = "index.html";
         }, 2000);
     })
         .catch(error => {

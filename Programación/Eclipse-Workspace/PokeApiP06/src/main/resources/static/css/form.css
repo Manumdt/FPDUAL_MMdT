@@ -5,14 +5,14 @@
 
 @font-face{
     font-family: 'Pokemon';
-    src: url('../../media/fonts/Pokemon\ Solid.ttf') format(truetype);
+    src: url('fonts/Pokemon\ Solid.ttf') format(truetype);
     font-style: normal;
     font-weight: normal;
 }
 
 @font-face{
     font-family: 'Minecraft';
-    src: url('../../media/fonts/Minecraft.ttf') format(truetype);
+    src: url('fonts/Minecraft.ttf') format(truetype);
     font-style: normal;
     font-weight: normal;
 }
