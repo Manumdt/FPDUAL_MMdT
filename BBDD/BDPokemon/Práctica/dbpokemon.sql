@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS dbpokemon;
 CREATE DATABASE dbpokemon CHARSET utf8mb4;
 USE dbpokemon;
 
--- Parte01
+-- Parte01NumeroPokedexNumeroPokedex
 
 CREATE TABLE pokemon(
 	NumeroPokedex INT UNSIGNED,

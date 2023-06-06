@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon list</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <script defer th:src="@{/js/script.js}"></script>
+</head>
+<body class="body">
+
+    <header>
+        <h1>Pokeñeh</h1>
+    </header>
+    
+    <nav class="nav">
+
+        <form>
+            <div class="filaNav">
+                <label>Buscar pokemon</label>
+                <input class="buscar" type="number" id="buscar" name="buscar" placeholder="Numero de Pokedex">
+            </div>
+        </form>
+
+        <form id="eliminarFormulario">
+            <div class="filaNav">
+                <label>Eliminar pokemon</label>
+                <input type="number" id="eliminar" name="eliminar" placeholder="Numero de Pokedex">
+                <button type="submit" id="eliminarBoton">Eliminar</button>
+            </div>
+            <div class="mensajeEliminar">
+                <p class="mensaje"></p>
+            </div>
+        </form>
+
+        <div class="filaBoton">
+            <a th:href="@{html/formularioCrear.html}"><button class="crear" id="crear">Crear Pokemon</button></a>
+        </div>
+        <div class="filaBoton">
+            <a th:href="@{html/formularioModificar.html}"><button class="crear" id="modificar">Modificar Pokemon</button></a>
+        </div>
+    </nav>
+
+    <section>
+        <div class="pokemon-container"></div>
+</section>
+
+    <footer>
+        <div class="paginacion">
+
+            <button id="anterior">Anterior</button>
+            <button id="siguiente">Siguiente</button>
+
+        </div>
+    </footer>
+</body>
+</html> 

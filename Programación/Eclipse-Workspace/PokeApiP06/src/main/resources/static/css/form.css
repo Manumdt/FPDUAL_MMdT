@@ -1,0 +1,175 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face{
+    font-family: 'Pokemon';
+    src: url('fonts/Pokemon\ Solid.ttf') format(truetype);
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face{
+    font-family: 'Minecraft';
+    src: url('fonts/Minecraft.ttf') format(truetype);
+    font-style: normal;
+    font-weight: normal;
+}
+
+body{
+    background-color: #262626;
+    text-align: center;
+    color: white;
+}
+
+h1{
+    font-family: 'Pokemon';
+    color: #ffcc03;
+    -webkit-text-stroke: 1px #006cbc;
+    letter-spacing: 3px;
+    font-size: 300%;
+}
+
+form{
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.fila{
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fila label{
+    padding: 1%;
+    width: 15%;
+    font-family: 'Minecraft';
+    font-size: 150%;
+}
+
+.fila input{
+    width: 80%;
+    font-family: 'Minecraft';
+    padding: 1%;
+    background-color: #262626;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    font-size: 150%;
+}
+
+textarea{
+    font-family: 'Minecraft';
+    padding: 1%;
+    width: 80%;
+    height: 70px;
+    background-color: #262626;
+    color: white;
+    border: 2px solid white;
+    font-size: 120%;
+}
+
+.botones{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.botones button{
+    font-family: 'Minecraft';
+    width: 20%;
+    padding: 2%;
+    background-color: #262626;
+    color: white;
+    border: 2px solid white;
+    font-size: 140%;
+    cursor: pointer;
+    transition: 500ms;
+}
+
+.botones button:hover{
+    border: 2px solid #262626;
+    background-color: white;
+    color: #262626;
+}
+
+.botones a{
+    font-family: 'Minecraft';
+    color: white;
+    font-size: 150%;
+    text-decoration: none;
+    padding: 2%;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.botones a:hover {
+    text-shadow: 1px 1px 10px yellow;
+}
+
+.mensajeCorrecto{
+    font-family: 'Minecraft';
+    width: 70%;
+    height: 50%;
+    position: fixed;
+    border: 5px solid #307e36;
+    background-color: #77dd77;
+    font-size: 400%;
+    display: none;
+}
+
+.mensajeCorrecto p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mensajeError{
+    font-family: 'Minecraft';
+    width: 70%;
+    height: 50%;
+    position: fixed;
+    border: 5px solid #fa5f49;
+    background-color: #f9a59a;
+    font-size: 400%;
+    display: none;
+}
+
+.mensajeError p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#formularioModificar{
+    display: none;
+}
+
+#seleccionarPokemon{
+    font-family: 'Minecraft';
+    width: 70%;
+    font-size: 200%;
+    padding: 2%;
+}
+
+#seleccionarPokemon label{
+    width: 100%;
+    text-align: center;
+}
+
+#seleccionarPokemon input{
+    font-family: 'Minecraft';
+    font-size: 70%;
+    background-color: #262626;
+    width: 100%;
+    padding: 2%;
+    border: 2px solid white;
+    color: white;
+}
