@@ -17,3 +17,5 @@ Con todo ya instalado y el proyecto importado vas a encontrar dentro de la carpe
 Después hay que hacer maven clean, maven install y maven test, para a continuación ejecutar el proyecto con SprinBoot.
 
 Para acceder, en el navegador se pondra "localhost:8080".
+
+Es posible que en algunos equipos sea necesario instalar una extensión de navegador para evitar el CORS, yo personalmente he usado 'Allow-Cors'

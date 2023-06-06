@@ -58,6 +58,8 @@ Continuación del curso de java sobre colecciones y estructuras de datos. Se han
 
 Continuación del curso de java sobre colecciones y estructuras de datos. Se ha continuado con las listas enlazadas y por otro lado, se ha empezado a ver los conceptos relacionados con las pilas y colas y la implementación de las mismas con sus diferentes métodos.
 
-## Jueves 18 a Miércoles 31
+## Jueves 18 a Viernes 2 de junio.
 
-Realización de un proyecto en el que se ha creado una API propia en Java con la base de datos de pokemon que se hizo con anterioridad. Una vez creada la API se ha utilizado para enlazarla con el front-end que se hizo también en el proyecto de la pokedex. Además, con Java, se han implementado nuevas funcionalidades como un buscador, una función para eliminar pokemons de la base de datos y otra para crearlos.
+Realización de un proyecto en el que se ha creado una API propia en Java con la base de datos de pokemon que se hizo con anterioridad. Una vez creada la API se ha utilizado para enlazarla con el front-end que se hizo también en el proyecto de la pokedex. Además, con Java, se han implementado nuevas funcionalidades como un buscador (get), una función para eliminar pokemons (delete) de la base de datos,  otra para crearlos (post) y otra para modificarlos (put).
+
+Esto ha venido muy bien para aprender a utilizar SpringBoot a nivel básico, aprender nuevas funcionalidades de Java, a la vez que refrescamos nuestros conocimientos; y para recordar todo lo aprendido de HTML, CSS y JavaScript ya que ha sido necesario hacer algún cambio o implementación en estos lenguajes para completar el enlace con la API de Java.
