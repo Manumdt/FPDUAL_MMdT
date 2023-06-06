@@ -3,8 +3,9 @@
 ## Necesitas
 
 * Java 17
-* MySQL Workbench
-* Eclipse con Maven
+* MySQL Workbench 8.0 CE
+* Eclipse 2023-03 (4.27.0)
+* Maven EMBEDDED 3.8.7/3.8.701.20230209-1606
 * SpringDevTools 4
 * Proyecto generado con Spring.io con la version 3.10 de Spring y tres dependencias, JPA, WEB y MYSQL.
 
@@ -12,7 +13,7 @@
 
 Para importar el proyecto, se selecciona en File -> Import -> Existing Maven Projects.
 
-Con todo ya instalado y el proyecto importado vas a encontrar dentro de la carpeta 'resources', otra carpeta llamada 'sql' la cual contiene un archivo .sql listo para ser ejectuado y crear la base de datos necesaria, con los inserts incluidos, para poder ejecutar el proyecto con los datos necesarios.
+Ejecutar el script sql encontrado en PokeApi06/src/main/resources/sql para tener la base de datos que usará el proyecto.
 
 Después hay que hacer maven clean, maven install y maven test, para a continuación ejecutar el proyecto con SprinBoot.
 
