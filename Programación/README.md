@@ -1,4 +1,4 @@
-# Diario de base de datos
+# Diario de programación
 
 ## Enlace a directorio 
 
